@@ -26,7 +26,7 @@ class teachData:
         list_ = ["単語", "判定結果", "TF-IDF値", "出現回数", "優先値", "連結回数", "固有度"]
         new_list.insert(0, list_)
 
-        with open("teach_intern_short.csv", 'w', encoding='utf8') as f:
+        with open("teach_advance_kyogi.csv", 'w', encoding='utf8') as f:
             writer = csv.writer(f, lineterminator='\n')
             for x in new_list:
                 writer.writerow(x)

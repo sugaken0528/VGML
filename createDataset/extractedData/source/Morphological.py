@@ -26,7 +26,7 @@ class Morphological:
         list_ = ["単語", "判定結果", "TF-IDF値", "出現回数", "優先値", "連結回数", "固有度"]
         new_list.insert(0, list_)
 
-        with open("extractedData/extracted_list_intern_short.csv", 'w', encoding='utf8') as f:
+        with open("extractedData/extracted_list_advance_kyogi.csv", 'w', encoding='utf8') as f:
             writer = csv.writer(f, lineterminator='\n')
             for x in new_list:
                 writer.writerow(x)
@@ -175,6 +175,8 @@ class Morphological:
             x.append(count)
         return lists
 
+
+"""
     def koyu(self, lists):
         koyumeshi = '名詞-固有名詞-組織'
         m = MeCab.Tagger("-Ochasen")
@@ -191,36 +193,38 @@ class Morphological:
                 koyuLevel = 0
             x.append(koyuLevel)
         return lists
+"""
 
-    def delete(self, lists):
-        m = MeCab.Tagger("-Ochasen")
-        """
+
+def delete(self, lists):
+    m = MeCab.Tagger("-Ochasen")
+    """
         for x in lists:
             nouns = m.parse(x[0]).splitlines()
             for i in range(len(nouns)):
                 print(nouns[i].split())
             print('-----------------------------------')
         """
-        daimeshi = '代名詞'
-        meishi = '名詞'
-        hukushikano = '副詞可能'
-        hukushi = '副詞-一般'
-        suzi = '名詞-数'
-        kandoshi = '感動詞'
-        sahen = '名詞-サ変'
-        keiyodoshi = '名詞-形容動詞語幹'
+    daimeshi = '代名詞'
+    meishi = '名詞'
+    hukushikano = '副詞可能'
+    hukushi = '副詞-一般'
+    suzi = '名詞-数'
+    kandoshi = '感動詞'
+    sahen = '名詞-サ変'
+    keiyodoshi = '名詞-形容動詞語幹'
 
-        newList = []
-        for x in lists:
-            nouns = m.parse(x[0]).splitlines()
-            nouns.pop(-1)
-            if((len(nouns) == 1 and sahen in nouns[0].split()[-1]) or kandoshi in nouns[0].split()[-1] or daimeshi in nouns[0].split()[-1] or daimeshi in nouns[-1].split()[-1] or hukushi in nouns[0].split()[-1] or hukushi in nouns[-1].split()[-1] or len(nouns[0].split()) == 6 or (meishi in nouns[-1].split()[-1] and hukushikano in nouns[-1].split()[-1]) or keiyodoshi in nouns[-1].split()[-1]):
-                continue
-            if(len(nouns) != 1 and suzi in nouns[0].split()[-1]):
-                continue
-            if(len(nouns) >= 2 and ((nouns[0].split()[0] == '図' or nouns[0].split()[0] == '表') and suzi in nouns[1].split()[-1])):
-                continue
-            newList.append(x)
+    newList = []
+    for x in lists:
+        nouns = m.parse(x[0]).splitlines()
+        nouns.pop(-1)
+        if((len(nouns) == 1 and sahen in nouns[0].split()[-1]) or kandoshi in nouns[0].split()[-1] or daimeshi in nouns[0].split()[-1] or daimeshi in nouns[-1].split()[-1] or hukushi in nouns[0].split()[-1] or hukushi in nouns[-1].split()[-1] or len(nouns[0].split()) == 6 or (meishi in nouns[-1].split()[-1] and hukushikano in nouns[-1].split()[-1]) or keiyodoshi in nouns[-1].split()[-1]):
+            continue
+        if(len(nouns) != 1 and suzi in nouns[0].split()[-1]):
+            continue
+        if(len(nouns) >= 2 and ((nouns[0].split()[0] == '図' or nouns[0].split()[0] == '表') and suzi in nouns[1].split()[-1])):
+            continue
+        newList.append(x)
         """
         for x in newList:
             nouns = m.parse(x[0]).splitlines()
