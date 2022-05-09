@@ -1,0 +1,12 @@
+# -*- coding: utf-8 -*-
+from teachData import teachData
+import pandas as pd
+import numpy as np
+df = pd.read_csv("intern_load.txt")
+# 抽出データを文ごとにarrayに格納
+docs = np.array([])
+docs = np.append(docs, df.columns)
+for x in df.values:
+    docs = np.append(docs, x)
+teach = teachData(docs)
+teach.createParameta()

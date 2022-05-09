@@ -1,0 +1,45 @@
+class 
+
+types
+  public body_weight = real;
+  public height = real;
+
+values
+  appropriate_BMI_upper_limit = 30;
+  appropriate_BMI_lower_limit = 25;
+  monthly_weight_loss_limit = 2;
+
+instance variables
+  previous_month_weight : body_weight := 0;
+
+operations
+ public doesn't_compromise_health : body_weight*height ==> previous_month_weight>=current_weight
+ doesn't_compromise_health ( # )  == () 
+ pre previous_month_weight>=current_weight
+ post RESULT
+ ; 
+ public set_the_weight_of_the_previous_month : body_weight ==> 0
+ set_the_weight_of_the_previous_month ( # )  == () 
+ ; 
+ public BMI_with_long_life_expectancy : body_weight*height ==> 0
+ BMI_with_long_life_expectancy ( # )  == () 
+ ; 
+ public get_BMI : body_weight*height ==> height<>0
+ get_BMI ( # )  == () 
+ pre height<>0
+ ; 
+ public "" : "" ==> ""
+ "" ( "" )  == () 
+ pre ""
+ post ""
+ ; 
+
+-- constructor for test
+
+public test: () ==> test
+
+test() == ();
+
+functions
+
+end test

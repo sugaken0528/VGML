@@ -1,0 +1,24 @@
+class BMI
+    values
+        月当たり減量限界値 = 2;
+        適性BMI下限 = 25;
+        適性BMI上限 = 30;
+    types
+        public 体重 = real;
+        public 身長 = real;
+    instance variables
+        前月体重 : 体重 := 0;
+    operations
+        public 健康を損なわない : 体重 * 身長 ==> bool
+        健康を損なわない(a現体重, a身長) == return (前月体重 - a現体重) <= 月当たり減量限界値 and 平均寿命が長いBMIである(a現体重, a身長)
+        pre 前月体重 >= a現体重
+        post RESULT = ((前月体重 - a現体重) <= 月当たり減量限界値 and 平均寿命が長いBMIである(a現体重, a身長));
+        public 前月体重を設定する : 体重 ==> ()
+        前月体重を設定する(a体重) == 前月体重 := a体重;
+    functions
+        static public 平均寿命が長いBMIである : 体重*身長 +> bool
+        平均寿命が長いBMIである(a現体重,a身長) == 適性BMI上限　>= BMIを得る(a現体重, a身長) and BMIを得る(a現体重, a身長) >= 適性BMI下限;
+        static public BMIを得る : 体重*身長 -> real
+        BMIを得る(体重, 身長) == 体重 / ((身長 / 100)**2)
+        pre 身長 <> 0;
+end BMI

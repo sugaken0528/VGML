@@ -1,0 +1,65 @@
+class 
+
+types
+  public 黒ブロック = real ;
+  public 黒 = real ;
+  public 進入以降具体的 = real ;
+  public 灰色点線内 = real ;
+  public 数字カード黒ブロック = real ;
+  public 数字カード置き場 = real ;
+  public 数字カードボーナスサークル = real ;
+  public 数字カード = real ;
+  public 数字 = real ;
+  public 交点サークル = real ;
+  public リザルトタイム = real ;
+  public ボーナスブロック = real ;
+  public ボーナスタイム = real ;
+  public ボーナスサークル = real ;
+  public ボーナス = real ;
+  public ブロックビンゴ2020エリア = real ;
+  public ブロックビンゴ2020 = real ;
+  public ブロックサークル番号8 = real ;
+  public ブロックサークル番号6 = real ;
+  public ブロックサークル番号3 = real ;
+  public ブロックサークル番号 = real ;
+  public ブロックサークル内 = real ;
+  public ブロックサークル = real ;
+  public ブロック = real ;
+  public フルビンゴ = real ;
+  public ビンゴ = real ;
+  public ナンバー黒ブロック = real ;
+  public ナンバーボーナスサークル = real ;
+  public トリプルビンゴ = real ;
+  public ダブルビンゴ = real ;
+  public スタート準備 = real ;
+  public スタート成立後 = real ;
+  public シングルビンゴ = real ;
+  public ガレージ方向 = real ;
+  public カラーブロック有効移動 = real ;
+  public カラーブロック = real ;
+  public オレンジ範囲 = real ;
+  public アドバンストクラス = real ;
+  public rコース = real ;
+  public lコース = real ;
+
+values
+  黒ブロック = 10 ;
+  数字カード黒ブロック = 10 ;
+  ブロック = 10 ;
+  ナンバー黒ブロック = 10 ;
+  カラーブロック = 8 ;
+  5種類 = 2 ;
+
+instance variables
+
+operations
+
+-- constructor for test
+
+public test: () ==> test
+
+test() == ();
+
+functions
+
+end test
