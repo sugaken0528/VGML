@@ -4,10 +4,11 @@ import sqlite3
 from collections import defaultdict
 
 
-class lowerWord:
+class LowerWord:
 
     def __init__(self):
-        self.conn = sqlite3.connect("../../wnjpn.db")
+        self.conn = sqlite3.connect(
+            "\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\wnjpn.db")
         self.hierarchy_dict = defaultdict(list)  # 上位語を指定して下位語のリストを取得できる辞書
         self.tree_dict = defaultdict(list)
         self.semi_hyper_list = []
@@ -36,7 +37,7 @@ class lowerWord:
         # Wordnetに存在する単語であるかの判定
         if word_id == 99999999:
             print("[%s]は、WordNetに存在しない単語です。" % word)
-            return
+            return 0, 0
         else:
             print("[%s]の下位概念を出力します\n" % word)
 

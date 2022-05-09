@@ -2,7 +2,7 @@
 from Morphological import Morphological
 import pandas as pd
 import numpy as np
-df = pd.read_csv("loadTxt/advance_kyogi_load.txt")
+df = pd.read_csv("../../loadTxt/intern_short_load.txt")
 # 抽出データを文ごとにarrayに格納
 docs = np.array([])
 docs = np.append(docs, df.columns)
