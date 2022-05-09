@@ -40,7 +40,7 @@ wlist1 = vectorizer.get_feature_names_out()
 # 単語のリスト化
 countlist = [0] * len(wlist1)
 
-result = pd.read_csv("resultData/result_advance.csv")
+result = pd.read_csv("resultData/result_advance_kyogi.csv")
 
 classifier = classifier(result, docs1, docs, wlist1, TF_list)
 createClassifierList = classifier.createClassifierList()
