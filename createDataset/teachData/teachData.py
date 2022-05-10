@@ -3,6 +3,8 @@ import csv
 import re
 from sklearn.feature_extraction.text import TfidfVectorizer
 import MeCab
+from calcConceptLebel import CalcConceptLevel
+from lowerWord import LowerWord
 import numpy as np
 
 
@@ -11,22 +13,23 @@ class teachData:
         self.docs = docs
 
     def createParameta(self):
-        #docs = self.wordOrganization()
+        # docs = self.wordOrganization()
         docs = self.docs
         parametaList = self.tfidf(docs)
         parametaList = self.priority(parametaList)
         parametaList = self.Linking(parametaList)
-        #parametaList = self.koyu(parametaList)
-        #parametaList = self.delete(parametaList)
-        parametaList = self.duplicateDeletion(parametaList)
+        # parametaList = self.koyu(parametaList)
+        parametaList = self.delete(parametaList)
+        parametaList = self.duplicateDeletion(parametaList)  # 重複削除
+        parametaList = self.concept(parametaList)
         # 判定結果を追加
         for x in parametaList:
             x.insert(1, "0")
         new_list = sorted(parametaList, reverse=True)
-        list_ = ["単語", "判定結果", "TF-IDF値", "出現回数", "優先値", "連結回数", "固有度"]
+        list_ = ["単語", "判定結果", "TF-IDF値", "出現回数", "優先値", "連結回数", "概念レベル"]
         new_list.insert(0, list_)
 
-        with open("teach_advance_kyogi.csv", 'w', encoding='utf8') as f:
+        with open("\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\teachData\\teach_intern.csv", 'w', encoding='utf8') as f:
             writer = csv.writer(f, lineterminator='\n')
             for x in new_list:
                 writer.writerow(x)
@@ -173,22 +176,27 @@ class teachData:
             x.append(count)
         return lists
 
-    def koyu(self, lists):
-        koyumeshi = '名詞-固有名詞-組織'
-        m = MeCab.Tagger("-Ochasen")
+    def concept(self, lists):
         for x in lists:
-            count = 0
-            nouns = m.parse(x[0]).splitlines()
-            nouns.pop(-1)
-            for i in range(len(nouns)):
-                if(koyumeshi in nouns[i].split()[-1]):
-                    count += 1
-            if(count != 0):
-                koyuLevel = count / len(nouns)
-            else:
-                koyuLevel = 0
-            x.append(koyuLevel)
+            conceptLevel = self.diviteConcept(x[0])
+            x.append(conceptLevel)
         return lists
+
+    def diviteConcept(self, words):
+        m = MeCab.Tagger("-Ochasen")
+        nouns = m.parse(words).splitlines()
+        nouns.pop(-1)
+        value = 0
+        for i in range(len(nouns)):
+            lowerWord = LowerWord()
+            dict, semiList = lowerWord.SearchTopConceptWords(
+                nouns[i].split()[0])
+            if(dict == 0 and semiList == 0):
+                pass
+            else:
+                calcConceptLebel = CalcConceptLevel(dict, semiList)
+                value += calcConceptLebel.calc()
+        return value / len(nouns)
 
     def delete(self, lists):
         m = MeCab.Tagger("-Ochasen")
