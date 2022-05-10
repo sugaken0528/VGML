@@ -29,7 +29,7 @@ class Morphological:
         list_ = ["単語", "判定結果", "TF-IDF値", "出現回数", "優先値", "連結回数", "概念レベル"]
         new_list.insert(0, list_)
         print("csvファイルを出力します")
-        with open("../data/extracted_list_intern_short.csv", 'w', encoding='utf8') as f:
+        with open("\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\extractedData\\data\\extracted_list_intern_short.csv", 'w', encoding='utf8') as f:
             writer = csv.writer(f, lineterminator='\n')
             for x in new_list:
                 writer.writerow(x)
@@ -180,15 +180,25 @@ class Morphological:
 
     def concept(self, lists):
         for x in lists:
+            conceptLevel = self.diviteConcept(x[0])
+            x.append(conceptLevel)
+        return lists
+
+    def diviteConcept(self, words):
+        m = MeCab.Tagger("-Ochasen")
+        nouns = m.parse(words).splitlines()
+        nouns.pop(-1)
+        value = 0
+        for i in range(len(nouns)):
             lowerWord = LowerWord()
-            dict, semiList = lowerWord.SearchTopConceptWords(x[0])
+            dict, semiList = lowerWord.SearchTopConceptWords(
+                nouns[i].split()[0])
             if(dict == 0 and semiList == 0):
-                x.append(0)
+                pass
             else:
                 calcConceptLebel = CalcConceptLevel(dict, semiList)
-                conceptLevel = calcConceptLebel.calc()
-                x.append(conceptLevel)
-        return lists
+                value += calcConceptLebel.calc()
+        return value / len(nouns)
 
     def delete(self, lists):
         m = MeCab.Tagger("-Ochasen")
