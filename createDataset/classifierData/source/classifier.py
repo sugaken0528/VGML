@@ -14,16 +14,24 @@ class classifier:
 
     def createClassifierList(self):
         classifier_list = []
+        class_list = []
         for x in self.result.values:
             if x[10] >= 1.0:
                 list_ = []
                 list_.append("INDEX_ID")
                 list_.append(x[0])
                 classifier_list.append(list_)
+            if x[10] == 2:
+                class_list.append(x[0])
+
         # 重複の削除およびソート
         classifier_list.sort()
+        class_list.sort()
         classifier_list = self.get_unique_list(classifier_list)
-        dic = pd.read_csv("dic.csv")
+        class_list = self.get_unique_list(class_list)
+
+        dic = pd.read_csv(
+            "\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\dic.csv")
         counter_suffix = ['位', '宇', '折', '果', '箇', '荷', '菓', '掛', '顆', '回', '階', '画', '頭', '方', '株', '巻', '管', '缶', '基', '機', '騎', '切', '客', '脚', '行', '局', '句', '軀', '口', '具', '組', '景', '桁', '件', '軒', '個', '戸', '号', '合', '梱', '献', '喉', '座', '棹', '冊', '皿', '氏', '締', '字', '軸', '室', '首', '重', '床', '条', '畳', '錠', '帖', '筋', '食', '隻', '膳', '双',
                           '艘', '足', '揃', '体', '袋', '台', '題', '立', '卓', '束', '玉', '着', '丁', '挺', '帳', '張', 'つ', '対', '通', '番', '粒', '艇', '滴', '点', '度', '等', '堂', '人', '把', '羽', '張', '刎', '杯', '柱', '鉢', '発', '尾', '匹', '瓶', '振', '部', '幅', '服', '房', '篇', '遍', '本', '間', '枚', '前', '幕', '棟', '名', '面', '門', '問', '山', '葉', '流', '旒', '両', '領', '輪', '連', '椀', '碗']
         v_list = []
@@ -89,9 +97,19 @@ class classifier:
             list_.append(x[1])
             classifier_list.append(list_)
         new_list = sorted(classifier_list, reverse=True)
-        with open("classifierData/classifier_advance.csv", 'w', encoding='utf8') as f:
+        with open("\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\classifierData\\data\\classifier_intern.csv", 'w', encoding='utf8') as f:
             writer = csv.writer(f, lineterminator='\n')
             for x in new_list:
+                writer.writerow(x)
+
+        new_class_list = []
+        for i in range(len(class_list)):
+            tempList = [class_list[i]]
+            new_class_list.append(tempList)
+        new_class_list = sorted(new_class_list, reverse=True)
+        with open("\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\classifierData\\data\\classifier_intern_class.csv", 'w', encoding='utf8') as f:
+            writer = csv.writer(f, lineterminator='\n')
+            for x in new_class_list:
                 writer.writerow(x)
         m = MeCab.Tagger("-Ochasen")
         for x in new_list:
