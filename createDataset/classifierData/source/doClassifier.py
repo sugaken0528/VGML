@@ -3,7 +3,8 @@ import pandas as pd
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 
-df = pd.read_csv("loadTxt/advance_kyogi_load.txt")
+df = pd.read_csv(
+    "\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\loadTxt\\intern_load.txt")
 docs1 = np.array([])
 for x in df.values:
     docs1 = np.append(docs1, x)
@@ -40,7 +41,8 @@ wlist1 = vectorizer.get_feature_names_out()
 # 単語のリスト化
 countlist = [0] * len(wlist1)
 
-result = pd.read_csv("resultData/result_advance_kyogi.csv")
+result = pd.read_csv(
+    "\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\resultData\\result_classifier_intern.csv")
 
 classifier = classifier(result, docs1, docs, wlist1, TF_list)
 createClassifierList = classifier.createClassifierList()
