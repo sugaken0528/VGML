@@ -1,0 +1,55 @@
+class etrobocon
+
+types
+  public 関連ファイル = real;
+  public 走行体全体 = real;
+  public 走行体ソフトウェア = real;
+  public 走行タイム = real;
+  public 走行 = real;
+  public 競技環境 = real;
+  public 灰色点線内 = real;
+  public 最大計測時間 = real;
+  public 数字カード置き場 = real;
+  public 実行委員会 = real;
+  public 大会開催地 = real;
+  public 各種ゲート等 = real;
+  public 初期設置情報 = real;
+  public 初期値情報 = real;
+  public 全クラス共通 = real;
+  public 交点サークル = real;
+  public 一定期日前 = real;
+  public リザルトタイム確定 = real;
+  public リザルトタイム = real;
+  public ボーナスブロック = real;
+  public ボーナスタイム獲得 = real;
+  public ボーナスタイム = real;
+  public ボーナスサークル = real;
+  public ブロック搬入 = real;
+  public ブロックサークル = real;
+  public ブロック = real;
+  public ナンバー黒ブロック = real;
+  public トリプルビンゴ = real;
+  public スポンサー看板 = real;
+  public スタート準備走行 = real;
+  public スタート成立後 = real;
+  public スタート位置 = real;
+  public スタートライン手前 = real;
+  public スタートライン = real;
+  public スタートエリア = real;
+  public シングルビンゴ = real;
+  public ガレージ方向 = real;
+  public カラーブロック = real;
+  public アドバンストクラス = real;
+  public アクティビティ = real;
+  public それぞれ個別 = real;
+  public その他禁止事項 = real;
+  public etrobocon = real;
+
+values
+  黒ブロック = 10;
+  数字カード黒ブロック = 10;
+  ブロック = 10;
+  ナンバー黒ブロック = 10;
+  カラーブロック = 8;
+
+end etrobocon

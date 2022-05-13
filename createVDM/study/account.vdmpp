@@ -1,0 +1,27 @@
+class account
+
+types
+  public total = real;
+  public purchaser = real;
+  public price = real;
+  public payment = real;
+  public id = real;
+  public change = real;
+  public amount = real;
+
+values
+  adult = 21;
+
+instance variables
+
+operations
+
+-- constructor for test
+
+public test: () ==> test
+
+test() == ();
+
+functions
+
+end account

@@ -1,0 +1,19 @@
+class 
+
+types
+
+values
+
+instance variables
+
+operations
+
+-- constructor for test
+
+public test: () ==> test
+
+test() == ();
+
+functions
+
+end test
