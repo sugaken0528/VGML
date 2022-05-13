@@ -1,0 +1,45 @@
+class ET
+
+types
+  public アドバンストクラス = real;
+  public エリア = real;
+  public ガレージ = real;
+  public クラス = real;
+  public ゲートライン = real;
+  public コース = real;
+  public ゴール = real;
+  public ゴールゲート = real;
+  public シングルビンゴ = real;
+  public スタートエリア = real;
+  public スタートライン = real;
+  public ダブルビンゴ = real;
+  public トリプルビンゴ = real;
+  public ナンバー黒ブロック = real;
+  public ビンゴ = real;
+  public フルビンゴ = real;
+  public ブロックサークル = real;
+  public ボーナス = real;
+  public ボーナスサークル = real;
+  public ボーナスタイム = real;
+  public ボーナスブロック = real;
+  public リザルトタイム = real;
+  public 交点サークル = real;
+  public 最大計測時間 = real;
+  public 初期設置 = real;
+  public 初期設置情報 = real;
+  public 初期値情報 = real;
+  public 数字 = real;
+  public 数字カード = real;
+  public 数字カード置き場 = real;
+  public 走行タイム = real;
+  public 中間ゲート = real;
+  public 数字カード黒ブロック = real;
+  public スタート位置 = real;
+
+values
+  カラーブロック = 8;
+  ブロック = 10;
+  黒ブロック = 2;
+  最大値 = 120;
+
+end ET

@@ -1,0 +1,55 @@
+class internship
+
+types
+  public 開催年度 = real;
+  public 連絡先電話番号 = real;
+  public 連絡先電話番 = real;
+  public 評定項目値 = real;
+  public 評定書確定後 = real;
+  public 氏名 = real;
+  public 実施開始日 = real;
+  public 担当者情報 = real;
+  public 担当者id = real;
+  public 担当者 = real;
+  public 年度別一覧 = real;
+  public 実施開始日 = real;
+  public 実施終了日 = real;
+  public 実施日数 = real;
+  public 実施日以前 = real;
+  public 実施 = real;
+  public 学籍番号 = real;
+  public 学生氏名 = real;
+  public 学生情報 = real;
+  public 学生 = real;
+  public 同メールアドレス = real;
+  public 同インターンシップ = real;
+  public 各実施日ごと = real;
+  public 参加決定者 = real;
+  public 参加決定学生 = real;
+  public 参加学生決定 = real;
+  public 参加エントリ = real;
+  public 使用可能 = real;
+  public 企業担当者登録 = real;
+  public 企業担当者名 = real;
+  public 企業担当者id = real;
+  public 企業担当者 = real;
+  public 企業id = real;
+  public 企業 = real;
+  public 予定実施日数 = real;
+  public 予定実施日 = real;
+  public ユーザ認証後 = real;
+  public パスワード変更 = real;
+  public パスワード = real;
+  public セキュリティ確保 = real;
+  public エントリ登録 = real;
+  public インターンシップ名 = real;
+  public インターンシップ = real;
+  public アドバイス参照 = real;
+  public アドバイス入力 = real;
+  public すべて参加決定者 = real;
+  public password = real;
+
+values
+  パスワード = 8;
+
+end internship
