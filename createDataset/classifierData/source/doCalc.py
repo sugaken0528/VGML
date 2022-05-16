@@ -3,7 +3,7 @@ from lowerWord import LowerWord
 #from wordTree_en import treeGraph_en
 from calcConceptLebel import CalcConceptLevel
 
-word = '者'
+word = 'ボーナス'
 lowerWord = LowerWord()
 dict, semiList = lowerWord.SearchTopConceptWords(word)
 # print(dict)
