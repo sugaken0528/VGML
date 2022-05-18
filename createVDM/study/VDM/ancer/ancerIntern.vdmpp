@@ -7,7 +7,6 @@ types
     public 実施終了日 = real;
     public 実施日数 = real;
     public 実施日 = real;
-    public 学籍番号 = real;
     public 学生登録 = real;
     public 学生情報 = real;
     public 企業登録 = real;
@@ -89,10 +88,12 @@ class 学生
 types
     public id = real;
     public 氏名 = real;
+    public 番号 = real;
 
 instance variables
     public 学生id : id;
     public 学生氏名 : 氏名;
+    public 学籍番号 : 番号;
 
 end 学生
 
