@@ -1,0 +1,149 @@
+class intern
+
+types
+    public 部署名 = real;
+    public 職階 = real;
+    public 実施開始日 = real;
+    public 実施終了日 = real;
+    public 実施日数 = real;
+    public 実施日 = real;
+    public 学籍番号 = real;
+    public 学生登録 = real;
+    public 学生情報 = real;
+    public 企業登録 = real;
+    public 担当者情報 = real;
+    public 担当者登録 = real;
+    public 企業担当者登録 = real;
+    public ログインid = real;
+    public ログイン = real;
+    public ユーザ認証 = real;
+    public パスワード変更 = real;
+    public エントリ登録 = real;
+    public エントリ = real;
+    public インターンシップ登録 = real;
+    public インターンシップ情報 = real;
+    public 予定実施日 = real;
+    public 予定実施日数 = real;
+    public インターンシップエントリ情報;
+    public ソート;
+    public 学生順;
+    public 企業順;
+    public 開催年度;
+    public インターンシップ参加決定学生閲覧;
+    public 参加決定者;
+    public 年度;
+    public 評定項目;
+    public 事前準備状況;
+    public 勤務内容理解;
+    public 勤務態度;
+    public コミュニケーション;
+    public 反省的態度;
+    public 総合評価;
+    public インターンシップ評定情報;
+    public インターンシップ評定情報詳細確認;
+    public インターンシップエントリ学生閲覧;
+    public インターンシップ詳細登録;
+    public 参加学生決定;
+    public 一覧項目;
+    public 一覧確認;
+    public 評定書;
+    public 評定書入力;
+    public コメント;
+    public アドバイス;
+    public 評定書保存;
+    public 評定書確定;
+    public 確定フラグ;
+    public 識別番号;
+    public 参加インターンシップ情報閲覧;
+    public 目標入力;
+    public 自己評価入力;
+    publid 反省点入力;
+    public アドバイス参照;
+    public 評定項目値;
+    public 注意事項;
+    public 年度別一覧;
+    public 参加決定学生;
+    public 参加エントリ;
+    public password = real;
+    public アドバイス入力 = real;
+
+values
+    パスワード = 8;
+
+end intern
+
+class 企業
+
+types
+    public 名 = real;
+    public id = real;
+
+instance variables
+    public 企業名 : 名;
+    public 企業id : id;
+
+end 企業
+
+class 学生
+
+types
+    public id = real;
+    public 氏名 = real;
+
+instance variables
+    public 学生id : id;
+    public 学生氏名 : 氏名;
+
+end 学生
+
+class 企業担当者
+
+types
+    public 連絡先電話番号 = real;
+    public 連絡先メールアドレス = real;
+    public 名 = real;
+    public id = real;
+
+instance variables
+    public 企業担当者連絡先電話番号 : 連絡先電話番号;
+    public 企業担当者連絡先メールアドレス : 連絡先メールアドレス;
+    public 企業担当者名 : 名;
+    public 企業担当者id : id;
+
+end 企業担当者
+
+class インターンシップ
+
+types
+    public 名 = real;
+    public id = real;
+
+instance variables
+    public インターンシップ名 : 名;
+    public インターンシップid : id;
+
+end インターンシップ
+
+class 教員
+
+types
+    public id = real;
+    public パスワード = real;
+
+instance variables
+    public ユーザid : id;
+    public パスワード : パスワード;
+
+end 教員
+
+class 担当者
+
+types
+    public 名 = real;
+    public id = real;
+    public 年度 = real;
+
+instance variables
+    public 担当者名 : 名;
+    public 担当者id : id;
+    public 担当年度 : 年度;
