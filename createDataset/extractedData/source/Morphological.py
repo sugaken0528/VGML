@@ -29,7 +29,7 @@ class Morphological:
         list_ = ["単語", "判定結果", "TF-IDF値", "出現回数", "優先値", "連結回数", "概念レベル"]
         new_list.insert(0, list_)
         print("csvファイルを出力します")
-        with open("\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\extractedData\\data\\extracted_list_intern.csv", 'w', encoding='utf8') as f:
+        with open("\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\extractedData\\data\\extracted_list_advance_kyogi.csv", 'w', encoding='utf8') as f:
             writer = csv.writer(f, lineterminator='\n')
             for x in new_list:
                 writer.writerow(x)

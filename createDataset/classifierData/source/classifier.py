@@ -97,7 +97,7 @@ class classifier:
             list_.append(x[1])
             classifier_list.append(list_)
         new_list = sorted(classifier_list, reverse=True)
-        with open("\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\classifierData\\data\\classifier_intern.csv", 'w', encoding='utf8') as f:
+        with open("\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\classifierData\\data\\classifier_advance.csv", 'w', encoding='utf8') as f:
             writer = csv.writer(f, lineterminator='\n')
             for x in new_list:
                 writer.writerow(x)
@@ -107,7 +107,7 @@ class classifier:
             tempList = [class_list[i]]
             new_class_list.append(tempList)
         new_class_list = sorted(new_class_list, reverse=True)
-        with open("\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\classifierData\\data\\classifier_intern_class.csv", 'w', encoding='utf8') as f:
+        with open("\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\classifierData\\data\\classifier_advance_class.csv", 'w', encoding='utf8') as f:
             writer = csv.writer(f, lineterminator='\n')
             for x in new_class_list:
                 writer.writerow(x)

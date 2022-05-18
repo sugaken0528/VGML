@@ -1,9 +1,9 @@
 import pandas as pd
 
-anser = pd.read_csv("anser_intern.csv")
-classAnser = pd.read_csv("anser_class.csv")
+anser = pd.read_csv("anser_kyogi.csv")
+classAnser = pd.read_csv("anser_kyogi_class.csv")
 classifier = pd.read_csv(
-    "\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\classifierData\\data\\classifier_intern.csv")
+    "\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\classifierData\\data\\classifier_advance.csv")
 
 anserList = []  # 正解の単語
 anserClassList = []  # 正解のクラスの単語
@@ -41,7 +41,7 @@ print("\n")
 
 
 classData = pd.read_csv(
-    "\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\classifierData\\data\\classifier_intern_class.csv")
+    "\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\classifierData\\data\\classifier_advance_class.csv")
 
 classList = []
 classList.append(classData.columns[0])
