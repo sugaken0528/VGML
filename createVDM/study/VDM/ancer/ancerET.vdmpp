@@ -1,0 +1,61 @@
+class ET
+
+types
+    public シングルビンゴ = real;
+    public ダブルビンゴ = real;
+    public トリプルビンゴ = real;
+    public フルビンゴ = real;
+
+end ET
+
+
+class ブロックビンゴ2020エリア
+
+types
+    public ブロック = real;
+    public ブロックサークル = real;
+    public 交点サークル = real;
+
+instance variables
+    public ブロック番号 : ブロック;
+    public ブロックサークル番号 : ブロックサークル;
+    public 交点サークル番号 : 交点サークル;
+    public ビンゴ : mk_token;
+
+
+class ブロック
+
+types
+    public 番号 = real;
+
+end ブロック
+
+
+class 黒ブロック
+
+end 黒ブロック
+
+
+class ナンバー黒ブロック
+
+types 
+    public ブロックサークル番号 = real;
+
+instance variables
+    public 数字 : ブロックサークル番号;
+
+end ナンバー黒ブロック
+
+
+class 数字カード黒ブロック
+
+types
+    public 数字カード = real;
+
+instance variables
+    public 数字 : 数字カード;
+
+end 数字カード黒ブロック
+
+
+class 
