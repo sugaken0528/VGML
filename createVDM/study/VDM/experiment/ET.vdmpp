@@ -1,7 +1,6 @@
 class ET
 
 types
-    public 黒ブロック = real;
     public 進入以降具体的 = real;
     public 通過方向 = real;
     public 走行順 = real;
@@ -29,9 +28,7 @@ types
     public 最大計測 = real;
     public 最大値 = real;
     public 斜線 = real;
-    public 数字カード黒ブロック = real;
     public 数字カード置き場 = real;
-    public 数字カードボーナスサークル = real;
     public 数字カード = real;
     public 数字= real;
     public 番号 = real;
@@ -41,7 +38,6 @@ types
     public 判定方法 = real;
     public 初期設置 = real;
     public 初期位置 = real;
-    public 交点サークル = real;
     public 中間ゲート2 = real;
     public 中間ゲート1 = real;
     public 中間ゲート = real;
@@ -52,22 +48,13 @@ types
     public 一方向 = real;
     public リザルトタイム = real;
     public リザルトタイム確定 = real;
-    public ボーナスブロック = real;
     public ボーナスタイム獲得 = real;
-    public ボーナスタイム = real;
     public ボーナスサークル設置 = real;
-    public ボーナスサークル = real;
-    public ボーナス = real;
     public ブロック搬入 = real;
     public ブロックビンゴ2020エリア = real;
     public ブロックビンゴ2020 = real;
     public ブロックサークル番号 = real;
-    public ブロックサークル = real;
-    public ブロック = real;
     public フルビンゴ = real;
-    public ビンゴ = real;
-    public ナンバー黒ブロック = real;
-    public ナンバーボーナスサークル = real;
     public トリプルビンゴ = real;
     public チーム = real;
     public ダブルビンゴ = real;
@@ -82,14 +69,10 @@ types
     public ゴール = real;
     public ガレージ = real;
     public カラーブロック有効移動 = real;
-    public カラーブロック = real;
-    public カラーサークル = real;
     public オレンジ範囲 = real;
     public アドバンストクラス難所 = real;
     public アドバンストクラス = real;
     public アクティビティ = real;
-    public rコース = real;
-    public lコース = real;
     public goal = real;
     public gate2 = real;
     public gate1 = real;
@@ -98,3 +81,70 @@ types
     public ETロボコン2020シミュレータ = real;
 
 end ET
+
+
+class ブロック
+
+types
+    public カラー　= real;
+    public ボーナス = real;
+
+instance variables
+    public カラーブロック : カラー;
+    public ボーナスブロック : ボーナス;
+
+end ブロック
+
+
+class 黒ブロック
+
+types
+    public 数字カード = real;
+    public ナンバー = real;
+
+instance variables
+    public 数字カード黒ブロック : 数字カード;
+    public ナンバー黒ブロック = ナンバー;
+
+end 黒ブロック
+
+class ボーナス
+end ボーナス
+
+
+class ビンゴ
+end ビンゴ
+
+
+class コース
+
+types
+    public r = real;
+    public l = real;
+
+instance variables
+    public rコース : r;
+    public lコース : l;
+
+end コース
+
+
+class サークル
+
+types
+    public ナンバーボーナス = real;
+    public 数字カードボーナス = real;
+    public カラー = real;
+    public ブロック = real;
+    public 交点 = real;
+    public ボーナス = real;
+
+instance variables
+    public ナンバーボーナスサークル : ナンバーボーナス;
+    public 数字カードボーナスサークル : 数字カードボーナス;
+    public カラーサークル : カラー;
+    public ブロックサークル : ブロック;
+    public 交点サークル : 交点;
+    public ボーナスサークル : ボーナス;
+    
+end サークル
