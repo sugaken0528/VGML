@@ -3,7 +3,6 @@ class ET
 types
     public ブロックビンゴ2020 = real;
     public ビンゴ = real;
-    public ブロックサークル番号 = real;
     public シングルビンゴ = real;
     public ダブルビンゴ = real;
     public トリプルビンゴ = real;
@@ -13,13 +12,10 @@ types
     public カラーブロック有効移動 = real;
     public ガレージ停止 = real;
     public リザルトタイム = real;
+    public リザルトタイム獲得 = real;
+    public リザルトタイム確定 = real;
     public 装飾物 = real;
-    public 走行体 = real;
-    public 走行タイム = real;
-    public ボーナスタイム = real;
     public 最大計測時間 = real;
-    public Lコース = real;
-    public Rコース = real;
     public ブロックビンゴ2020エリア = real;
     public 数字カード置き場 = real;
     public スタートライン = real;
@@ -29,11 +25,12 @@ types
     public ゴールゲート = real;
     public 黒線 = real;
     public オレンジ範囲 = real;
-    public 交点サークル = real;
-    public ブロックサークル = real;
-    public ボーナスサークル = real;
-    public 数字カードボーナスサークル = real;
-    public ナンバーボーナスサークル = real;
+
+values
+    カラーブロック = 8;
+    ブロック = 10;
+    黒ブロック = 2;
+    最大値 = 120;
 
 end ET
 
@@ -100,5 +97,16 @@ instance variables
     public ブロックサークル : mk_token;
     public 交点サークル : mk_token;
     public ボーナスサークル : mk_token;
+    public ブロックサークル番号 : mk_token;
+
 end サークル
+
+class 走行体
+
+types
+    public タイム = real;
+
+instance variables
+    public 走行タイム : タイム;
+    public ボーナスタイム : タイム;
 

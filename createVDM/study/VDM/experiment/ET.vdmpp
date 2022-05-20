@@ -38,8 +38,6 @@ types
     public 判定方法 = real;
     public 初期設置 = real;
     public 初期位置 = real;
-    public 中間ゲート2 = real;
-    public 中間ゲート1 = real;
     public 中間ゲート = real;
     public 中心軸 = real;
     public 中心 = real;
@@ -79,6 +77,13 @@ types
     public ETロボコンキャラクターロゴ = real;
     public ETロボコン2020ロゴ = real;
     public ETロボコン2020シミュレータ = real;
+
+values
+    黒ブロック = 10;
+    数字カード黒ブロック = 10;
+    ブロック = 10;
+    ナンバー黒ブロック = 10;
+    カラーブロック = 8;
 
 end ET
 
@@ -146,5 +151,5 @@ instance variables
     public ブロックサークル : ブロック;
     public 交点サークル : 交点;
     public ボーナスサークル : ボーナス;
-    
+
 end サークル

@@ -4,7 +4,6 @@ types
     public 部署名 = real ;
     public 職階 = real ;
     public 氏名 = real ;
-    public 教員 = real ;
     public 実施開始日 = real ;
     public 実施終了日 = real ;
     public 実施日数 = real ;
@@ -25,7 +24,6 @@ types
     public インターンシップ登録 = real ;
     public インターンシップ情報 = real ;
     public インターンシップ情報閲覧 = real ;
-    public インターンシップ名 = real ;
     public password = real ;
 
 values
@@ -86,4 +84,7 @@ end インターンシップ
 class 教員
 
 end 教員
+
+class 担当者
+end 担当者
 
