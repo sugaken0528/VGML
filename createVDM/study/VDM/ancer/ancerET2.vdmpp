@@ -12,36 +12,34 @@ types
     public カラーブロック有効移動 = real;
     public ガレージ停止 = real;
     public リザルトタイム = real;
+    public リザルトタイム獲得 = real;
+    public リザルトタイム確定 = real;
     public 装飾物 = real;
-    public 走行体 = real;
-    public 走行タイム = real;
-    public ボーナスタイム = real;
     public 最大計測時間 = real;
+    public ブロックビンゴ2020エリア = real;
+    public 数字カード置き場 = real;
+    public スタートライン = real;
+    public スタートエリア = real;
+    public ゲートライン = real;
+    public 中間ゲート = real;
+    public ゴールゲート = real;
+    public 黒線 = real;
+    public オレンジ範囲 = real;
+
+values
+    カラーブロック = 8;
+    ブロック = 10;
+    黒ブロック = 2;
+    最大値 = 120;
 
 end ET
-
-
-class ブロックビンゴ2020
-
-types
-    public ブロック番号 = real;
-    public ブロックサークル番号 = real;
-    public 交点サークル番号 = real;
-
-instance variables
-    public ブロック番号 : 番号;
-    public ブロックサークル番号 : 番号;
-    public 交点サークル番号 : 番号;
-    public ビンゴ : mk_token;
-
-end ブロックビンゴ2020
 
 
 class ブロック
 
 types
     public 番号 = real;
-    public 色 = real;
+    public カラー = real;
 
 instance variables
     public ブロック番号 : 番号;
@@ -62,40 +60,53 @@ instance variables
 
 end 黒ブロック
 
-
-class サークル
+class ブロックサークル
 
 types
     public 番号 = real;
+    public 色 = real;
 
 instance variables
-    public 交点サークル : 番号;
-    public ブロックサークル : 番号;
+    public ブロックサークル番号 : 番号;
+
+end ブロックサークル
+
+class ボーナス
+
+instance variables
     public ボーナスサークル : mk_token;
-    public 数字カードボーナスサークル : mk_token;
-    public ナンバーボーナスサークル : mk_token;
-
-end サークル
-
+    public ボーナスタイム : mk_token;
 
 class コース
-
-types
-    public エリア = real;
-    public ライン = real;
 
 instance variables
     public Lコース : mk_token;
     public Rコース : mk_token;
-    public ブロックビンゴ2020エリア : エリア;
-    public 数字カード置き場 : エリア;
-    public スタートライン : ライン;
-    public スタートエリア : エリア;
-    public ゲートライン : ライン;
-    public 中間ゲート : ライン;
-    public ゴールゲート : ライン;
-    public 黒線 : ライン;
-    public オレンジ範囲 : エリア;
 
 end コース
+
+class サークル
+
+types
+    public 色 = real;
+
+instance variables
+    public ナンバーボーナスサークル : mk_token;
+    public 数字カードボーナスサークル : mk_token;
+    public カラーサークル : 色;
+    public ブロックサークル : mk_token;
+    public 交点サークル : mk_token;
+    public ボーナスサークル : mk_token;
+    public ブロックサークル番号 : mk_token;
+
+end サークル
+
+class 走行体
+
+types
+    public タイム = real;
+
+instance variables
+    public 走行タイム : タイム;
+    public ボーナスタイム : タイム;
 
