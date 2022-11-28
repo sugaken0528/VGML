@@ -49,15 +49,15 @@ class Morphological:
         for i in range(len(self.docs)):
             tempList = []
             for char in self.docs[i]:
-                if(char != ' ' and '記号' not in m.parse(char).splitlines()[-2].split()[-1] and char not in exclusionList):
+                if (char != ' ' and '記号' not in m.parse(char).splitlines()[-2].split()[-1] and char not in exclusionList):
                     word += char
-                elif(char == ' ' and word != ' '):
+                elif (char == ' ' and word != ' '):
                     nouns = m.parse(word).splitlines()
                     nouns.pop(-1)
                     hiragana = re.findall("[ぁ-ん]", nouns[-1].split()[0])
-                    if(hukushikano in nouns[-1].split()[-1] or rentaishi in nouns[-1].split()[-1] or setubishi in nouns[-1].split()[-1] or len(hiragana) == len(nouns[-1].split()[0])):
+                    if (hukushikano in nouns[-1].split()[-1] or rentaishi in nouns[-1].split()[-1] or setubishi in nouns[-1].split()[-1] or len(hiragana) == len(nouns[-1].split()[0])):
                         nouns.pop(-1)
-                    elif(rentaishi in nouns[0].split()[-1] or setuzokushi in nouns[0].split()[-1] or hiziritushi in nouns[0].split()[-1] or settoshi in nouns[0].split()[-1] or hukushikano in nouns[0].split()[-1]):
+                    elif (rentaishi in nouns[0].split()[-1] or setuzokushi in nouns[0].split()[-1] or hiziritushi in nouns[0].split()[-1] or settoshi in nouns[0].split()[-1] or hukushikano in nouns[0].split()[-1]):
                         nouns.pop(0)
                     tempWord = ''
                     """
@@ -71,7 +71,7 @@ class Morphological:
                     """
                     for j in range(len(nouns)):
                         tempWord += nouns[j].split()[0]
-                    if(tempWord != ''):
+                    if (tempWord != ''):
                         tempList.append(tempWord)
                     word = ' '
             resultWords.append(tempList)
@@ -192,7 +192,7 @@ class Morphological:
             lowerWord = LowerWord()
             dict, semiList = lowerWord.SearchTopConceptWords(
                 nouns[i].split()[0])
-            if(dict == 0 and semiList == 0):
+            if (dict == 0 and semiList == 0):
                 pass
             else:
                 calcConceptLebel = CalcConceptLevel(dict, semiList)
@@ -216,29 +216,37 @@ class Morphological:
         kandoshi = '感動詞'
         sahen = '名詞-サ変'
         keiyodoshi = '名詞-形容動詞語幹'
+        setuzokushi = '接続詞'
+
+        # nouns : 単語の配列
+        # split()[-1] : 単語の品詞
 
         newList = []
         for x in lists:
             nouns = m.parse(x[0]).splitlines()
             nouns.pop(-1)
-            if((len(nouns) == 1 and sahen in nouns[0].split()[-1]) or kandoshi in nouns[0].split()[-1] or daimeshi in nouns[0].split()[-1] or daimeshi in nouns[-1].split()[-1] or hukushi in nouns[0].split()[-1] or hukushi in nouns[-1].split()[-1] or len(nouns[0].split()) == 6 or (meishi in nouns[-1].split()[-1] and hukushikano in nouns[-1].split()[-1]) or keiyodoshi in nouns[-1].split()[-1]):
+            if (kandoshi in nouns[0].split()[-1] or daimeshi in nouns[0].split()[-1] or daimeshi in nouns[-1].split()[-1] or hukushi in nouns[0].split()[-1] or hukushi in nouns[-1].split()[-1] or len(nouns[0].split()) == 6 or (meishi in nouns[-1].split()[-1] and hukushikano in nouns[-1].split()[-1]) or keiyodoshi in nouns[-1].split()[-1]):
                 continue
-            if(len(nouns) != 1 and suzi in nouns[0].split()[-1]):
+            if (len(nouns) != 1 and suzi in nouns[0].split()[-1]):
                 continue
-            if(len(nouns) >= 2 and ((nouns[0].split()[0] == '図' or nouns[0].split()[0] == '表') and suzi in nouns[1].split()[-1])):
+            if (len(nouns) == 1 and suzi in nouns[0].split()[-1]):
+                continue
+            if (len(nouns) >= 2 and ((nouns[0].split()[0] == '図' or nouns[0].split()[0] == '表') and suzi in nouns[1].split()[-1])):
+                continue
+            if (setuzokushi in nouns[0].split()[-1]):
                 continue
             newList.append(x)
-            """
-            for x in newList:
-                nouns = m.parse(x[0]).splitlines()
-                for i in range(len(nouns)):
-                    print(nouns[i].split())
-                print('-----------------------------------')
-            """
+
+        for x in newList:
+            nouns = m.parse(x[0]).splitlines()
+            for i in range(len(nouns)):
+                print(nouns[i].split())
+            print('-----------------------------------')
         return newList
 
 
 """
+
     def koyu(self, lists):
         koyumeshi = '名詞-固有名詞-組織'
         m = MeCab.Tagger("-Ochasen")
@@ -247,9 +255,9 @@ class Morphological:
             nouns = m.parse(x[0]).splitlines()
             nouns.pop(-1)
             for i in range(len(nouns)):
-                if(koyumeshi in nouns[i].split()[-1]):
+                if (koyumeshi in nouns[i].split()[-1]):
                     count += 1
-            if(count != 0):
+            if (count != 0):
                 koyuLevel = count / len(nouns)
             else:
                 koyuLevel = 0

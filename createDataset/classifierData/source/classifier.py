@@ -1,7 +1,9 @@
+# クラスとインスタンス変数、その他で分類するクラス
 import pandas as pd
 import numpy as np
 import csv
 import MeCab
+import os
 
 
 class classifier:
@@ -13,22 +15,22 @@ class classifier:
         self.TF_list = TF_list
 
     def createClassifierList(self):
-        classifier_list = []
-        class_list = []
+        wordList = []
+        classList = []
         for x in self.result.values:
             if x[10] >= 1.0:
                 list_ = []
                 list_.append("INDEX_ID")
                 list_.append(x[0])
-                classifier_list.append(list_)
-            if x[10] == 2:
-                class_list.append(x[0])
+                wordList.append(list_)
+            if x[9] >= 0.11:
+                classList.append(x[0])
 
         # 重複の削除およびソート
-        classifier_list.sort()
-        class_list.sort()
-        classifier_list = self.get_unique_list(classifier_list)
-        class_list = self.get_unique_list(class_list)
+        wordList.sort()
+        classList.sort()
+        wordList = self.get_unique_list(wordList)
+        classList = self.get_unique_list(classList)
 
         dic = pd.read_csv(
             "\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\dic.csv")
@@ -49,8 +51,8 @@ class classifier:
                                 for d in dic.values:
                                     if not (d[2] is np.nan):
                                         if z in d[2]:
-                                            for y2 in x.split():  # 単位がある文にその単位を使う名詞があるか
-
+                                            for y2 in x.split():
+                                                # 単位がある文にその単位を使う名詞があるか
                                                 if d[1] in y2 and not y2[len(y2)-1].isdigit() and not y == y2:
                                                     list_ = []
                                                     list_.append("INDEX_ID")
@@ -95,31 +97,107 @@ class classifier:
             list_.append("INDEX_ID")
             list_.append(x[0])
             list_.append(x[1])
-            classifier_list.append(list_)
-        new_list = sorted(classifier_list, reverse=True)
-        with open("\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\classifierData\\data\\classifier_advance.csv", 'w', encoding='utf8') as f:
+            wordList.append(list_)
+        new_list = sorted(wordList, reverse=True)
+
+        # クラスの候補となる単語に接続する単語を抽出
+        instanceList = []
+        for i in range(len(classList)):
+            classifierList = []
+            classWord = classList[i]
+            classifierList.append([classWord])
+            for j in range(len(wordList)):
+                # classWordが前または後ろに接続する単語を抽出
+                if (wordList[j][1].startswith(classWord) and wordList[j][1] != classWord):
+                    classifierList.append(wordList[j])
+            classifierList = self.removeDuplicateInstance(
+                classList, classifierList)
+            instanceList.append(classifierList)
+
+        # インスタンス候補となる単語以外を抽出
+        otherList = []
+        for i in range(len(wordList)):
+            count = 0
+            for j in range(len(instanceList)):
+                for k in range(len(instanceList[j]) - 1):
+                    if wordList[i][1] == instanceList[j][k+1][1]:
+                        count += 1
+                for k in range(len(instanceList[j])):
+                    if wordList[i][1] == instanceList[j][k][0]:
+                        count += 1
+            if count == 0:
+                otherList.append(wordList[i])
+
+        os.makedirs(
+            "\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\classifierData\\data\\classifier_advance", exist_ok=True)
+        # クラスとインスタンス変数の書き込み
+        for i in range(len(instanceList)):
+            classWord = classList[i]
+            print(classWord)
+            for x in instanceList[i]:
+                with open("\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\classifierData\\data\\classifier_advance\\"+classWord+".csv", 'w', encoding='utf8') as f:
+                    writer = csv.writer(f, lineterminator='\n')
+                    for x in instanceList[i]:
+                        writer.writerow(x)
+
+        # その他を書き込み
+        with open("\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\classifierData\\data\\classifier_advance\\advance.csv", 'w', encoding='utf8') as f:
             writer = csv.writer(f, lineterminator='\n')
-            for x in new_list:
+            for x in otherList:
                 writer.writerow(x)
 
-        new_class_list = []
-        for i in range(len(class_list)):
-            tempList = [class_list[i]]
-            new_class_list.append(tempList)
-        new_class_list = sorted(new_class_list, reverse=True)
-        with open("\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\classifierData\\data\\classifier_advance_class.csv", 'w', encoding='utf8') as f:
-            writer = csv.writer(f, lineterminator='\n')
-            for x in new_class_list:
-                writer.writerow(x)
-        m = MeCab.Tagger("-Ochasen")
+    # 重複の削除およびソート
+    def get_unique_list(self, seq):
+        seen = []
+        return [x for x in seq if x not in seen and not seen.append(x)]
+
+    # 重複するインスタンスを削除
+    def removeDuplicateInstance(self, classList, classifierList):
+        tempList = []
+        # print(classifierList)
+        removeList = []
+        # 重複するインスタンスを抽出
+        for i in range(len(classList)):
+            duplicateWord = ""
+            for j in range(len(classifierList)-1):
+                if classList[i] != classifierList[0][0] and classList[i] == classifierList[j+1][1]:
+                    removeList.append(classifierList[0][0])
+                    removeList.append(classList[i])
+                    # print("{}と{}".format(classList[i], classifierList[0][0]))
+                    duplicateWord = classifierList[j+1][1]
+                    # print("{}と{}が等しいのでduplicateWordを{}とします".format(
+                    # classList[i], classifierList[j+1][1], duplicateWord))
+                if duplicateWord != classifierList[j+1][1] and duplicateWord in classifierList[j+1][1] and duplicateWord != "":
+                    # print("{}は{}を含むので追加します".format(
+                    # classifierList[j+1][1], duplicateWord))
+                    removeList.append(classifierList[j+1][1])
+
+        # 重複するインスタンスを削除
+        tempList = []
+        tempList.append([classifierList[0][0]])
+        for i in range(len(classifierList)-1):
+            if classifierList[i+1][1] not in removeList[1:]:
+                tempList.append(classifierList[i+1])
+        return tempList
+
+
+"""
+    # リスト内の品詞を取得する
+     m = MeCab.Tagger("-Ochasen")
         for x in new_list:
             nouns = m.parse(x[1]).splitlines()
             for i in range(len(nouns)):
                 print(nouns[i].split())
             print('-----------------------------------')
 
-    # 重複の削除およびソート
-
-    def get_unique_list(self, seq):
-        seen = []
-        return [x for x in seq if x not in seen and not seen.append(x)]
+  # クラスをcsvファイルに書き込む
+  new_classList = []
+   for i in range(len(classList)):
+        tempList = [classList[i]]
+        new_classList.append(tempList)
+    new_classList = sorted(new_classList, reverse=True)
+    with open("\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\classifierData\\data\\classifier_advance_class.csv", 'w', encoding='utf8') as f:
+        writer = csv.writer(f, lineterminator='\n')
+        for x in new_classList:
+            writer.writerow(x)
+"""
