@@ -14,32 +14,28 @@ class classifier:
         self.TF_list = TF_list
 
     def createClassifierList(self):
-        wordList = []  # VDM++仕様書に必要な候補の単語を格納
+        necessaryList = []  # VDM++仕様書に必要な候補の単語を格納
         classList = []  # クラスの候補となる単語を格納
         for x in self.result.values:
             if x[10] >= 1.0:
-                list_ = []
-                list_.append("INDEX_ID")
-                list_.append(x[0])
-                wordList.append(list_)
+                necessaryList.append([x[0]])
             if x[9] >= 0.11:
                 classList.append(x[0])
 
         # 重複の削除およびソート
-        wordList.sort()
+        necessaryList.sort()
         classList.sort()
-        wordList = self.get_unique_list(wordList)
+        necessaryList = self.get_unique_list(necessaryList)
         classList = self.get_unique_list(classList)
 
         how_to_count_dic = pd.read_csv(
-            "\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\how_to_count_dic.csv")  # 数え方の辞書
+            "\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\how_to_count_dic.csv")
         unit_dic = ['位', '宇', '折', '果', '箇', '荷', '菓', '掛', '顆', '回', '階', '画', '頭', '方', '株', '巻', '管', '缶', '基', '機', '騎', '切', '客', '脚', '行', '局', '句', '軀', '口', '具', '組', '景', '桁', '件', '軒', '個', '戸', '号', '合', '梱', '献', '喉', '座', '棹', '冊', '皿', '氏', '締', '字', '軸', '室', '首', '重', '床', '条', '畳', '錠', '帖', '筋', '食', '隻', '膳', '双',
-                    '艘', '足', '揃', '体', '袋', '台', '題', '立', '卓', '束', '玉', '着', '丁', '挺', '帳', '張', 'つ', '対', '通', '番', '粒', '艇', '滴', '点', '度', '等', '堂', '人', '把', '羽', '張', '刎', '杯', '柱', '鉢', '発', '尾', '匹', '瓶', '振', '部', '幅', '服', '房', '篇', '遍', '本', '間', '枚', '前', '幕', '棟', '名', '面', '門', '問', '山', '葉', '流', '旒', '両', '領', '輪', '連', '椀', '碗']  # 単位の辞書
-        v_list = []
+                    '艘', '足', '揃', '体', '袋', '台', '題', '立', '卓', '束', '玉', '着', '丁', '挺', '帳', '張', 'つ', '対', '通', '番', '粒', '艇', '滴', '点', '度', '等', '堂', '人', '把', '羽', '張', '刎', '杯', '柱', '鉢', '発', '尾', '匹', '瓶', '振', '部', '幅', '服', '房', '篇', '遍', '本', '間', '枚', '前', '幕', '棟', '名', '面', '門', '問', '山', '葉', '流', '旒', '両', '領', '輪', '連', '椀', '碗']
 
-        value = ""
         for sentence in self.specification:
             for word in sentence.split():
+                value = ""
                 if (any(map(str.isdigit, word))):  # 数字を含む単語かどうか
                     for num in word:
                         if num.isdigit() or num == ".":
@@ -54,13 +50,11 @@ class classifier:
                                 if not (wordCountSet[2] is np.nan) and unit in wordCountSet[2]:
                                     for word2 in sentence.split():
                                         # 単位がある文にその単位を使う名詞があるか
-                                        if wordCountSet[1] in word2 and not word2[len(word2)-1].isdigit() and not word == word2 and self.examine_include_word(word2, wordList):
-                                            list_ = []
-                                            list_.append("INDEX_ID")
-                                            list_.append(word2)
-                                            list_.append(value)
-                                            v_list.append(list_)
-                value = ""
+                                        if wordCountSet[1] in word2 and not word2[len(word2)-1].isdigit() and not word == word2 and self.examine_include_word(word2, necessaryList):
+                                            necessaryList = self.replaceWord(
+                                                word2, value, necessaryList)
+        print(necessaryList)
+        v_list = []
         d_list = []
         for x in v_list:
             for count_w, y in enumerate(self.wordList):
@@ -93,14 +87,13 @@ class classifier:
                 tmp = x
         f_list.append(tmp)
         f_list.pop(0)
-        f_list
         for x in f_list:
             list_ = []
             list_.append("INDEX_ID")
             list_.append(x[0])
             list_.append(x[1])
-            wordList.append(list_)
-        new_list = sorted(wordList, reverse=True)
+            necessaryList.append(list_)
+        new_list = sorted(necessaryList, reverse=True)
 
         # クラスの候補となる単語に接続する単語を抽出
         instanceList = []
@@ -108,27 +101,27 @@ class classifier:
             classifierList = []
             classWord = classList[i]
             classifierList.append([classWord])
-            for j in range(len(wordList)):
+            for j in range(len(necessaryList)):
                 # classWordが前または後ろに接続する単語を抽出
-                if (wordList[j][1].startswith(classWord) and wordList[j][1] != classWord):
-                    classifierList.append(wordList[j])
+                if (necessaryList[j][1].startswith(classWord) and necessaryList[j][1] != classWord):
+                    classifierList.append(necessaryList[j])
             classifierList = self.removeDuplicateInstance(
                 classList, classifierList)
             instanceList.append(classifierList)
 
         # インスタンス候補となる単語以外を抽出
         otherList = []
-        for i in range(len(wordList)):
+        for i in range(len(necessaryList)):
             count = 0
             for j in range(len(instanceList)):
                 for k in range(len(instanceList[j]) - 1):
-                    if wordList[i][1] == instanceList[j][k+1][1]:
+                    if necessaryList[i][1] == instanceList[j][k+1][1]:
                         count += 1
                 for k in range(len(instanceList[j])):
-                    if wordList[i][1] == instanceList[j][k][0]:
+                    if necessaryList[i][1] == instanceList[j][k][0]:
                         count += 1
             if count == 0:
-                otherList.append(wordList[i])
+                otherList.append(necessaryList[i])
 
         os.makedirs(
             "\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\classifierData\\data\\classifier_advance", exist_ok=True)
@@ -153,10 +146,17 @@ class classifier:
         seen = []
         return [x for x in seq if x not in seen and not seen.append(x)]
 
+    # リスト内に指定した単語と一致する単語があるかの判定
     def examine_include_word(self, word, wordList):
         for i in range(len(wordList)):
-            if wordList[i][1] == word:
+            if wordList[i][0] == word:
                 return True
+
+    def replaceWord(self, word, value, wordList):
+        for i in range(len(wordList)):
+            if (wordList[i][0] == word):
+                wordList[i] = [word, value]
+        return wordList
 
         # 重複するインスタンスを削除
 
