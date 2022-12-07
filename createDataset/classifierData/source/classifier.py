@@ -72,14 +72,20 @@ class classifier:
                 classList, classifierList)
             instanceList.append(classifierList)
 
-        # インスタンス候補となる単語以外を抽出
+        # クラスとインスタンス候補となる単語以外を抽出
         otherList = []
         for wordId in range(len(necessaryList)):
             count = 0
             for classId in range(len(instanceList)):
-                for instanceId in range(len(instanceList[classId][1])):
-                    if necessaryList[wordId][0] == instanceList[classId][1][instanceId]:
-                        count += 1
+                # クラスと一致する単語の場合
+                if necessaryList[wordId][0] == instanceList[classId][0][0]:
+                    count += 1
+                # クラスがインスタンス変数を持つ場合
+                if len(instanceList[classId]) >= 2:
+                    for instanceId in range(len(instanceList[classId][1])):
+                        # インスタンス変数と一致する単語の場合
+                        if necessaryList[wordId][0] == instanceList[classId][1][instanceId]:
+                            count += 1
             if count == 0:
                 otherList.append(necessaryList[wordId])
         os.chmod("../data/classifier_advance", 755)
@@ -89,7 +95,6 @@ class classifier:
             "\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\classifierData\\data\\classifier_advance", exist_ok=True)
         # クラスとインスタンス変数の書き込み
         for i in range(len(instanceList)):
-            print(classWord)
             classWord = classList[i]
             with open("\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\classifierData\\data\\classifier_advance\\"+classWord+".csv", 'w', encoding='utf8') as f:
                 writer = csv.writer(f, lineterminator='\n')
@@ -129,25 +134,27 @@ class classifier:
         # 重複するインスタンスを抽出
         for i in range(len(classList)):
             duplicateWord = ""
-            for j in range(len(classifierList[1])):
-                if classList[i] != classifierList[0][0] and classList[i] == classifierList[1][j]:
-                    removeList.append(classifierList[0][0])
+            for j in range(len(classifierList[1][0])):
+                if classList[i] != classifierList[0][0] and classList[i] == classifierList[1][0][j]:
+                    removeList.append(classifierList[1][0][j])
                     removeList.append(classList[i])
-                    # print("{}と{}".format(classList[i], classifierList[0][0]))
-                    duplicateWord = classifierList[1][j]
+                    # print("{}と{}".format(
+                    # classList[i], classifierList[1][0][j]))
+                    duplicateWord = classifierList[1][0][j]
                     # print("{}と{}が等しいのでduplicateWordを{}とします".format(
-                    # classList[i], classifierList[1][j], duplicateWord))
-                if duplicateWord != classifierList[1][j] and duplicateWord in classifierList[1][j] and duplicateWord != "":
+                    # classList[i], classifierList[1][0][j], duplicateWord))
+                if duplicateWord != classifierList[1][0][j] and duplicateWord in classifierList[1][0][j] and duplicateWord != "":
                     # print("{}は{}を含むので追加します".format(
-                    # classifierList[j+1][1], duplicateWord))
-                    removeList.append(classifierList[1][j])
-
+                    # classifierList[1][0][j], duplicateWord))
+                    removeList.append(classifierList[1][0][j])
+        # print(removeList)
         # 重複するインスタンスを削除
-        tempList = []
-        tempList.append([classifierList[0][0]])
-        for i in range(len(classifierList[1])):
-            if classifierList[1][i] not in removeList[1:]:
-                tempList.append(classifierList[1][i])
+        tempList.append(classifierList[0])
+        instanceList = []
+        for i in range(len(classifierList[1][0])):
+            if classifierList[1][0][i] not in removeList:
+                instanceList.append(classifierList[1][0][i])
+        tempList.append(instanceList)
         return tempList
 
 
