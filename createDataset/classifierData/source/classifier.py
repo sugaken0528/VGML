@@ -8,7 +8,8 @@ import shutil
 
 
 class classifier:
-    def __init__(self, result, specification, wordList, TF_list):
+    def __init__(self, specName, result, specification, wordList, TF_list):
+        self.specName = specName
         self.result = result
         self.specification = specification
         self.wordList = wordList
@@ -87,24 +88,24 @@ class classifier:
             if count == 0:
                 otherList.append(necessaryList[wordId])
 
+        outPath = "\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\classifierData\\data\\classifier_" + self.specName
         # フォルダにアクセス権限を与え一旦削除
-        os.chmod("../data/classifier_advance", 755)
-        shutil.rmtree(
-            "../data/classifier_advance")
+        if os.path.exists(outPath) == True:
+            os.chmod(outPath, 755)
+            shutil.rmtree(outPath)
 
-        os.makedirs(
-            "\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\classifierData\\data\\classifier_advance", exist_ok=True)
+        os.makedirs(outPath, exist_ok=True)
         # クラスとインスタンス変数の書き込み
         for i in range(len(instanceList)):
             classWord = classList[i]
-            with open("\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\classifierData\\data\\classifier_advance\\"+classWord+".csv", 'w', encoding='utf8') as f:
+            with open(outPath + "\\" + classWord + ".csv", 'w', encoding='utf8') as f:
                 writer = csv.writer(f, lineterminator='\n')
                 writer.writerow([classWord])
                 for j in range(len(instanceList[i][1])):
                     writer.writerow([instanceList[i][1][j]])
 
         # その他を書き込み
-        with open("\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\classifierData\\data\\classifier_advance\\advance.csv", 'w', encoding='utf8') as f:
+        with open(outPath + "\\necessary_word.csv", 'w', encoding='utf8') as f:
             writer = csv.writer(f, lineterminator='\n')
             for x in otherList:
                 writer.writerow(x)
