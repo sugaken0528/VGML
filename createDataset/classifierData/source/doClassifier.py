@@ -2,9 +2,11 @@ from classifier import classifier
 import pandas as pd
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
+import sys
 
+specName = sys.argv[1]  # 仕様書の名前(実行時に指定)
 df = pd.read_csv(
-    "\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\loadTxt\\advance_kyogi_load.txt")
+    "\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\loadTxt\\" + specName + "_load.txt")
 
 specification = np.array([])
 for x in df.values:
@@ -18,7 +20,7 @@ TF_list = vecs.toarray()  # (97,363) 97文章,363単語
 wordList = vectorizer.get_feature_names_out()  # (363,) 単語のみを格納
 
 result = pd.read_csv(
-    "\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\resultData\\result_classifier_advance.csv")
+    "\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\resultData\\result_classifier_" + specName + ".csv")
 
-classifier = classifier(result, specification, wordList, TF_list)
+classifier = classifier(specName, result, specification, wordList, TF_list)
 createClassifierList = classifier.createClassifierList()
