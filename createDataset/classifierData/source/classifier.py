@@ -33,7 +33,6 @@ class classifier:
             "\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\how_to_count_dic.csv")
         unit_dic = ['位', '宇', '折', '果', '箇', '荷', '菓', '掛', '顆', '回', '階', '画', '頭', '方', '株', '巻', '管', '缶', '基', '機', '騎', '切', '客', '脚', '行', '局', '句', '軀', '口', '具', '組', '景', '桁', '件', '軒', '個', '戸', '号', '合', '梱', '献', '喉', '座', '棹', '冊', '皿', '氏', '締', '字', '軸', '室', '首', '重', '床', '条', '畳', '錠', '帖', '筋', '食', '隻', '膳', '双',
                     '艘', '足', '揃', '体', '袋', '台', '題', '立', '卓', '束', '玉', '着', '丁', '挺', '帳', '張', 'つ', '対', '通', '番', '粒', '艇', '滴', '点', '度', '等', '堂', '人', '把', '羽', '張', '刎', '杯', '柱', '鉢', '発', '尾', '匹', '瓶', '振', '部', '幅', '服', '房', '篇', '遍', '本', '間', '枚', '前', '幕', '棟', '名', '面', '門', '問', '山', '葉', '流', '旒', '両', '領', '輪', '連', '椀', '碗']
-        valueWordList = []
         for sentence in self.specification:
             for word in sentence.split():
                 value = ""
@@ -52,10 +51,9 @@ class classifier:
                                     for word2 in sentence.split():
                                         # 単位がある文にその単位を使う名詞があるか
                                         if wordCountSet[1] in word2 and not word2[len(word2)-1].isdigit() and not word == word2 and self.examine_include_word(word2, necessaryList):
-                                            wordList = self.replaceWord(
-                                                word2, value, necessaryList, valueWordList)
-        valueWordList = wordList[0]
-        necessaryList = wordList[1]
+                                            necessaryList = self.replaceWord(
+                                                word2, value, necessaryList)
+
         # クラスの候補となる単語に接続する単語を抽出
         instanceList = []
         for i in range(len(classList)):
@@ -88,9 +86,12 @@ class classifier:
                             count += 1
             if count == 0:
                 otherList.append(necessaryList[wordId])
+
+        # フォルダにアクセス権限を与え一旦削除
         os.chmod("../data/classifier_advance", 755)
         shutil.rmtree(
             "../data/classifier_advance")
+
         os.makedirs(
             "\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\classifierData\\data\\classifier_advance", exist_ok=True)
         # クラスとインスタンス変数の書き込み
@@ -102,7 +103,7 @@ class classifier:
                 for j in range(len(instanceList[i][1])):
                     writer.writerow([instanceList[i][1][j]])
 
-                # その他を書き込み
+        # その他を書き込み
         with open("\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\classifierData\\data\\classifier_advance\\advance.csv", 'w', encoding='utf8') as f:
             writer = csv.writer(f, lineterminator='\n')
             for x in otherList:
@@ -119,22 +120,24 @@ class classifier:
             if wordList[i][0] == word:
                 return True
 
-    def replaceWord(self, word, value, wordList, valueWordList):
+    def replaceWord(self, word, value, wordList):
         for i in range(len(wordList)):
             if (wordList[i][0] == word) and len(wordList[i]) != 2:
                 wordList[i] = [word, value]
-                valueWordList.append([word, value])
-        return [valueWordList, wordList]
+        return wordList
 
     # 重複するインスタンスを削除
     def removeDuplicateInstance(self, classList, classifierList):
-        tempList = []
-        # print(classifierList)
-        removeList = []
-        # 重複するインスタンスを抽出
+        """
+        classifierList: [[クラス],[instance1,instance2, ・・・]]
+        classList: [クラス1, クラス2, ・・・]
+        """
+        removeList = []  # 削除するインスタンスを格納
+        # 他のクラスと重複するインスタンスを抽出
         for i in range(len(classList)):
             duplicateWord = ""
             for j in range(len(classifierList[1][0])):
+                # インスタンス変数がいずれかのクラスと一致する場合
                 if classList[i] != classifierList[0][0] and classList[i] == classifierList[1][0][j]:
                     removeList.append(classifierList[1][0][j])
                     removeList.append(classList[i])
@@ -147,15 +150,15 @@ class classifier:
                     # print("{}は{}を含むので追加します".format(
                     # classifierList[1][0][j], duplicateWord))
                     removeList.append(classifierList[1][0][j])
-        # print(removeList)
-        # 重複するインスタンスを削除
-        tempList.append(classifierList[0])
+
+        classInstanceList = []  # クラスと他のクラスと重複したインスタンス変数を除いたセットを格納
+        classInstanceList.append(classifierList[0])
         instanceList = []
         for i in range(len(classifierList[1][0])):
             if classifierList[1][0][i] not in removeList:
                 instanceList.append(classifierList[1][0][i])
-        tempList.append(instanceList)
-        return tempList
+        classInstanceList.append(instanceList)
+        return classInstanceList
 
 
 """
@@ -166,15 +169,4 @@ class classifier:
             for i in range(len(nouns)):
                 print(nouns[i].split())
             print('-----------------------------------')
-
-  # クラスをcsvファイルに書き込む
-  new_classList = []
-   for i in range(len(classList)):
-        tempList = [classList[i]]
-        new_classList.append(tempList)
-    new_classList = sorted(new_classList, reverse=True)
-    with open("\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\classifierData\\data\\classifier_advance_class.csv", 'w', encoding='utf8') as f:
-        writer = csv.writer(f, lineterminator='\n')
-        for x in new_classList:
-            writer.writerow(x)
 """
