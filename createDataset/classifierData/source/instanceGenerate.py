@@ -13,6 +13,7 @@ class instanceGenerate:
         pass
 
     def doins(self, necessaryList, classList):
+        m = MeCab.Tagger("-Ochasen")
         # クラスの候補となる単語に接続する単語を抽出
         instanceList = []
         otherList = []
@@ -21,12 +22,14 @@ class instanceGenerate:
             connectWordList = []
             classWord = classList[i]
             classifierList.append([classWord])
+            classConceptLevel = self.calcAverageConceptLevel(
+                m.parse(classWord).splitlines(), True)
             for j in range(len(necessaryList)):
                 # classWordが前または後ろに接続する単語を抽出
-                if necessaryList[j][0].startswith(classWord) and necessaryList[j][0] != classWord and self.largerConceptLevel(classWord, necessaryList[j][0]) == True:
+                if necessaryList[j][0].startswith(classWord) and necessaryList[j][0] != classWord and self.largerConceptLevel(classConceptLevel, necessaryList[j][0]) == True:
                     connectWordList.append(necessaryList[j][0])
-                elif necessaryList[j][0].startswith(classWord) and necessaryList[j][0] != classWord and self.largerConceptLevel(classWord, necessaryList[j][0]) == False:
-                    otherList.append(necessaryList[j][0])
+                elif necessaryList[j][0].startswith(classWord) and necessaryList[j][0] != classWord and self.largerConceptLevel(classConceptLevel, necessaryList[j][0]) == False:
+                    otherList.append([necessaryList[j][0]])
             classifierList.append([connectWordList])
             classifierList = self.removeDuplicateInstance(
                 classList, classifierList)
@@ -49,20 +52,24 @@ class instanceGenerate:
                 otherList.append(necessaryList[wordId])
         return instanceList, otherList
 
-    def largerConceptLevel(self, classWord, instanceWord):
+    def largerConceptLevel(self, classConceptLevel, instanceWord):
         m = MeCab.Tagger("-Ochasen")
-        classNouns = m.parse(classWord).splitlines()
         instanceNouns = m.parse(instanceWord).splitlines()
+        instanceConceptLevel = self.calcAverageConceptLevel(
+            instanceNouns, False)
 
-        classConceptLevel = self.calcAverageConceptLevel(classNouns)
-        instanceConceptLevel = self.calcAverageConceptLevel(instanceNouns)
+        if classConceptLevel < 10:
+            classConceptLevel = 10
 
-        if classConceptLevel >= instanceConceptLevel:
+        if classConceptLevel + 5 >= instanceConceptLevel:
             return True
         else:
             return False
 
-    def calcAverageConceptLevel(self, nouns):
+    def calcAverageConceptLevel(self, nouns, classFlag):
+        # インスタンス変数の場合クラスに接続する名詞のみを考える
+        if classFlag == False and len(nouns) >= 3:
+            nouns = nouns[1:]
         conceptLevel = 0
         for i in range(len(nouns)-1):
             # 上位概念の辞書と同義語のリストを取得
@@ -72,7 +79,6 @@ class instanceGenerate:
             if dict != 0 and semiList != 0:
                 calcConceptLebel = CalcConceptLevel(dict, semiList)
                 conceptLevel += calcConceptLebel.calc()
-                print("{} : {}".format(nouns[i].split()[0], conceptLevel))
         return conceptLevel / (len(nouns)-1)
 
     # 重複するインスタンスを削除
