@@ -36,12 +36,13 @@ class LowerWord:
 
         # Wordnetに存在する単語であるかの判定
         if word_id == 99999999:
-            print("[%s]は、WordNetに存在しない単語です。" % word)
+            #print("[%s]は、WordNetに存在しない単語です。" % word)
             return 0, 0
         else:
-            print("[%s]の下位概念を出力します\n" % word)
+            pass
+            #print("[%s]の下位概念を出力します\n" % word)
 
-        # 入力された単語を含む概念を検索する
+            # 入力された単語を含む概念を検索する
         cur = self.conn.execute(
             "select synset from sense where wordid='%s'" % word_id)
         synsets = []

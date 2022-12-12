@@ -2,9 +2,9 @@
 import pandas as pd
 import numpy as np
 import csv
-import MeCab
 import os
 import shutil
+from instanceGenerate import instanceGenerate
 
 
 class classifier:
@@ -14,6 +14,7 @@ class classifier:
         self.specification = specification
         self.wordList = wordList
         self.TF_list = TF_list
+        self.instanceGenerate = instanceGenerate()
 
     def createClassifierList(self):
         necessaryList = []  # VDM++仕様書に必要な候補の単語を格納
@@ -55,38 +56,9 @@ class classifier:
                                             necessaryList = self.replaceWord(
                                                 word2, value, necessaryList)
 
-        # クラスの候補となる単語に接続する単語を抽出
-        instanceList = []
-        for i in range(len(classList)):
-            classifierList = []
-            connectWordList = []
-            classWord = classList[i]
-            classifierList.append([classWord])
-            for j in range(len(necessaryList)):
-                # classWordが前または後ろに接続する単語を抽出
-                if (necessaryList[j][0].startswith(classWord) and necessaryList[j][0] != classWord):
-                    connectWordList.append(necessaryList[j][0])
-            classifierList.append([connectWordList])
-            classifierList = self.removeDuplicateInstance(
-                classList, classifierList)
-            instanceList.append(classifierList)
-
-        # クラスとインスタンス候補となる単語以外を抽出
-        otherList = []
-        for wordId in range(len(necessaryList)):
-            count = 0
-            for classId in range(len(instanceList)):
-                # クラスと一致する単語の場合
-                if necessaryList[wordId][0] == instanceList[classId][0][0]:
-                    count += 1
-                # クラスがインスタンス変数を持つ場合
-                if len(instanceList[classId]) >= 2:
-                    for instanceId in range(len(instanceList[classId][1])):
-                        # インスタンス変数と一致する単語の場合
-                        if necessaryList[wordId][0] == instanceList[classId][1][instanceId]:
-                            count += 1
-            if count == 0:
-                otherList.append(necessaryList[wordId])
+        # クラスとインスタンス変数の概念レベルを比較
+        instanceList, otherList = self.instanceGenerate.doins(
+            necessaryList, classList)
 
         outPath = "\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\classifierData\\data\\classifier_" + self.specName
         # フォルダにアクセス権限を与え一旦削除
@@ -126,40 +98,6 @@ class classifier:
             if (wordList[i][0] == word) and len(wordList[i]) != 2:
                 wordList[i] = [word, value]
         return wordList
-
-    # 重複するインスタンスを削除
-    def removeDuplicateInstance(self, classList, classifierList):
-        """
-        classifierList: [[クラス],[instance1,instance2, ・・・]]
-        classList: [クラス1, クラス2, ・・・]
-        """
-        removeList = []  # 削除するインスタンスを格納
-        # 他のクラスと重複するインスタンスを抽出
-        for i in range(len(classList)):
-            duplicateWord = ""
-            for j in range(len(classifierList[1][0])):
-                # インスタンス変数がいずれかのクラスと一致する場合
-                if classList[i] != classifierList[0][0] and classList[i] == classifierList[1][0][j]:
-                    removeList.append(classifierList[1][0][j])
-                    removeList.append(classList[i])
-                    # print("{}と{}".format(
-                    # classList[i], classifierList[1][0][j]))
-                    duplicateWord = classifierList[1][0][j]
-                    # print("{}と{}が等しいのでduplicateWordを{}とします".format(
-                    # classList[i], classifierList[1][0][j], duplicateWord))
-                if duplicateWord != classifierList[1][0][j] and duplicateWord in classifierList[1][0][j] and duplicateWord != "":
-                    # print("{}は{}を含むので追加します".format(
-                    # classifierList[1][0][j], duplicateWord))
-                    removeList.append(classifierList[1][0][j])
-
-        classInstanceList = []  # クラスと他のクラスと重複したインスタンス変数を除いたセットを格納
-        classInstanceList.append(classifierList[0])
-        instanceList = []
-        for i in range(len(classifierList[1][0])):
-            if classifierList[1][0][i] not in removeList:
-                instanceList.append(classifierList[1][0][i])
-        classInstanceList.append(instanceList)
-        return classInstanceList
 
 
 """

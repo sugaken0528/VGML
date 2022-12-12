@@ -3,9 +3,9 @@ from lowerWord import LowerWord
 #from wordTree_en import treeGraph_en
 from calcConceptLebel import CalcConceptLevel
 
-word = 'ボーナス'
+word = '閲覧'
 lowerWord = LowerWord()
-dict, semiList = lowerWord.SearchTopConceptWords(word)
+dict, semiList = lowerWord.SearchTopConceptWords(word)  # 上位概念の辞書と同義語のリストを取得
 # print(dict)
 #treeGraph = treeGraph_en(dict, semiList, word)
 #display = treeGraph.display()
