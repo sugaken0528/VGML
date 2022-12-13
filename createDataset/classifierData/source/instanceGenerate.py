@@ -45,9 +45,6 @@ class instanceGenerate:
                 if self.largerConceptLevel(classConceptLevel, classConnectList[classId][1][instanceId]) == True:
                     instanceList.append(
                         classConnectList[classId][1][instanceId])
-                else:
-                    otherList.append(
-                        [classConnectList[classId][1][instanceId]])
             classInstanceSet.append(instanceList)
             classInstanceList.append(classInstanceSet)
 
