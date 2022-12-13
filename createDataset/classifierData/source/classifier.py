@@ -5,6 +5,7 @@ import csv
 import os
 import shutil
 from instanceGenerate import instanceGenerate
+from methodGenerate import methodGenerate
 
 
 class classifier:
@@ -15,6 +16,7 @@ class classifier:
         self.wordList = wordList
         self.TF_list = TF_list
         self.instanceGenerate = instanceGenerate()
+        self.methodGenerate = methodGenerate()
 
     def createClassifierList(self):
         necessaryList = []  # VDM++仕様書に必要な候補の単語を格納
@@ -56,8 +58,11 @@ class classifier:
                                             necessaryList = self.replaceWord(
                                                 word2, value, necessaryList)
 
+        # 動詞の抽出
+        verbList, necessaryList = self.methodGenerate.doins(necessaryList)
+
         # クラスとインスタンス変数の概念レベルを比較
-        instanceList, otherList = self.instanceGenerate.doins(
+        classInstanceList, otherList = self.instanceGenerate.doins(
             necessaryList, classList)
 
         outPath = "\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\classifierData\\data\\classifier_" + self.specName
@@ -68,13 +73,13 @@ class classifier:
 
         os.makedirs(outPath, exist_ok=True)
         # クラスとインスタンス変数の書き込み
-        for i in range(len(instanceList)):
+        for i in range(len(classInstanceList)):
             classWord = classList[i]
             with open(outPath + "\\" + classWord + ".csv", 'w', encoding='utf8') as f:
                 writer = csv.writer(f, lineterminator='\n')
                 writer.writerow([classWord])
-                for j in range(len(instanceList[i][1])):
-                    writer.writerow([instanceList[i][1][j]])
+                for j in range(len(classInstanceList[i][1])):
+                    writer.writerow([classInstanceList[i][1][j]])
 
         # その他を書き込み
         with open(outPath + "\\necessary_word.csv", 'w', encoding='utf8') as f:
