@@ -28,7 +28,8 @@ fp.close()  # Fileストリームを閉じる
 text = textList[26]
 newText = ''
 for i in range(len(text)):
-    if text[i] != ' ' and text[i] != '.' and text[i] != '⚫' and text[i] != '➢':
+    if text[i] != ' ' and text[i] != '.':
         newText += text[i]
-
+    elif text[i] == '⚫' or text[i] == '➢' or text[i] == '：':
+        newText += ' '
 print(newText)
