@@ -62,7 +62,7 @@ for i in range(len(text)):
 
 for i in range(len(textList)):
     if textList[i] == '⚫' or textList[i] == '➢':
-        pass
+        newText += '　'
     elif textList[i] == '：' or textList[i] == '（' or textList[i] == '）' or textList[i] == '(' or textList[i] == ')':
         newText += '　'
     elif textList[i] != ' ' and textList[i] != '.':
@@ -111,6 +111,23 @@ for i in range(len(sentenceList)):
     textList.append(str)
     print(textList[i])
     print("--------------------------------------------------------------------------------------------")
+str = ''
+brankCount = 0
+strId = 0
+for i in range(len(textList[0])-1):
+    if textList[0][i] != ' ':
+        str += textList[0][i]
+    if textList[0][i] == ' ':
+        while textList[0][i] == ' ':
+            brankCount += 1
+        if brankCount >= 2:
+            str += ' '
+            i = brankCount
+            brankCount = 0
+        elif brankCount == 1:
+            i = brankCount
+            brankCount = 0
+print(textList[0])
 
 """
     for i in range(len(nouns)-1):
