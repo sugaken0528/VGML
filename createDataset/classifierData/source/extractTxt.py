@@ -2,6 +2,7 @@ from pdfminer.high_level import extract_pages
 from pdfminer.layout import LAParams, LTTextBox
 import collections
 import MeCab
+from docx import Document
 
 
 class extractTxt:
@@ -9,7 +10,12 @@ class extractTxt:
         pass
 
     def extractWord(self):
-        pass
+        text = ''
+        document = Document(
+            "\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\specification\\intern2.docx")
+        for i, p in enumerate(document.paragraphs):
+            text += p.text + '\n'
+        self.textAnalysis(text)
 
     def extractPdf(self):
         laparams = LAParams()
@@ -40,7 +46,9 @@ class extractTxt:
                 if element.y0 > header:
                     continue  # ヘッダー位置の文字は抽出しない
                 text += element.get_text()
+        self.textAnalysis(text)
 
+    def textAnalysis(self, text):
         sentenceList = []
         newText = ''
         textList = []
@@ -50,7 +58,7 @@ class extractTxt:
         for i in range(len(textList)):
             if textList[i] == '⚫' or textList[i] == '➢':
                 newText += '　'
-            elif textList[i] == '：' or textList[i] == '（' or textList[i] == '）' or textList[i] == '(' or textList[i] == ')' or textList[i] == '.' or textList[i] == '「' or textList[i] == '」' or textList[i] == '→' or textList[i] == '【' or textList[i] == '】':
+            elif textList[i] == '：' or textList[i] == '（' or textList[i] == '）' or textList[i] == '(' or textList[i] == ')' or textList[i] == '.' or textList[i] == '「' or textList[i] == '」' or textList[i] == '→' or textList[i] == '【' or textList[i] == '】' or textList[i] == '、':
                 newText += '　'
             elif textList[i] != ' ':
                 newText += textList[i]
@@ -125,7 +133,7 @@ class extractTxt:
                         pass
             connectList.append(str)
 
-        f = open('advance.txt', 'w', encoding='UTF-8')
+        f = open('intern.txt', 'w', encoding='UTF-8')
         for i in range(len(connectList)):
             f.write(connectList[i]+'\n')
         f.close()
