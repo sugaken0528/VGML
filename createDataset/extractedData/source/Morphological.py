@@ -231,7 +231,7 @@ class Morphological:
                 continue
             if (len(nouns) == 1 and suzi in nouns[0].split()[-1]):
                 continue
-            if (len(nouns) >= 2 and ((nouns[0].split()[0] == '図' or nouns[0].split()[0] == '表') and suzi in nouns[1].split()[-1])):
+            if (len(nouns) >= 2 and ((nouns[0].split()[0] == '図' or nouns[0].split()[0] == '表' or nouns[0].split()[0] == '数式') and suzi in nouns[1].split()[-1])):
                 continue
             if (setuzokushi in nouns[0].split()[-1]):
                 continue
