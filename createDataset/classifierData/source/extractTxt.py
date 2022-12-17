@@ -52,7 +52,7 @@ class extractTxt:
         textList = []
         for i in range(len(text)):
             textList.append(text[i])
-        replaceDic = ['：', '（', '）',
+        replaceDic = ['：', ':', '（', '）',
                       '(', ')', '.', '「', '」', '→', '【', '】', '、', '[', ']']
         for i in range(len(textList)):
             if textList[i] == '⚫' or textList[i] == '➢':
