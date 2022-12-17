@@ -10,8 +10,9 @@ import sys
 
 
 class Morphological:
-    def __init__(self, docs):
+    def __init__(self, docs, loadTxtName):
         self.docs = docs
+        self.loadTxtName = loadTxtName
 
     def createParameta(self):
         # docs = self.docs
@@ -29,7 +30,7 @@ class Morphological:
         list_ = ["単語", "判定結果", "TF-IDF値", "出現回数", "優先値", "連結回数", "概念レベル"]
         new_list.insert(0, list_)
         print("csvファイルを出力します")
-        with open("\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\extractedData\\data\\extracted_list_advance_kyogi.csv", 'w', encoding='utf8') as f:
+        with open("\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\extractedData\\data\\extracted_list_"+self.loadTxtName+".csv", 'w', encoding='utf8') as f:
             writer = csv.writer(f, lineterminator='\n')
             for x in new_list:
                 writer.writerow(x)
@@ -190,6 +191,7 @@ class Morphological:
         value = 0
         for i in range(len(nouns)):
             lowerWord = LowerWord()
+            print(nouns[i])
             dict, semiList = lowerWord.SearchTopConceptWords(
                 nouns[i].split()[0])
             if (dict == 0 and semiList == 0):
@@ -236,14 +238,17 @@ class Morphological:
             if (setuzokushi in nouns[0].split()[-1]):
                 continue
             newList.append(x)
+        return newList
 
+
+"""
         for x in newList:
             nouns = m.parse(x[0]).splitlines()
             for i in range(len(nouns)):
                 print(nouns[i].split())
             print('-----------------------------------')
         return newList
-
+"""
 
 """
 

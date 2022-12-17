@@ -14,6 +14,7 @@ class LowerWord:
         self.semi_hyper_list = []
 
     def SearchTopConceptWords(self, word):
+        print(word)
         # 下位語検索用の辞書を作成
         cur = self.conn.execute(
             "select synset1,synset2 from synlink where link='hypo'")

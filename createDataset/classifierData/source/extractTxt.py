@@ -6,20 +6,18 @@ from docx import Document
 
 
 class extractTxt:
-    def __init__(self):
-        pass
+    def __init__(self, outPath):
+        self.outPath = outPath
 
-    def extractWord(self):
+    def extractWord(self, inputPath):
         text = ''
-        document = Document(
-            "\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\specification\\intern2.docx")
+        document = Document(inputPath)
         for i, p in enumerate(document.paragraphs):
             text += p.text + '\n'
         self.textAnalysis(text)
 
-    def extractPdf(self):
+    def extractPdf(self, inputPath):
         laparams = LAParams()
-        input_path = "\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\specification\\kyogi_rules(sim)_1.0.1.pdf"
         start_page1 = 7
         last_page1 = 13
         start_page2 = 24
@@ -29,7 +27,7 @@ class extractTxt:
 
         # 対象ページを読み、テキスト抽出する。（maxpages：0は全ページ）
         text = ''
-        for page_layout in extract_pages(input_path, maxpages=0, laparams=laparams):    #
+        for page_layout in extract_pages(inputPath, maxpages=0, laparams=laparams):    #
             # 抽出するページの選別。extract_pagesの引数では、開始ページだけの指定に対応できないため
             if page_layout.pageid < start_page1:
                 continue                   # 指定開始ページより前は飛ばす
@@ -54,11 +52,12 @@ class extractTxt:
         textList = []
         for i in range(len(text)):
             textList.append(text[i])
-
+        replaceDic = ['：', '（', '）',
+                      '(', ')', '.', '「', '」', '→', '【', '】', '、', '[', ']']
         for i in range(len(textList)):
             if textList[i] == '⚫' or textList[i] == '➢':
                 newText += '　'
-            elif textList[i] == '：' or textList[i] == '（' or textList[i] == '）' or textList[i] == '(' or textList[i] == ')' or textList[i] == '.' or textList[i] == '「' or textList[i] == '」' or textList[i] == '→' or textList[i] == '【' or textList[i] == '】' or textList[i] == '、':
+            elif textList[i] in replaceDic:
                 newText += '　'
             elif textList[i] != ' ':
                 newText += textList[i]
@@ -133,7 +132,7 @@ class extractTxt:
                         pass
             connectList.append(str)
 
-        f = open('intern.txt', 'w', encoding='UTF-8')
+        f = open(self.outPath, 'w', encoding='UTF-8')
         for i in range(len(connectList)):
             f.write(connectList[i]+'\n')
         f.close()
