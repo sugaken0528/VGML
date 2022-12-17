@@ -52,7 +52,7 @@ class extractTxt:
         textList = []
         for i in range(len(text)):
             textList.append(text[i])
-        replaceDic = ['：', ':', '（', '）',
+        replaceDic = ['：', ':', '（', '）', '・',
                       '(', ')', '.', '「', '」', '→', '【', '】', '、', '[', ']']
         for i in range(len(textList)):
             if textList[i] == '⚫' or textList[i] == '➢':
@@ -66,7 +66,7 @@ class extractTxt:
 
         NoCapTextList = []
         for i in range(len(NoSymTextList)):
-            if len(NoSymTextList[i]) >= 1 and NoSymTextList[i][0] != '図' and NoSymTextList[i][0] != '表' and NoSymTextList[i][0] != '数式' and NoSymTextList[i][0] != ' ' and len(NoSymTextList[i]) > 10:
+            if len(NoSymTextList[i]) >= 1 and NoSymTextList[i][0] != '図' and NoSymTextList[i][0] != '表' and NoSymTextList[i][0] != '数式' and NoSymTextList[i][0] != ' ':
                 NoCapTextList.append(NoSymTextList[i])
 
         count = 0
@@ -131,6 +131,9 @@ class extractTxt:
                     elif brankCount == 1:
                         pass
             connectList.append(str)
+        for i in range(len(connectList)):
+            if connectList[i][-1] != ' ':
+                connectList[i] += ' '
 
         f = open(self.outPath, 'w', encoding='UTF-8')
         for i in range(len(connectList)):
