@@ -14,4 +14,4 @@ for x in df.values:
     docs = np.append(docs, x)
 morphological = Morphological(docs, loadTxtName)
 print("Morphologicalを実行します")
-morphological.createParameta()
+morphological.createParameta("extract")

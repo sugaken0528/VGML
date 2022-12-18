@@ -24,8 +24,12 @@ class classifier:
         for x in self.result.values:
             if x[10] >= 1.0:
                 necessaryList.append([x[0]])
+            if x[9] >= x[8] and x[9] >= x[7]:
+                classList.append(x[0])
+            """
             if x[9] >= 0.11:
                 classList.append(x[0])
+            """
 
         # 重複の削除およびソート
         necessaryList.sort()
@@ -57,9 +61,9 @@ class classifier:
                                         if wordCountSet[1] in word2 and not word2[len(word2)-1].isdigit() and not word == word2 and self.examine_include_word(word2, necessaryList):
                                             necessaryList = self.replaceWord(
                                                 word2, value, necessaryList)
-
+    
         # 動詞の抽出
-        verbList, necessaryList = self.methodGenerate.doins(necessaryList)
+        verbList, necessaryList = self.methodGenerate.doins(classList, necessaryList,self.specName)
 
         # クラスとインスタンス変数の概念レベルを比較
         classInstanceList, otherList = self.instanceGenerate.doins(

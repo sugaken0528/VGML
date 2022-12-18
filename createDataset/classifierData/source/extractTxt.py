@@ -52,7 +52,7 @@ class extractTxt:
         textList = []
         for i in range(len(text)):
             textList.append(text[i])
-        replaceDic = ['：', ':', '（', '）', '・',
+        replaceDic = ['：', ':', '（', '）',
                       '(', ')', '.', '「', '」', '→', '【', '】', '、', '[', ']']
         for i in range(len(textList)):
             if textList[i] == '⚫' or textList[i] == '➢':
@@ -88,6 +88,8 @@ class extractTxt:
         kuten = "記号-読点"
         kuhaku = "記号-空白"
         doshi = "動詞"
+        kakujoshi = "格助詞"
+        rentai = "助詞-連体化"
 
         textList = []
         for i in range(len(sentenceList)):
@@ -97,15 +99,18 @@ class extractTxt:
             for j in range(len(nouns)-1):
                 if kuhaku in nouns[j].split()[0]:
                     str += ' '
+                elif len(nouns[j].split()) >= 2 and kakujoshi in nouns[j].split()[3] or rentai in nouns[j].split()[3]:
+                    pass
                 elif len(nouns[j].split()) >= 2 and joshi in nouns[j].split()[3] or jodoshi in nouns[j].split()[3] or setsuzokushi in nouns[j].split()[3] or hukushi in nouns[j].split()[3] or kuten in nouns[j].split()[3] or dokuten in nouns[j].split()[3]:
                     str += ' '
                 elif len(nouns[j].split()) >= 2 and doshi in nouns[j].split()[3]:
-                    str += ' ' + nouns[j].split()[0] + ' '
+                    str += '  ' + nouns[j].split()[0] + ' '
                 else:
                     str += ' ' + nouns[j].split()[0]
             textList.append(str)
-            # print(textList[i])
-            # print("--------------------------------------------------------------------------------------------")
+            print(textList[i])
+            print(
+                "--------------------------------------------------------------------------------------------")
         connectList = []
         for i in range(len(textList)):
             str = ''

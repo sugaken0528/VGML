@@ -3,33 +3,34 @@ import csv
 import re
 from sklearn.feature_extraction.text import TfidfVectorizer
 import MeCab
+import numpy as np
 from calcConceptLebel import CalcConceptLevel
 from lowerWord import LowerWord
-import numpy as np
+import sys
 
 
-class teachData:
-    def __init__(self, docs):
+class Morphological:
+    def __init__(self, docs, loadTxtName):
         self.docs = docs
+        self.loadTxtName = loadTxtName
 
-    def createParameta(self):
-        # docs = self.wordOrganization()
-        docs = self.docs
+    def createParameta(self, DataName):
+        # docs = self.docs
+        docs = self.wordOrganization()
         parametaList = self.tfidf(docs)
         parametaList = self.priority(parametaList)
         parametaList = self.Linking(parametaList)
-        # parametaList = self.koyu(parametaList)
         parametaList = self.delete(parametaList)
-        parametaList = self.duplicateDeletion(parametaList)  # 重複削除
         parametaList = self.concept(parametaList)
+
         # 判定結果を追加
         for x in parametaList:
             x.insert(1, "0")
         new_list = sorted(parametaList, reverse=True)
         list_ = ["単語", "判定結果", "TF-IDF値", "出現回数", "優先値", "連結回数", "概念レベル"]
         new_list.insert(0, list_)
-
-        with open("\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\teachData\\teach_intern.csv", 'w', encoding='utf8') as f:
+        print("csvファイルを出力します")
+        with open("\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\teachData\\teach_"+self.loadTxtName+".csv", 'w', encoding='utf8') as f:
             writer = csv.writer(f, lineterminator='\n')
             for x in new_list:
                 writer.writerow(x)
@@ -49,15 +50,15 @@ class teachData:
         for i in range(len(self.docs)):
             tempList = []
             for char in self.docs[i]:
-                if(char != ' ' and '記号' not in m.parse(char).splitlines()[-2].split()[-1] and char not in exclusionList):
+                if (char != ' ' and '記号' not in m.parse(char).splitlines()[-2].split()[-1] and char not in exclusionList):
                     word += char
-                elif(char == ' ' and word != ' '):
+                elif (char == ' ' and word != ' '):
                     nouns = m.parse(word).splitlines()
                     nouns.pop(-1)
                     hiragana = re.findall("[ぁ-ん]", nouns[-1].split()[0])
-                    if(hukushikano in nouns[-1].split()[-1] or rentaishi in nouns[-1].split()[-1] or setubishi in nouns[-1].split()[-1] or len(hiragana) == len(nouns[-1].split()[0])):
+                    if (hukushikano in nouns[-1].split()[-1] or rentaishi in nouns[-1].split()[-1] or setubishi in nouns[-1].split()[-1] or len(hiragana) == len(nouns[-1].split()[0])):
                         nouns.pop(-1)
-                    elif(rentaishi in nouns[0].split()[-1] or setuzokushi in nouns[0].split()[-1] or hiziritushi in nouns[0].split()[-1] or settoshi in nouns[0].split()[-1] or hukushikano in nouns[0].split()[-1]):
+                    elif (rentaishi in nouns[0].split()[-1] or setuzokushi in nouns[0].split()[-1] or hiziritushi in nouns[0].split()[-1] or settoshi in nouns[0].split()[-1] or hukushikano in nouns[0].split()[-1]):
                         nouns.pop(0)
                     tempWord = ''
                     """
@@ -71,7 +72,7 @@ class teachData:
                     """
                     for j in range(len(nouns)):
                         tempWord += nouns[j].split()[0]
-                    if(tempWord != ''):
+                    if (tempWord != ''):
                         tempList.append(tempWord)
                     word = ' '
             resultWords.append(tempList)
@@ -85,7 +86,8 @@ class teachData:
             words = ''
         # print(newList)
         return newList
-        # 各単語にTFI-DF値を付与
+
+    # 各単語にTFI-DF値を付与
 
     def tfidf(self, inidocs):
         vectorizer = TfidfVectorizer(
@@ -135,8 +137,9 @@ class teachData:
                 if x[0] == y:
                     x.append(countlist[j])
 
-        lists = [x for x in lists if (len(x[0]) != 1) or len(
-            re.findall("[一-龥]", x[0])) == 1]
+        # lists = [x for x in lists if (len(x[0]) != 1) or len(
+            # re.findall("[一-龥]", x[0])) == 1]
+        lists = [x for x in lists if (len(x[0]) != 1)]
         lists = [x for x in lists if len(x[0]) < 20]
         return lists
 
@@ -160,7 +163,6 @@ class teachData:
 
             weight = len(hiragana)*0.1+(len(haifun)+len(eigo) +
                                         len(suuzi))*0.2+len(katakana)*0.5 + len(kanji)*0.5
-
             x.append(weight)
         return lists
 
@@ -189,9 +191,10 @@ class teachData:
         value = 0
         for i in range(len(nouns)):
             lowerWord = LowerWord()
+            print(nouns[i])
             dict, semiList = lowerWord.SearchTopConceptWords(
                 nouns[i].split()[0])
-            if(dict == 0 and semiList == 0):
+            if (dict == 0 and semiList == 0):
                 pass
             else:
                 calcConceptLebel = CalcConceptLevel(dict, semiList)
@@ -201,12 +204,12 @@ class teachData:
     def delete(self, lists):
         m = MeCab.Tagger("-Ochasen")
         """
-        for x in lists:
-            nouns = m.parse(x[0]).splitlines()
-            for i in range(len(nouns)):
-                print(nouns[i].split())
-            print('-----------------------------------')
-        """
+            for x in lists:
+                nouns = m.parse(x[0]).splitlines()
+                for i in range(len(nouns)):
+                    print(nouns[i].split())
+                print('-----------------------------------')
+            """
         daimeshi = '代名詞'
         meishi = '名詞'
         hukushikano = '副詞可能'
@@ -215,44 +218,54 @@ class teachData:
         kandoshi = '感動詞'
         sahen = '名詞-サ変'
         keiyodoshi = '名詞-形容動詞語幹'
+        setuzokushi = '接続詞'
+
+        # nouns : 単語の配列
+        # split()[-1] : 単語の品詞
 
         newList = []
         for x in lists:
             nouns = m.parse(x[0]).splitlines()
             nouns.pop(-1)
-            if((len(nouns) == 1 and sahen in nouns[0].split()[-1]) or kandoshi in nouns[0].split()[-1] or daimeshi in nouns[0].split()[-1] or daimeshi in nouns[-1].split()[-1] or hukushi in nouns[0].split()[-1] or hukushi in nouns[-1].split()[-1] or len(nouns[0].split()) == 6 or (meishi in nouns[-1].split()[-1] and hukushikano in nouns[-1].split()[-1]) or keiyodoshi in nouns[-1].split()[-1]):
+            if (kandoshi in nouns[0].split()[-1] or daimeshi in nouns[0].split()[-1] or daimeshi in nouns[-1].split()[-1] or hukushi in nouns[0].split()[-1] or hukushi in nouns[-1].split()[-1] or len(nouns[0].split()) == 6 or (meishi in nouns[-1].split()[-1] and hukushikano in nouns[-1].split()[-1]) or keiyodoshi in nouns[-1].split()[-1]):
                 continue
-            if(len(nouns) != 1 and suzi in nouns[0].split()[-1]):
+            if (len(nouns) != 1 and suzi in nouns[0].split()[-1]):
                 continue
-            if(len(nouns) >= 2 and ((nouns[0].split()[0] == '図' or nouns[0].split()[0] == '表') and suzi in nouns[1].split()[-1])):
+            if (len(nouns) == 1 and suzi in nouns[0].split()[-1]):
+                continue
+            if (len(nouns) >= 2 and ((nouns[0].split()[0] == '図' or nouns[0].split()[0] == '表' or nouns[0].split()[0] == '数式') and suzi in nouns[1].split()[-1])):
+                continue
+            if (setuzokushi in nouns[0].split()[-1]):
                 continue
             newList.append(x)
-        """
+        return newList
+
+
+"""
         for x in newList:
             nouns = m.parse(x[0]).splitlines()
             for i in range(len(nouns)):
                 print(nouns[i].split())
             print('-----------------------------------')
-        """
         return newList
+"""
 
-    def duplicateDeletion(self, lists):
-        word = lists[0][0]
-        value = 0
-        newList = []
-        count = 0
-        for i in range(len(lists)):
-            print(lists[i][0])
-            if(word == lists[i][0]):
-                value += lists[i][1]
-                count += 1
-                if(i+1 > len(lists)-1):
-                    lists[i][1] = value / count
-                    newList.append(lists[i])
+"""
+
+    def koyu(self, lists):
+        koyumeshi = '名詞-固有名詞-組織'
+        m = MeCab.Tagger("-Ochasen")
+        for x in lists:
+            count = 0
+            nouns = m.parse(x[0]).splitlines()
+            nouns.pop(-1)
+            for i in range(len(nouns)):
+                if (koyumeshi in nouns[i].split()[-1]):
+                    count += 1
+            if (count != 0):
+                koyuLevel = count / len(nouns)
             else:
-                lists[i-1][1] = value / (count)
-                newList.append(lists[i-1])
-                word = lists[i][0]
-                value = lists[i][1]
-                count = 1
-        return newList
+                koyuLevel = 0
+            x.append(koyuLevel)
+        return lists
+"""
