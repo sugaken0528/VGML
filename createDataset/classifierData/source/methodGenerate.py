@@ -26,33 +26,34 @@ class methodGenerate:
                 verbList.append(necessaryList[wordId])
             else:
                 otherList.append(necessaryList[wordId])
-        methods = []
+
+        classVerbList = []
         for i in range(len(verbList)):
-            classWord, verb = self.verbSearch(docs, classList, verbList[i])
-            if verb != None:
-                methods.append([classWord,verb])
+            classVerbList = self.verbSearch(classVerbList, docs, classList, verbList[i])
+        # クラスとメソッドが重複するセットを削除
+        classVerbList = self.duplicateSet(classVerbList)
 
         operateList = []
         functionList = []
-        for i in range(len(methods)):
-            method = methods[i][1]
+        for i in range(len(classVerbList)):
+            method = classVerbList[i][1]
             count = 0
             for j in range(len(classList)):
                 if classList[j] in method:
                     count += 1
             if count >= 1:
-                operateList.append(methods[i])
+                operateList.append(classVerbList[i])
             else:
-                functionList.append(methods[i])
-        print("-------------------------------------------------------------------------------")
+                functionList.append(classVerbList[i])
+
         print(operateList)
         print("-------------------------------------------------------------------------------")
         print(functionList)
         print("-------------------------------------------------------------------------------")
 
-        return methods, otherList
+        return classVerbList, otherList
     
-    def verbSearch(self, docs, classList, verb):
+    def verbSearch(self, classVerbList, docs, classList, verb):
         for i in range(len(docs)):
             splitDocs = docs[i].split()
             classWord = self.exitClassWord(splitDocs,classList)
@@ -60,8 +61,8 @@ class methodGenerate:
                 classWord = self.exitClassWord(docs[i-1].split(),classList)
             for j in range(len(splitDocs)):
                 if verb[0] == splitDocs[j] and classWord != None:
-                    return classWord, verb[0]
-        return splitDocs[j],None
+                    classVerbList.append([classWord, verb[0]])
+        return classVerbList
 
     def exitClassWord(self, splitDocs, classList):
         for i in range(len(classList)):
@@ -69,6 +70,15 @@ class methodGenerate:
             if classWord in splitDocs:
                 return classWord
         return None
+
+    def duplicateSet(self, classVerbList):
+        tempList = []
+        for i in range(len(classVerbList)):
+            classVerbSet = classVerbList[i]
+            if not classVerbSet in tempList:
+                tempList.append(classVerbSet)
+        return tempList
+
 
                     
 

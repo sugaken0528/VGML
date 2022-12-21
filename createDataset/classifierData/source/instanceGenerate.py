@@ -106,17 +106,19 @@ class instanceGenerate:
             duplicateWord = ""
             for j in range(len(classConnectSet[1][0])):
                 # インスタンス変数がいずれかのクラスと一致する場合
-                if classList[i] != classConnectSet[0][0] and classList[i] == classConnectSet[1][0][j]:
+                if classList[i] != classConnectSet[0][0] and classList[i] in classConnectSet[1][0][j] and not classList[i] in classConnectSet[0][0]:
                     removeList.append(classConnectSet[1][0][j])
                     removeList.append(classList[i])
-                    # print("{}と{}".format(
-                    # classList[i], classConnectSet[1][0][j]))
+                    #print("{}と{}は等しくない".format(
+                    #classList[i], classConnectSet[0][0]))
+                    #print("{}と{}".format(
+                    #classList[i], classConnectSet[1][0][j]))
                     duplicateWord = classConnectSet[1][0][j]
-                    # print("{}と{}が等しいのでduplicateWordを{}とします".format(
-                    # classList[i], classConnectSet[1][0][j], duplicateWord))
+                    #print("{}と{}が等しいのでduplicateWordを{}とします".format(
+                    #classList[i], classConnectSet[1][0][j], duplicateWord))
                 if duplicateWord != classConnectSet[1][0][j] and duplicateWord in classConnectSet[1][0][j] and duplicateWord != "":
-                    # print("{}は{}を含むので追加します".format(
-                    # classConnectSet[1][0][j], duplicateWord))
+                    #print("{}は{}を含むので追加します".format(
+                    #classConnectSet[1][0][j], duplicateWord))
                     removeList.append(classConnectSet[1][0][j])
 
         newClassConnectSet = []  # クラスと他のクラスと重複した接続単語を除いたセットを格納

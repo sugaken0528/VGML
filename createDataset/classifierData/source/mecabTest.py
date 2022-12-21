@@ -1,6 +1,6 @@
 import MeCab
 m = MeCab.Tagger("-Ochasen")
-nouns = m.parse("次項目5段階評価").splitlines()
+nouns = m.parse("企業担当者年度別一覧確認").splitlines()
 for i in range(len(nouns)-1):
     print(nouns[i].split()[0])
     print(nouns[i].split()[1])
