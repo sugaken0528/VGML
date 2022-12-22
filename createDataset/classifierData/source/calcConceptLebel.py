@@ -4,7 +4,7 @@ class CalcConceptLevel:
     def __init__(self, dict, semiList):
         self.dict = dict
         self.semiList = semiList
-        self.sum = len(self.semiList)
+        self.sum = 0
 
     def doCalc(self):
         print(self.dict)
@@ -12,7 +12,7 @@ class CalcConceptLevel:
         print(self.semiList)
         loopCount = 0
         for key in self.semiList:
-            hierarchy = 0
+            hierarchy = -1
             self.calc(key, loopCount, hierarchy)
         return self.sum
 
@@ -25,9 +25,7 @@ class CalcConceptLevel:
             self.sum += len(semiList) / (2**hierarchy)
             for key in semiList:
                 self.calc(key, loopCount, hierarchy)
-        elif hierarchy >= 1: #下位概念が存在しない
             hierarchy -= 1
-            return
         else:
             return
 
