@@ -1,0 +1,56 @@
+digraph {
+	node [shape=circle]
+	apple
+	apple -> crab_apple
+	apple -> dessert_apple
+	apple -> cooking_apple
+	crab_apple
+	dessert_apple
+	dessert_apple -> baldwin
+	dessert_apple -> cortland
+	dessert_apple -> delicious
+	dessert_apple -> empire
+	dessert_apple -> "grimes'_golden"
+	dessert_apple -> jonathan
+	dessert_apple -> mcintosh
+	dessert_apple -> northern_spy
+	dessert_apple -> pearmain
+	dessert_apple -> pippin
+	dessert_apple -> prima
+	dessert_apple -> stayman
+	dessert_apple -> winesap
+	dessert_apple -> stayman_winesap
+	dessert_apple -> granny_smith
+	baldwin
+	cortland
+	delicious
+	delicious -> yellow_delicious
+	delicious -> red_delicious
+	yellow_delicious
+	red_delicious
+	empire
+	"grimes'_golden"
+	jonathan
+	mcintosh
+	mcintosh -> macoun
+	macoun
+	northern_spy
+	pearmain
+	pippin
+	pippin -> "cox's_orange_pippin"
+	"cox's_orange_pippin"
+	prima
+	stayman
+	winesap
+	stayman_winesap
+	granny_smith
+	cooking_apple
+	cooking_apple -> "bramley's_seedling"
+	cooking_apple -> "lane's_prince_albert"
+	cooking_apple -> newtown_wonder
+	cooking_apple -> rome_beauty
+	"bramley's_seedling"
+	"lane's_prince_albert"
+	newtown_wonder
+	rome_beauty
+}

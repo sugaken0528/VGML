@@ -19,13 +19,13 @@ class CalcConceptLevel:
     def calc(self, key, loopCount,hierarchy):
         print("現在のsumは{}です".format(self.sum))
         semiList = self.dict[key]
-        if 'null' not in semiList:
+        if 'null' not in semiList: #下位概念が存在する
             hierarchy += 1
             print("{}/{}".format(len(semiList),2**hierarchy))
             self.sum += len(semiList) / (2**hierarchy)
             for key in semiList:
                 self.calc(key, loopCount, hierarchy)
-        elif hierarchy >= 1:
+        elif hierarchy >= 1: #下位概念が存在しない
             hierarchy -= 1
             return
         else:

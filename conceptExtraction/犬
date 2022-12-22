@@ -1,0 +1,395 @@
+digraph {
+	node [shape=circle]
+	spy
+	spy -> counterspy
+	spy -> double_agent
+	spy -> espionage_agent
+	spy -> foreign_agent
+	spy -> infiltrator
+	spy -> sleeper
+	counterspy
+	double_agent
+	espionage_agent
+	foreign_agent
+	infiltrator
+	sleeper
+	canis_familiaris
+	canis_familiaris -> puppy
+	canis_familiaris -> pooch
+	canis_familiaris -> mutt
+	canis_familiaris -> lapdog
+	canis_familiaris -> toy_dog
+	canis_familiaris -> hunting_dog
+	canis_familiaris -> working_dog
+	canis_familiaris -> carriage_dog
+	canis_familiaris -> basenji
+	canis_familiaris -> pug
+	canis_familiaris -> leonberg
+	canis_familiaris -> newfoundland
+	canis_familiaris -> great_pyrenees
+	canis_familiaris -> spitz
+	canis_familiaris -> belgian_griffon
+	canis_familiaris -> welsh_corgi
+	canis_familiaris -> poodle_dog
+	canis_familiaris -> mexican_hairless
+	puppy
+	pooch
+	mutt
+	mutt -> fice
+	mutt -> "pie-dog"
+	fice
+	"pie-dog"
+	lapdog
+	toy_dog
+	toy_dog -> chihuahua
+	toy_dog -> japanese_spaniel
+	toy_dog -> maltese_dog
+	toy_dog -> pekinese
+	toy_dog -> "shih-tzu"
+	toy_dog -> toy_spaniel
+	toy_dog -> toy_terrier
+	chihuahua
+	japanese_spaniel
+	maltese_dog
+	pekinese
+	"shih-tzu"
+	toy_spaniel
+	toy_spaniel -> english_toy_spaniel
+	toy_spaniel -> king_charles_spaniel
+	toy_spaniel -> papillon
+	english_toy_spaniel
+	english_toy_spaniel -> blenheim_spaniel
+	blenheim_spaniel
+	king_charles_spaniel
+	papillon
+	toy_terrier
+	hunting_dog
+	hunting_dog -> courser
+	hunting_dog -> rhodesian_ridgeback
+	hunting_dog -> hound
+	hunting_dog -> badger_dog
+	hunting_dog -> terrier
+	hunting_dog -> sporting_dog
+	courser
+	rhodesian_ridgeback
+	hound
+	hound -> afghan_hound
+	hound -> basset
+	hound -> beagle
+	hound -> bloodhound
+	hound -> bluetick
+	hound -> boarhound
+	hound -> coonhound
+	hound -> foxhound
+	hound -> harrier
+	hound -> plott_hound
+	hound -> redbone
+	hound -> wolfhound
+	hound -> greyhound
+	hound -> ibizan_hound
+	hound -> elkhound
+	hound -> otter_hound
+	hound -> saluki
+	hound -> deerhound
+	hound -> staghound
+	hound -> weimaraner
+	afghan_hound
+	basset
+	beagle
+	bloodhound
+	bluetick
+	boarhound
+	coonhound
+	coonhound -> coondog
+	coonhound -> "black-and-tan_coonhound"
+	coondog
+	"black-and-tan_coonhound"
+	foxhound
+	foxhound -> american_foxhound
+	foxhound -> walker_foxhound
+	foxhound -> english_foxhound
+	american_foxhound
+	walker_foxhound
+	english_foxhound
+	harrier
+	plott_hound
+	redbone
+	wolfhound
+	wolfhound -> borzoi
+	wolfhound -> irish_wolfhound
+	borzoi
+	irish_wolfhound
+	greyhound
+	greyhound -> italian_greyhound
+	greyhound -> whippet
+	italian_greyhound
+	whippet
+	ibizan_hound
+	elkhound
+	otter_hound
+	saluki
+	deerhound
+	staghound
+	weimaraner
+	badger_dog
+	badger_dog -> sausage_dog
+	sausage_dog
+	terrier
+	terrier -> bullterrier
+	terrier -> bedlington_terrier
+	terrier -> border_terrier
+	terrier -> kerry_blue_terrier
+	terrier -> irish_terrier
+	terrier -> norfolk_terrier
+	terrier -> norwich_terrier
+	terrier -> yorkshire_terrier
+	terrier -> rat_terrier
+	terrier -> fox_terrier
+	terrier -> wirehair
+	terrier -> airedale
+	terrier -> cairn
+	terrier -> australian_terrier
+	terrier -> dandie_dinmont
+	terrier -> boston_bull
+	terrier -> schnauzer
+	terrier -> scottish_terrier
+	terrier -> tibetan_terrier
+	terrier -> sydney_silky
+	terrier -> skye_terrier
+	terrier -> "soft-coated_wheaten_terrier"
+	terrier -> west_highland_white_terrier
+	terrier -> lhasa_apso
+	bullterrier
+	bullterrier -> staffordshire_bull_terrier
+	bullterrier -> american_pit_bull_terrier
+	staffordshire_bull_terrier
+	american_pit_bull_terrier
+	bedlington_terrier
+	border_terrier
+	kerry_blue_terrier
+	irish_terrier
+	norfolk_terrier
+	norwich_terrier
+	yorkshire_terrier
+	rat_terrier
+	rat_terrier -> manchester_terrier
+	manchester_terrier
+	manchester_terrier -> toy_manchester
+	toy_manchester
+	fox_terrier
+	fox_terrier -> "smooth-haired_fox_terrier"
+	fox_terrier -> "wire-haired_fox_terrier"
+	"smooth-haired_fox_terrier"
+	"wire-haired_fox_terrier"
+	wirehair
+	wirehair -> lakeland_terrier
+	wirehair -> welsh_terrier
+	lakeland_terrier
+	welsh_terrier
+	welsh_terrier -> sealyham_terrier
+	sealyham_terrier
+	airedale
+	cairn
+	australian_terrier
+	dandie_dinmont
+	boston_bull
+	schnauzer
+	schnauzer -> miniature_schnauzer
+	schnauzer -> giant_schnauzer
+	schnauzer -> standard_schnauzer
+	miniature_schnauzer
+	giant_schnauzer
+	standard_schnauzer
+	scottish_terrier
+	tibetan_terrier
+	sydney_silky
+	skye_terrier
+	skye_terrier -> clydesdale_terrier
+	clydesdale_terrier
+	"soft-coated_wheaten_terrier"
+	west_highland_white_terrier
+	lhasa_apso
+	sporting_dog
+	sporting_dog -> bird_dog
+	sporting_dog -> water_dog
+	sporting_dog -> retriever
+	sporting_dog -> spanish_pointer
+	sporting_dog -> setter
+	sporting_dog -> spaniel
+	sporting_dog -> "wire-haired_pointing_griffon"
+	bird_dog
+	water_dog
+	retriever
+	retriever -> "flat-coated_retriever"
+	retriever -> "curly-coated_retriever"
+	retriever -> golden_retriever
+	retriever -> labrador_retriever
+	retriever -> chesapeake_bay_retriever
+	"flat-coated_retriever"
+	"curly-coated_retriever"
+	golden_retriever
+	labrador_retriever
+	chesapeake_bay_retriever
+	spanish_pointer
+	spanish_pointer -> "german_short-haired_pointer"
+	spanish_pointer -> hungarian_pointer
+	"german_short-haired_pointer"
+	hungarian_pointer
+	setter
+	setter -> english_setter
+	setter -> red_setter
+	setter -> gordon_setter
+	english_setter
+	red_setter
+	gordon_setter
+	spaniel
+	spaniel -> brittany_spaniel
+	spaniel -> clumber_spaniel
+	spaniel -> field_spaniel
+	spaniel -> springer_spaniel
+	spaniel -> cocker
+	spaniel -> sussex_spaniel
+	spaniel -> water_spaniel
+	brittany_spaniel
+	clumber_spaniel
+	field_spaniel
+	springer_spaniel
+	springer_spaniel -> english_springer_spaniel
+	springer_spaniel -> welsh_springer_spaniel
+	english_springer_spaniel
+	welsh_springer_spaniel
+	cocker
+	sussex_spaniel
+	water_spaniel
+	water_spaniel -> american_water_spaniel
+	water_spaniel -> irish_water_spaniel
+	american_water_spaniel
+	irish_water_spaniel
+	"wire-haired_pointing_griffon"
+	working_dog
+	working_dog -> watchdog
+	working_dog -> sheep_dog
+	working_dog -> police_dog
+	working_dog -> sennenhunde
+	working_dog -> boxer
+	working_dog -> mastiff
+	working_dog -> bull_mastiff
+	working_dog -> english_bulldog
+	working_dog -> great_dane
+	working_dog -> guide_dog
+	working_dog -> hearing_dog
+	working_dog -> saint_bernard
+	working_dog -> "seizure-alert_dog"
+	working_dog -> sledge_dog
+	working_dog -> husky
+	watchdog
+	watchdog -> kuvasz
+	watchdog -> attack_dog
+	watchdog -> housedog
+	watchdog -> schipperke
+	watchdog -> pinscher
+	kuvasz
+	attack_dog
+	housedog
+	schipperke
+	pinscher
+	pinscher -> doberman_pinscher
+	pinscher -> miniature_pinscher
+	pinscher -> monkey_pinscher
+	doberman_pinscher
+	miniature_pinscher
+	monkey_pinscher
+	sheep_dog
+	sheep_dog -> belgian_shepherd
+	sheep_dog -> briard
+	sheep_dog -> kelpie
+	sheep_dog -> komondor
+	sheep_dog -> old_english_sheepdog
+	sheep_dog -> shetland
+	sheep_dog -> collie
+	sheep_dog -> border_collie
+	sheep_dog -> bouviers_des_flandres
+	sheep_dog -> rottweiler
+	sheep_dog -> alsatian
+	belgian_shepherd
+	belgian_shepherd -> groenendael
+	belgian_shepherd -> malinois
+	groenendael
+	malinois
+	briard
+	kelpie
+	komondor
+	old_english_sheepdog
+	shetland
+	collie
+	border_collie
+	bouviers_des_flandres
+	rottweiler
+	alsatian
+	police_dog
+	sennenhunde
+	sennenhunde -> greater_swiss_mountain_dog
+	sennenhunde -> bernese_mountain_dog
+	sennenhunde -> appenzeller
+	sennenhunde -> entlebucher
+	greater_swiss_mountain_dog
+	bernese_mountain_dog
+	appenzeller
+	entlebucher
+	boxer
+	mastiff
+	mastiff -> tibetan_mastiff
+	tibetan_mastiff
+	bull_mastiff
+	english_bulldog
+	english_bulldog -> french_bulldog
+	french_bulldog
+	great_dane
+	guide_dog
+	guide_dog -> seeing_eye_dog
+	seeing_eye_dog
+	hearing_dog
+	saint_bernard
+	"seizure-alert_dog"
+	sledge_dog
+	sledge_dog -> malamute
+	sledge_dog -> siberian_husky
+	malamute
+	siberian_husky
+	husky
+	carriage_dog
+	carriage_dog -> "liver-spotted_dalmatian"
+	"liver-spotted_dalmatian"
+	basenji
+	pug
+	leonberg
+	newfoundland
+	great_pyrenees
+	spitz
+	spitz -> samoyede
+	spitz -> pomeranian
+	spitz -> chow_chow
+	spitz -> keeshond
+	samoyede
+	pomeranian
+	chow_chow
+	keeshond
+	belgian_griffon
+	belgian_griffon -> brabancon_griffon
+	brabancon_griffon
+	welsh_corgi
+	welsh_corgi -> pembroke
+	welsh_corgi -> cardigan_welsh_corgi
+	pembroke
+	cardigan_welsh_corgi
+	poodle_dog
+	poodle_dog -> toy_poodle
+	poodle_dog -> miniature_poodle
+	poodle_dog -> standard_poodle
+	poodle_dog -> large_poodle
+	toy_poodle
+	miniature_poodle
+	standard_poodle
+	large_poodle
+	mexican_hairless
+}
