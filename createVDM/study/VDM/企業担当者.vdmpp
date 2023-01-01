@@ -1,0 +1,20 @@
+class 企業担当者
+
+types
+    public id = real;
+    public 連絡先電話番号 = real;
+
+instance variables
+    public 企業担当者id : id;
+    public 企業担当者連絡先電話番号 : 連絡先電話番号;
+
+operations
+    public インターンシップエントリ学生閲覧 : () ==> real
+    インターンシップエントリ学生閲覧()==
+    return 0;
+
+functions
+    ユーザ認証 : () -> real
+    ユーザ認証()==0;
+
+end 企業担当者

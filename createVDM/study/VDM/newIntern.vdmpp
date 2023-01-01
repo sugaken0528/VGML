@@ -81,6 +81,17 @@ instance variables
     public インターンシップ名 : 名;
     public インターンシップid : id;
 
+functions
+    企業登録 : real -> real
+    企業登録() == null
+    pre null
+    post null
+
+operations
+    学生登録()
+    pre null
+    post null
+
 end インターンシップ
 
 class 教員

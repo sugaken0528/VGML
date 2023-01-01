@@ -10,24 +10,26 @@ class CalcConceptLevel:
         print(self.dict)
         print("-------------------------------------------------------------------------------")
         print(self.semiList)
-        loopCount = 0
         for key in self.semiList:
-            hierarchy = -1
-            self.calc(key, loopCount, hierarchy)
+            hierarchy = 0
+            lowerList = self.dict[key]
+            if 'null' not in lowerList:
+                self.calc(key, hierarchy,lowerList)
         return self.sum
 
-    def calc(self, key, loopCount,hierarchy):
+    def calc(self, key, hierarchy, lowerList):
         print("現在のsumは{}です".format(self.sum))
-        semiList = self.dict[key]
-        if 'null' not in semiList: #下位概念が存在する
-            hierarchy += 1
-            print("{}/{}".format(len(semiList),2**hierarchy))
-            self.sum += len(semiList) / (2**hierarchy)
-            for key in semiList:
-                self.calc(key, loopCount, hierarchy)
-            hierarchy -= 1
-        else:
-            return
+        print("{}/{}".format(len(lowerList),2**hierarchy))
+        self.sum += len(lowerList) / (2**hierarchy)
+        for key in lowerList:
+            lowerList2 = self.dict[key]
+            if 'null' not in lowerList2: #下位概念が存在する
+                hierarchy += 1
+                self.calc(key, hierarchy,lowerList2)
+            elif 'null' in lowerList2: #下位概念が存在しない
+                pass
+            elif 'null' in lowerList2 and key == lowerList[-1]: #下位概念が存在しないかつlowerListの末尾の要素である
+                hierarchy -= 1
 
 
 
