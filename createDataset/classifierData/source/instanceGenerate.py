@@ -91,7 +91,7 @@ class instanceGenerate:
                 nouns[i].split()[0])
             if dict != 0 and semiList != 0:
                 calcConceptLebel = CalcConceptLevel(dict, semiList)
-                conceptLevel += calcConceptLebel.calc()
+                conceptLevel += calcConceptLebel.doCalc()
         return conceptLevel / (len(nouns)-1)
 
     # 重複するインスタンスを削除

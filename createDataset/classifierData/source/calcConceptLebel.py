@@ -18,8 +18,8 @@ class CalcConceptLevel:
         return self.sum
 
     def calc(self, key, hierarchy, lowerList):
-        print("現在のsumは{}です".format(self.sum))
-        print("{}/{}".format(len(lowerList),2**hierarchy))
+        #print("現在のsumは{}です".format(self.sum))
+        #print("{}/{}".format(len(lowerList),2**hierarchy))
         self.sum += len(lowerList) / (2**hierarchy)
         for key in lowerList:
             lowerList2 = self.dict[key]
