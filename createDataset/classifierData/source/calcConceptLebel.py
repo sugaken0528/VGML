@@ -1,15 +1,16 @@
 import sys
-sys.setrecursionlimit(10000)
+
 class CalcConceptLevel:
     def __init__(self, dict, semiList):
         self.dict = dict
         self.semiList = semiList
         self.sum = 0
+        self.loopCount = 0
 
     def doCalc(self):
-        print(self.dict)
-        print("-------------------------------------------------------------------------------")
-        print(self.semiList)
+        #print(self.dict)
+        #print("-------------------------------------------------------------------------------")
+        #print(self.semiList)
         for key in self.semiList:
             hierarchy = 0
             lowerList = self.dict[key]
@@ -18,18 +19,22 @@ class CalcConceptLevel:
         return self.sum
 
     def calc(self, key, hierarchy, lowerList):
-        #print("現在のsumは{}です".format(self.sum))
-        #print("{}/{}".format(len(lowerList),2**hierarchy))
-        self.sum += len(lowerList) / (2**hierarchy)
-        for key in lowerList:
-            lowerList2 = self.dict[key]
-            if 'null' not in lowerList2: #下位概念が存在する
-                hierarchy += 1
-                self.calc(key, hierarchy,lowerList2)
-            elif 'null' in lowerList2: #下位概念が存在しない
-                pass
-            elif 'null' in lowerList2 and key == lowerList[-1]: #下位概念が存在しないかつlowerListの末尾の要素である
-                hierarchy -= 1
+        self.loopCount += 1
+        if self.loopCount < 5000:
+            #print("現在のsumは{}です".format(self.sum))
+            #print("{}/{}".format(len(lowerList),2**hierarchy))
+            self.sum += len(lowerList) / (2**hierarchy)
+            for key in lowerList:
+                lowerList2 = self.dict[key]
+                if 'null' not in lowerList2 and self.loopCount < 5000: #下位概念が存在する
+                    hierarchy += 1
+                    self.calc(key, hierarchy,lowerList2)
+                elif 'null' in lowerList2: #下位概念が存在しない
+                    pass
+                elif 'null' in lowerList2 and key == lowerList[-1]: #下位概念が存在しないかつlowerListの末尾の要素である
+                    hierarchy -= 1
+        else:
+            return self.sum
 
 
 

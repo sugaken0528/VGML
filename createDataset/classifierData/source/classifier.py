@@ -6,6 +6,7 @@ import os
 import shutil
 from instanceGenerate import instanceGenerate
 from methodGenerate import methodGenerate
+from vdmGenerate import vdmGenerate
 
 
 class classifier:
@@ -17,6 +18,7 @@ class classifier:
         self.TF_list = TF_list
         self.instanceGenerate = instanceGenerate()
         self.methodGenerate = methodGenerate()
+        self.vdmGenerate = vdmGenerate(self.specName)
 
     def createClassifierList(self):
         necessaryList = []  # VDM++仕様書に必要な候補の単語を格納
@@ -63,11 +65,13 @@ class classifier:
                                                 word2, value, necessaryList)
     
         # 動詞の抽出
-        verbList, necessaryList = self.methodGenerate.doins(classList, necessaryList,self.specName)
+        classVerbList, necessaryList = self.methodGenerate.doins(classList, necessaryList,self.specName)
 
         # クラスとインスタンス変数の概念レベルを比較
         classInstanceList, otherList = self.instanceGenerate.doins(
             necessaryList, classList)
+        
+        self.vdmGenerate.doins(classInstanceList,classVerbList,otherList)
 
         outPath = "\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\classifierData\\data\\classifier_" + self.specName
         # フォルダにアクセス権限を与え一旦削除
