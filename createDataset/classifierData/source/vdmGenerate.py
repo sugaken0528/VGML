@@ -43,7 +43,7 @@ class vdmGenerate:
                 writer.writerow(x)
             writer.writerow(["end " + self.specName])
     
-    def classVdm(self,classInstanceList,operateList,functionList,outPath):
+    def classVdm(self,classInstanceList,operateList,outPath):
         for classId in range(len(classInstanceList)):
             classWord = classInstanceList[classId][0][0]
             rows = []

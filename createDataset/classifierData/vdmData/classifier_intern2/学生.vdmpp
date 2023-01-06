@@ -13,6 +13,10 @@ instance variables
   public 学生id : id;
 
 operations
+  public 評定閲覧 : () ==> real
+  評定閲覧()==
+  return 0;
+
   public 学生アドバイス : () ==> real
   学生アドバイス()==
   return 0;
@@ -23,6 +27,22 @@ operations
 
   public 企業担当者入力 : () ==> real
   企業担当者入力()==
+  return 0;
+
+  public ユーザ認証 : () ==> real
+  ユーザ認証()==
+  return 0;
+
+  public パスワード変更 : () ==> real
+  パスワード変更()==
+  return 0;
+
+  public セキュリティ確保 : () ==> real
+  セキュリティ確保()==
+  return 0;
+
+  public エントリ登録 : () ==> real
+  エントリ登録()==
   return 0;
 
   public インターンシップ終了 : () ==> real
@@ -41,23 +61,8 @@ operations
   インターンシップエントリ登録()==
   return 0;
 
-functions
-  評定閲覧 : () -> real
-  評定閲覧()==0;
-
-  ユーザ認証 : () -> real
-  ユーザ認証()==0;
-
-  パスワード変更 : () -> real
-  パスワード変更()==0;
-
-  セキュリティ確保 : () -> real
-  セキュリティ確保()==0;
-
-  エントリ登録 : () -> real
-  エントリ登録()==0;
-
-  アドバイス参照 : () -> real
-  アドバイス参照()==0;
+  public アドバイス参照 : () ==> real
+  アドバイス参照()==
+  return 0;
 
 end 学生

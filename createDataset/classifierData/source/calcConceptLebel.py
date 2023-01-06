@@ -1,4 +1,5 @@
 import sys
+import threading
 
 class CalcConceptLevel:
     def __init__(self, dict, semiList):
@@ -8,6 +9,8 @@ class CalcConceptLevel:
         self.loopCount = 0
 
     def doCalc(self):
+        sys.setrecursionlimit(67108864) #64MB
+        threading.stack_size(1024*1024)  #2の20乗のstackを確保=メモリの確保
         #print(self.dict)
         #print("-------------------------------------------------------------------------------")
         #print(self.semiList)
@@ -20,7 +23,7 @@ class CalcConceptLevel:
 
     def calc(self, key, hierarchy, lowerList):
         self.loopCount += 1
-        if self.loopCount < 5000:
+        if self.loopCount < 2000:
             #print("現在のsumは{}です".format(self.sum))
             #print("{}/{}".format(len(lowerList),2**hierarchy))
             self.sum += len(lowerList) / (2**hierarchy)
