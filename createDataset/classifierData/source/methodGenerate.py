@@ -31,27 +31,9 @@ class methodGenerate:
         for i in range(len(verbList)):
             classVerbList = self.verbSearch(classVerbList, docs, classList, verbList[i])
         # クラスとメソッドが重複するセットを削除
-        classVerbList = self.duplicateSet(classVerbList)
+        operateList = self.duplicateSet(classVerbList)
 
-        operateList = []
-        functionList = []
-        for i in range(len(classVerbList)):
-            method = classVerbList[i][1]
-            count = 0
-            for j in range(len(classList)):
-                if classList[j] in method:
-                    count += 1
-            if count >= 1:
-                operateList.append(classVerbList[i])
-            else:
-                functionList.append(classVerbList[i])
-
-        print(operateList)
-        print("-------------------------------------------------------------------------------")
-        print(functionList)
-        print("-------------------------------------------------------------------------------")
-
-        return operateList,functionList, otherList
+        return operateList,otherList
     
     def verbSearch(self, classVerbList, docs, classList, verb):
         for i in range(len(docs)):

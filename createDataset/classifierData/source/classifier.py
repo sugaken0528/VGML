@@ -63,13 +63,13 @@ class classifier:
                                                 word2, value, necessaryList)
     
         # 動詞の抽出
-        operateList, functionList, necessaryList = self.methodGenerate.doins(classList, necessaryList,self.specName)
+        operateList, necessaryList = self.methodGenerate.doins(classList, necessaryList,self.specName)
 
         # クラスとインスタンス変数の概念レベルを比較
         classInstanceList, otherList = self.instanceGenerate.doins(
             necessaryList, classList)
         
-        self.vdmGenerate.doins(classInstanceList, operateList, functionList, otherList)
+        self.vdmGenerate.doins(classInstanceList, operateList, otherList)
 
         outPath = "\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\classifierData\\data\\classifier_" + self.specName
         # フォルダにアクセス権限を与え一旦削除

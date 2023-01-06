@@ -6,7 +6,7 @@ class vdmGenerate:
     def __init__(self, specName):
         self.specName = specName
 
-    def doins(self,classInstanceList,operateList,functionList,otherList):
+    def doins(self,classInstanceList,operateList,otherList):
 
         outPath = "\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\classifierData\\vdmData\\classifier_" + self.specName
         print(classInstanceList)
@@ -17,7 +17,7 @@ class vdmGenerate:
 
         os.makedirs(outPath, exist_ok=True)
         self.otherVdm(otherList,outPath)
-        self.classVdm(classInstanceList,operateList,functionList,outPath)
+        self.classVdm(classInstanceList,operateList,outPath)
 
     def otherVdm(self,otherList,outPath):
         rows = []
@@ -56,8 +56,6 @@ class vdmGenerate:
                 rows.append([])
             if self.methodExis(classWord, operateList):
                 rows.append(['operations'])
-            if self.methodExis(classWord, functionList):
-                rows.append(['functions'])
             rows.append(['end ' + classWord])
             for instanceId in range(len(classInstanceList[classId][1])):
                 instanceWord = classInstanceList[classId][1][instanceId]
@@ -74,13 +72,6 @@ class vdmGenerate:
                     rows.insert(index+1,["  " + operateWord + "()=="])
                     rows.insert(index+2,["  return 0;"])
                     rows.insert(index+3,[])
-            for functionId in range(len(functionList)):
-                if classWord == functionList[functionId][0]:
-                    functionWord = functionList[functionId][1]
-                    index = self.searchId(rows, "functions")
-                    rows.insert(index,["  " + functionWord + " : () -> real"])
-                    rows.insert(index+1,["  " + functionWord + "()==0;"])
-                    rows.insert(index+2,[])
 
             # その他を書き込み
             with open(outPath + "\\" + classWord + ".vdmpp", 'w', encoding='utf8') as f:
