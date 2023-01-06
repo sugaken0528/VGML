@@ -1,0 +1,20 @@
+class ビンゴ
+
+types
+  public フル = real;
+  public トリプル = real;
+  public ダブル = real;
+  public シングル = real;
+
+instance variables
+  public フルビンゴ : フル;
+  public トリプルビンゴ : トリプル;
+  public ダブルビンゴ : ダブル;
+  public シングルビンゴ : シングル;
+
+operations
+  public ボーナスサークル設置 : () ==> real
+  ボーナスサークル設置()==
+  return 0;
+
+end ビンゴ

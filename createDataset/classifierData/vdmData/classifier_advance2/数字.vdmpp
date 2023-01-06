@@ -1,0 +1,16 @@
+class 数字
+
+types
+  public カード置き場 = real;
+  public カード = real;
+
+instance variables
+  public 数字カード置き場 : カード置き場;
+  public 数字カード : カード;
+
+operations
+  public ボーナスサークル設置 : () ==> real
+  ボーナスサークル設置()==
+  return 0;
+
+end 数字

@@ -1,0 +1,18 @@
+class スタート
+
+types
+  public ライン手前 = real;
+  public ライン = real;
+
+instance variables
+  public スタートライン手前 : ライン手前;
+  public スタートライン : ライン;
+
+functions
+  最大計測 : () -> real
+  最大計測()==0;
+
+  タッチセンサ押下操作 : () -> real
+  タッチセンサ押下操作()==0;
+
+end スタート

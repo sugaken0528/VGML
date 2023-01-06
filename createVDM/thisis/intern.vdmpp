@@ -1,0 +1,13 @@
+class intern
+
+types
+  public 年度 = real;
+  public 参加エントリ = real;
+  public 連絡先電話番号 = real;
+  public 連絡先メールアドレス = real;
+
+values
+  項目 = 4;
+  パスワード = 8;
+
+end intern

@@ -31,12 +31,12 @@ class Morphological:
         new_list.insert(0, list_)
         print("csvファイルを出力します")
         if DataName == "extract":
-            with open("\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\extractedData\\data\\extracted_list_"+self.loadTxtName+".csv", 'w', encoding='utf8') as f:
+            with open("\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\extractedData\\data\\extracted_list_"+self.loadTxtName+".csv", 'w', encoding='shift_jis') as f:
                 writer = csv.writer(f, lineterminator='\n')
                 for x in new_list:
                     writer.writerow(x)
         elif DataName == "teach":
-            with open("\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\teachData\\teach_"+self.loadTxtName+".csv", 'w', encoding='utf8') as f:
+            with open("\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\teachData\\teach_"+self.loadTxtName+".csv", 'w', encoding='shift_jis') as f:
                 writer = csv.writer(f, lineterminator='\n')
                 for x in new_list:
                     writer.writerow(x)

@@ -1,0 +1,63 @@
+class 学生
+
+types
+  public 順一覧項目 = real;
+  public 氏名 = real;
+  public 毎固有識別番号 = real;
+  public id = real;
+
+instance variables
+  public 学生順一覧項目 : 順一覧項目;
+  public 学生氏名 : 氏名;
+  public 学生毎固有識別番号 : 毎固有識別番号;
+  public 学生id : id;
+
+operations
+  public 学生アドバイス : () ==> real
+  学生アドバイス()==
+  return 0;
+
+  public 参加インターンシップ情報閲覧 : () ==> real
+  参加インターンシップ情報閲覧()==
+  return 0;
+
+  public 企業担当者入力 : () ==> real
+  企業担当者入力()==
+  return 0;
+
+  public インターンシップ終了 : () ==> real
+  インターンシップ終了()==
+  return 0;
+
+  public インターンシップ情報一覧確認 : () ==> real
+  インターンシップ情報一覧確認()==
+  return 0;
+
+  public インターンシップ実施 : () ==> real
+  インターンシップ実施()==
+  return 0;
+
+  public インターンシップエントリ登録 : () ==> real
+  インターンシップエントリ登録()==
+  return 0;
+
+functions
+  評定閲覧 : () -> real
+  評定閲覧()==0;
+
+  ユーザ認証 : () -> real
+  ユーザ認証()==0;
+
+  パスワード変更 : () -> real
+  パスワード変更()==0;
+
+  セキュリティ確保 : () -> real
+  セキュリティ確保()==0;
+
+  エントリ登録 : () -> real
+  エントリ登録()==0;
+
+  アドバイス参照 : () -> real
+  アドバイス参照()==0;
+
+end 学生

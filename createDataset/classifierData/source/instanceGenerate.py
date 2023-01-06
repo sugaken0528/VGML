@@ -24,7 +24,7 @@ class instanceGenerate:
             classConnectSet.append([classWord])
             for j in range(len(necessaryList)):
                 # classWordが前または後ろに接続する単語を抽出
-                if necessaryList[j][0].startswith(classWord) and necessaryList[j][0] != classWord:
+                if necessaryList[j][0] != classWord and (necessaryList[j][0].startswith(classWord) or necessaryList[j][0].endswith(classWord)):
                     connectWordList.append(necessaryList[j][0])
             classConnectSet.append([connectWordList])
             classConnectSet = self.removeDuplicateInstance(

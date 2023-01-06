@@ -1,0 +1,11 @@
+class インターンシップ
+
+types
+  public 名 = real;
+  public id = real;
+
+instance variables
+  public インターンシップ名 : 名;
+  public インターンシップid : id;
+
+end インターンシップ

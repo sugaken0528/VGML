@@ -1,0 +1,18 @@
+class インターンシップ
+
+types
+  public 名 = real;
+  public 参加エントリ = real;
+  public id = real;
+
+instance variables
+  public インターンシップ名 : 名;
+  public インターンシップ参加エントリ : 参加エントリ;
+  public インターンシップid : id;
+
+operations
+  public 学生参加決定者登録 : () ==> real
+  学生参加決定者登録()==
+  return 0;
+
+end インターンシップ

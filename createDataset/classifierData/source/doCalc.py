@@ -3,7 +3,7 @@ from lowerWord import LowerWord
 #from wordTree_en import treeGraph_en
 from calcConceptLebel import CalcConceptLevel
 
-word = '学生'
+word = '利用'
 lowerWord = LowerWord()
 dict, semiList = lowerWord.SearchTopConceptWords(word)  # 上位概念の辞書と同義語のリストを取得
 # print(dict)

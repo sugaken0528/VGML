@@ -26,12 +26,10 @@ class classifier:
         for x in self.result.values:
             if x[10] == 1.0:
                 necessaryList.append([x[0]])
-            if x[10] == 2.0:
+            #if x[10] == 2.0:
+                #classList.append(x[0])
+            if x[9] >= 0.17:
                 classList.append(x[0])
-            """
-            if x[9] >= 0.11:
-                classList.append(x[0])
-            """
 
         # 重複の削除およびソート
         necessaryList.sort()
@@ -65,13 +63,13 @@ class classifier:
                                                 word2, value, necessaryList)
     
         # 動詞の抽出
-        classVerbList, necessaryList = self.methodGenerate.doins(classList, necessaryList,self.specName)
+        operateList, functionList, necessaryList = self.methodGenerate.doins(classList, necessaryList,self.specName)
 
         # クラスとインスタンス変数の概念レベルを比較
         classInstanceList, otherList = self.instanceGenerate.doins(
             necessaryList, classList)
         
-        self.vdmGenerate.doins(classInstanceList,classVerbList,otherList)
+        self.vdmGenerate.doins(classInstanceList, operateList, functionList, otherList)
 
         outPath = "\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\classifierData\\data\\classifier_" + self.specName
         # フォルダにアクセス権限を与え一旦削除

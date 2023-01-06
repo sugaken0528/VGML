@@ -51,7 +51,7 @@ class methodGenerate:
         print(functionList)
         print("-------------------------------------------------------------------------------")
 
-        return classVerbList, otherList
+        return operateList,functionList, otherList
     
     def verbSearch(self, classVerbList, docs, classList, verb):
         for i in range(len(docs)):

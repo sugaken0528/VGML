@@ -1,0 +1,16 @@
+class コース
+
+operations
+  public リザルトタイム確定 : () ==> real
+  リザルトタイム確定()==
+  return 0;
+
+  public ボーナスサークル設置 : () ==> real
+  ボーナスサークル設置()==
+  return 0;
+
+functions
+  規約説明 : () -> real
+  規約説明()==0;
+
+end コース

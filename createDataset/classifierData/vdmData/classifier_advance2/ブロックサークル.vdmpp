@@ -1,0 +1,24 @@
+class ブロックサークル
+
+types
+  public 番号8 = real;
+  public 番号6 = real;
+  public 番号3 = real;
+  public 番号1 = real;
+  public 番号 = real;
+  public 内 = real;
+
+instance variables
+  public ブロックサークル番号8 : 番号8;
+  public ブロックサークル番号6 : 番号6;
+  public ブロックサークル番号3 : 番号3;
+  public ブロックサークル番号1 : 番号1;
+  public ブロックサークル番号 : 番号;
+  public ブロックサークル内 : 内;
+
+operations
+  public スタート成立 : () ==> real
+  スタート成立()==
+  return 0;
+
+end ブロックサークル
