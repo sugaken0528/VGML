@@ -1,33 +1,32 @@
 class ブロック
 
 types
-  public 黒 = real;
-  public 初期設置 = real;
+  public ボーナス = real;
   public カラー = real;
 
 instance variables
-  public 黒ブロック : 黒;
-  public 初期設置ブロック : 初期設置;
+  public ボーナスブロック : ボーナス;
   public カラーブロック : カラー;
 
 operations
+  public 数字カード初期設置 : () ==> real
+  数字カード初期設置()==
+  return 0;
+
   public リザルトタイム確定 : () ==> real
   リザルトタイム確定()==
   return 0;
 
-  public ボーナスタイム獲得 : () ==> real
-  ボーナスタイム獲得()==
+  public ボーナスタイム獲得判定 : () ==> real
+  ボーナスタイム獲得判定()==
+  return 0;
+
+  public ブロック初期位置 : () ==> real
+  ブロック初期位置()==
   return 0;
 
   public スタート準備 : () ==> real
   スタート準備()==
   return 0;
-
-functions
-  初期設置 : () -> real
-  初期設置()==0;
-
-  初期位置 : () -> real
-  初期位置()==0;
 
 end ブロック

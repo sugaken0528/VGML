@@ -1,0 +1,17 @@
+class ブロック
+
+types
+  public カラー = real;
+  public 黒 = real;
+
+instance variables
+  public カラーブロック : カラー;
+  public 黒ブロック : 黒
+
+operations
+
+  public ブロック初期位置 : () ==> real
+  ブロック初期位置()==
+  return 0;
+
+end ブロック

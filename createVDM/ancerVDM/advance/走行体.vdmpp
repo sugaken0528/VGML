@@ -1,0 +1,20 @@
+class 走行体
+
+operations
+  public タッチセンサ押下操作 : () ==> real
+  タッチセンサ押下操作()==
+  return 0;
+
+  public 計測開始 : () ==> real
+  計測開始()==
+  return 0;
+
+  public 計測終了 : () ==> real
+  計測終了()==
+  return 0;
+
+  public 走行体競技終了ETロボコン2020シミュレータ通知 : () ==> real
+  計測終了()==
+  return 0;
+
+end 走行体

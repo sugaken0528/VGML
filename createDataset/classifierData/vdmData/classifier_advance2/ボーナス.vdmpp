@@ -1,8 +1,0 @@
-class ボーナス
-
-operations
-  public ブロック搬入 : () ==> real
-  ブロック搬入()==
-  return 0;
-
-end ボーナス

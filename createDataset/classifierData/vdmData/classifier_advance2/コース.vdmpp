@@ -1,6 +1,25 @@
 class コース
 
+types
+  public 該当ゲートゲートライン = real;
+  public リザルトタイム = real;
+  public r = real;
+  public l = real;
+
+instance variables
+  public コース該当ゲートゲートライン : 該当ゲートゲートライン;
+  public コースリザルトタイム : リザルトタイム;
+  public rコース : r;
+  public lコース : l;
+  public rコーススタートエリア = real;
+  public lコース中間ゲート1 = real;
+  public lコースゴールゲート = real;
+
 operations
+  public 数字カード黒ブロックボーナスサークル設置 : () ==> real
+  数字カード黒ブロックボーナスサークル設置()==
+  return 0;
+
   public リザルトタイム確定 : () ==> real
   リザルトタイム確定()==
   return 0;
@@ -9,8 +28,12 @@ operations
   ボーナスサークル設置()==
   return 0;
 
-functions
-  規約説明 : () -> real
-  規約説明()==0;
+  public カラーブロック有効移動 : () ==> real
+  カラーブロック有効移動()==
+  return 0;
+
+  public アドバンストクラス競技 : () ==> real
+  アドバンストクラス競技()==
+  return 0;
 
 end コース

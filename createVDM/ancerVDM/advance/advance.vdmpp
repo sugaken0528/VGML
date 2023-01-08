@@ -1,0 +1,15 @@
+class intern
+
+types
+ public 事前準備状況 = real;
+ public 勤務内容理解 = real;
+ public 勤務態度 = real;
+ public コミュニケーション = real;
+ public 反省的態度 = real;
+ public 総合評価 = real;
+ public コメント = real;
+ public 参加決定者 = real;
+ public アドバイス = real;
+ public 確定フラグ = real;
+
+end intern

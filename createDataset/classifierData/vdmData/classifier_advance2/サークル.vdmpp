@@ -1,0 +1,18 @@
+class サークル
+
+types
+  public 緑色交点 = real;
+  public 交点 = real;
+  public ボーナス = real;
+  public ナンバーボーナス = real;
+
+instance variables
+  public 緑色交点サークル : 緑色交点;
+  public 交点サークル : 交点;
+  public ボーナスサークル : ボーナス;
+  public ナンバーボーナスサークル : ナンバーボーナス;
+  public ブロックサークル色 = real;
+  public ブロックサークル番号 = real;
+  public ブロックサークル = real;
+
+end サークル

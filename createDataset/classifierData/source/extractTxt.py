@@ -53,7 +53,7 @@ class extractTxt:
         for i in range(len(text)):
             textList.append(text[i])
         replaceDic = ['：', ':', '（', '）',
-                      '(', ')', '.', '「', '」', '→', '【', '】', '、', '[', ']']
+                      '(', ')', '.', '「', '」', '→', '【', '】', '、', '[', ']', '=','・']
         for i in range(len(textList)):
             if textList[i] == '⚫' or textList[i] == '➢':
                 newText += '　'
@@ -90,6 +90,7 @@ class extractTxt:
         doshi = "動詞"
         kakujoshi = "格助詞"
         rentai = "助詞-連体化"
+        meishi = "名詞"
 
         textList = []
         for i in range(len(sentenceList)):
@@ -99,18 +100,16 @@ class extractTxt:
             for j in range(len(nouns)-1):
                 if kuhaku in nouns[j].split()[0]:
                     str += ' '
-                elif len(nouns[j].split()) >= 2 and kakujoshi in nouns[j].split()[3] or rentai in nouns[j].split()[3]:
+                elif len(nouns[j].split()) >= 2 and (kakujoshi in nouns[j].split()[3] and nouns[j].split()[0] != 'と' and nouns[j].split()[0] != 'が' and nouns[j].split()[0] != 'に' and nouns[j].split()[0] != 'へ' and nouns[j].split()[0] != 'を')or rentai in nouns[j].split()[3]:
                     pass
                 elif len(nouns[j].split()) >= 2 and joshi in nouns[j].split()[3] or jodoshi in nouns[j].split()[3] or setsuzokushi in nouns[j].split()[3] or hukushi in nouns[j].split()[3] or kuten in nouns[j].split()[3] or dokuten in nouns[j].split()[3]:
                     str += ' '
-                elif len(nouns[j].split()) >= 2 and doshi in nouns[j].split()[3]:
+                elif len(nouns[j].split()) >= 2 and doshi in nouns[j].split()[3] and not meishi in nouns[j].split()[3]:
                     str += '  ' + nouns[j].split()[0] + ' '
                 else:
                     str += ' ' + nouns[j].split()[0]
             textList.append(str)
-            print(textList[i])
-            print(
-                "--------------------------------------------------------------------------------------------")
+
         connectList = []
         for i in range(len(textList)):
             str = ''
@@ -137,12 +136,16 @@ class extractTxt:
                         pass
             connectList.append(str)
         for i in range(len(connectList)):
-            if connectList[i][-1] != ' ':
+            if len(connectList[i]) != 0 and connectList[i][-1] != ' ':
                 connectList[i] += ' '
+        for i in range(len(connectList)):
+            print(connectList[i])
+            print("------------------------------------------------------------")
 
         f = open(self.outPath, 'w', encoding='UTF-8')
         for i in range(len(connectList)):
-            f.write(connectList[i]+'\n')
+            if len(connectList[i]) > 4:
+                f.write(connectList[i]+'\n')
         f.close()
 
         """

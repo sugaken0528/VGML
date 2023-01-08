@@ -1,0 +1,76 @@
+class 企業担当者
+
+types
+　public id = real;
+  public 名 = real;
+  public 連絡先電話番号 = real;
+  public 連絡先メールアドレス = real;
+  public 職階 = real;
+  public 部署名 = real;
+
+instance variables
+  public 企業担当者id : id;
+  public 企業担当者名 : 名;
+  public 企業担当者連絡先電話番号 : 連絡先電話番号;
+  public 企業担当者連絡先メールアドレス : 連絡先メールアドレス;
+  public 職階 : 職階;
+  public 部署名 : 部署名;
+
+operations
+  public ユーザ認証 : () ==> real
+  ユーザ認証()==
+  return 0;
+
+　public パスワード変更 : () ==> real
+  パスワード変更()==
+  return 0;
+
+  public 担当年度インターンシップ情報登録 : () ==> real
+  担当年度インターンシップ情報登録()==
+  return 0;
+
+  public インターンシップ登録 : () ==> real
+  インターンシップ登録()==
+  return 0;
+
+  public インターンシップ情報一覧確認 : () ==> real
+  インターンシップ情報一覧確認()==
+  return 0;
+
+  public 学生情報一覧確認 : () ==> real
+  学生情報一覧確認()==
+  return 0;
+
+  public インターンシップエントリ学生閲覧 : () ==> real
+  インターンシップエントリ学生閲覧()==
+  return 0;
+
+  public インターンシップ詳細情報更新 : () ==> real
+  インターンシップ詳細情報更新()==
+  return 0;
+
+  public インターンシップエントリ学生閲覧 : () ==> real
+  インターンシップエントリ学生閲覧()==
+  return 0;
+
+  public 参加学生決定 : () ==> real
+  参加学生決定()==
+  return 0;
+
+  public インターンシップ詳細情報一覧確認 : () ==> real
+  インターンシップ詳細情報更新()==
+  return 0;
+
+  public 当該インターンシップ参加決定学生一覧 : () ==> real
+  当該インターンシップ参加決定学生一覧()==
+  return 0;
+
+  public 評定書入力 : () ==> real
+  評定書入力()==    
+  return 0;
+
+  public 当該インターンシップ参加学生評定情報一覧確認 : () ==> real
+  当該インターンシップ参加学生評定情報一覧確認()==
+  return 0;
+
+end 企業担当者

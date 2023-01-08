@@ -19,7 +19,6 @@ types
   public ログイン = real;
   public システム要求仕様 = real;
   public コミュニケーション = real;
-  public インターシップ = real;
 
 values
   パスワード = 8

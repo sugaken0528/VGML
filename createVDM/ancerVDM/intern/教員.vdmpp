@@ -1,0 +1,64 @@
+class 教員
+
+types
+  public id = real;
+  public パスワード = real;
+
+instance variables
+  public ユーザid : id;
+  public パスワード : パスワード;
+
+operations
+  public ユーザ認証 : () ==> real
+  ユーザ認証()==
+  return 0;
+
+　public 学生登録 : () ==> real
+  学生登録()==
+  return 0;
+
+  public パスワード発行 : () ==> real
+  パスワード発行()==
+  return 0;
+
+  public 学生情報一覧確認 : () ==> real
+  学生情報一覧確認()==
+  return 0;
+
+  public 企業登録 : () ==> real
+  企業登録()==
+  return 0;
+
+　public 企業一覧確認 : () ==> real
+  企業一覧確認()==
+  return 0;
+
+  public 企業担当者情報登録 : () ==> real
+  企業担当者情報登録()==
+  return 0;
+
+　public パスワード発行 : () ==> real
+  パスワード発行()==
+  return 0;
+
+  public エントリ登録 : () ==> real
+  エントリ登録()==
+  return 0;
+
+  public 開催予定インターンシップ情報一覧確認 : () ==> real
+  学生エントリ登録()==
+  return 0;
+
+  public インターンシップエントリ情報一覧確認 : () ==> real
+  学生エントリ登録()==
+  return 0;
+
+  public インターンシップ参加決定学生閲覧 : () ==> real
+  インターンシップ参加決定学生閲覧()==
+  return 0;
+
+  public 評定閲覧 : () ==> real
+  評定閲覧()==
+  return 0;
+
+end 教員

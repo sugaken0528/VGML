@@ -42,7 +42,8 @@ class instanceGenerate:
                 m.parse(classWord).splitlines(), True)
             instanceList = []
             for instanceId in range(len(classConnectList[classId][1])):
-                if self.largerConceptLevel(classConceptLevel, classConnectList[classId][1][instanceId]) == True:
+                instanceWord = classConnectList[classId][1][instanceId]
+                if (self.largerConceptLevel(classConceptLevel, instanceWord) == True) and not (any(map(str.isdigit, instanceWord))) and self.directCheck(instanceWord):
                     instanceList.append(
                         classConnectList[classId][1][instanceId])
             classInstanceSet.append(instanceList)
@@ -62,7 +63,8 @@ class instanceGenerate:
                         if necessaryList[wordId][0] == classInstanceList[classId][1][instanceId]:
                             count += 1
             if count == 0:
-                otherList.append(necessaryList[wordId])
+                if self.directCheck(necessaryList[wordId][0]) == True:
+                    otherList.append(necessaryList[wordId])
         return classInstanceList, otherList
 
     def largerConceptLevel(self, classConceptLevel, instanceWord):
@@ -129,3 +131,16 @@ class instanceGenerate:
                 instanceList.append(classConnectSet[1][0][i])
         newClassConnectSet.append(instanceList)
         return newClassConnectSet
+
+    def directCheck(self,word):
+        count = 0
+        directDict = ['右','左','下','上','東','西','南','北','内','外','先','前','後','例','図','中心']
+        for i in range(len(word)):
+            if word[i] in directDict:
+                count += 1
+        if count >= 1:
+            return False
+        else:
+            return True
+
+                

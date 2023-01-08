@@ -4,6 +4,7 @@ import numpy as np
 import csv
 import os
 import shutil
+import MeCab
 from instanceGenerate import instanceGenerate
 from methodGenerate import methodGenerate
 from vdmGenerate import vdmGenerate
@@ -28,8 +29,9 @@ class classifier:
                 necessaryList.append([x[0]])
             #if x[10] == 2.0:
                 #classList.append(x[0])
-            if x[9] >= 0.17:
-                classList.append(x[0])
+            if x[9] >= 0.22:
+                if self.classCheck(x[0]):
+                    classList.append(x[0])
 
         # 重複の削除およびソート
         necessaryList.sort()
@@ -109,6 +111,15 @@ class classifier:
             if (wordList[i][0] == word) and len(wordList[i]) != 2:
                 wordList[i] = [word, value]
         return wordList
+
+    def classCheck(self, word):
+        m = MeCab.Tagger("-Ochasen")
+        nouns = m.parse(word).splitlines()
+        nouns.pop(-1)
+        if '名詞-サ変接続' in nouns[-1].split()[-1]:
+            return False
+        else:
+            return True
 
 
 """
