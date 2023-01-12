@@ -3,10 +3,12 @@ class ブロック
 types
   public カラー = real;
   public 黒 = real;
+  public ナンバー黒数字 = real;
 
 instance variables
   public カラーブロック : カラー;
-  public 黒ブロック : 黒
+  public 黒ブロック : 黒;
+  public ナンバー黒ブロック数字 : ナンバー黒数字;
 
 operations
 

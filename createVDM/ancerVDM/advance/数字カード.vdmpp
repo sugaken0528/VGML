@@ -1,0 +1,13 @@
+class 数字カード
+
+types
+  public カード置き場 = real;
+  public カード = real;
+  public カードボーナス = real;
+
+instance variables
+  public 数字カード置き場 : カード置き場;
+  public 数字カード数字 : カード;
+  public 数字カードボーナス : カードボーナス;
+
+end 数字カード

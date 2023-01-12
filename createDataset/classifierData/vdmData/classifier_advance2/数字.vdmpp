@@ -2,13 +2,13 @@ class 数字
 
 types
   public カード置き場 = real;
-  public カード = real;
+  public カード数字 = real;
   public カードボーナス = real;
   public カード = real;
 
 instance variables
   public 数字カード置き場 : カード置き場;
-  public 数字カード数字 : カード;
+  public 数字カード数字 : カード数字;
   public 数字カードボーナス : カードボーナス;
   public 数字カード : カード;
 

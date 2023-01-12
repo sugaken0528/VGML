@@ -1,15 +1,21 @@
-class intern
+class advance2
 
 types
- public 事前準備状況 = real;
- public 勤務内容理解 = real;
- public 勤務態度 = real;
- public コミュニケーション = real;
- public 反省的態度 = real;
- public 総合評価 = real;
- public コメント = real;
- public 参加決定者 = real;
- public アドバイス = real;
- public 確定フラグ = real;
+  public フルビンゴ = real;
+  public トリプルビンゴ = real;
+  public ダブルビンゴ = real;
+  public シングルビンゴ = real;
+  public ガレージ = real;
+  public etロボコンキャラクターロゴ = real;
+  public etロボコン2020ロゴ = real;
+  public etロボコン2020シミュレータ = real;
+  public 参加チーム = real;
+  public 照明環境 = real;
 
-end intern
+values
+  最大計測時間 = 120;
+　カラーブロック = 8;
+  黒ブロック = 2;
+  ブロック = 10;
+
+end advance2

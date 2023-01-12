@@ -3,10 +3,12 @@ class 企業担当者
 types
   public 連絡先電話番号 = real;
   public id = real;
+  public 名 = real;
 
 instance variables
   public 企業担当者連絡先電話番号 : 連絡先電話番号;
   public 企業担当者id : id;
+  public 企業担当者名 : 名;
 
 operations
   public 担当年度インターンシップ情報登録 : () ==> real

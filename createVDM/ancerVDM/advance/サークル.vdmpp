@@ -1,16 +1,17 @@
 class サークル
 
 types
-  public 緑色交点 = real;
   public 交点 = real;
   public ボーナス = real;
   public ナンバーボーナス = real;
+  public ブロック色 = real;
+  public ブロック番号 = real;
 
 instance variables
   public 交点サークル : 交点;
-  public ボーナスサークル : ボーナス;
+  public 数字カードボーナスサークル : ボーナス;
   public ナンバーボーナスサークル : ナンバーボーナス;
-  public ブロックサークル色 = real;
-  public ブロックサークル番号 = real;
+  public ブロックサークル色 : ブロック色;
+  public ブロックサークル番号 : ブロック番号;
 
 end サークル

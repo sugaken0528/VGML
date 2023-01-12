@@ -3,19 +3,29 @@ class コース
 types
   public l = real;
   public r = real;
+  public rスタートエリア = real;
+  public r中間ゲート1 = real;
+  public r中間ゲート2 = real;
+  public rゴールゲート = real;
+  public lスタートエリア = real;
+  public l中間ゲート1 = real;
+  public l中間ゲート2 = real;
+  public lゴールゲート = real;
+  public リザルトタイム = real;
 
 instance variables
   public lコース : l;
   public rコース : r;
-  public rコーススタートエリア;
-  public rコース中間ゲート1;
-  public rコース中間ゲート2;
-  public rコースゴールゲート = real;
-  public lコーススタートエリア;
-  public lコース中間ゲート1;
-  public lコース中間ゲート2;
-  public lコースゴールゲート = real;
+  public rコーススタートエリア : rスタートエリア;
+  public rコース中間ゲート1 : r中間ゲート1;
+  public rコース中間ゲート2 : r中間ゲート2;
+  public rコースゴールゲート : rゴールゲート;
+  public lコーススタートエリア : lスタートエリア;
+  public lコース中間ゲート1 : l中間ゲート1;
+  public lコース中間ゲート2 : l中間ゲート2;
+  public lコースゴールゲート : lゴールゲート;
   public コースリザルトタイム : リザルトタイム;
+  public ブロックビンゴ2020エリア : real;
 
   operations
   public 数字カード黒ブロックボーナスサークル設置 : () ==> real
@@ -23,7 +33,7 @@ instance variables
   return 0;
 
   public ナンバー黒ブロックボーナスサークル設置 : () ==> real
-  ボーナスサークル設置()==
+  ナンバー黒ブロックボーナスサークル設置()==
   return 0;
 
   public カラーブロック有効移動 : () ==> real

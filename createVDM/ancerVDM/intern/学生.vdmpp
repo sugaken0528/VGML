@@ -1,19 +1,16 @@
 class 学生
+
+types
   public id = real;
   public 氏名 = real;
-  public パスワード = real;
-  public 学籍番号 = real;
-　public 学生氏名 : 氏名;
-  public 連絡先電話番号 = real;
-  public 連絡先メールアドレス = real;
 
 instance variables
   public 学生id : id;
-  public パスワード : パスワード;
-  public 学籍番号 : 学籍番号;
+  public パスワード : real;
+  public 学籍番号 : real;
   public 学生氏名 : 氏名;
-  public 連絡先電話番号 : 連絡先電話番号;
-  public 連絡先メールアドレス : 連絡先メールアドレス;
+  public 連絡先電話番号 : real;
+  public 連絡先メールアドレス : real;
 
 operations
   public インターンシップエントリ登録 : () ==> real
@@ -27,8 +24,8 @@ operations
   public パスワード変更 : () ==> real
   パスワード変更()==
   return 0;
-
-　public 参加インターンシップ情報閲覧 : () ==> real
+  
+  public 参加インターンシップ情報閲覧 : () ==> real
   参加インターンシップ情報閲覧()==
   return 0;
 

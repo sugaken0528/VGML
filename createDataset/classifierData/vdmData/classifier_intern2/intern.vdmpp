@@ -7,7 +7,6 @@ types
   public 自分識別番号 = real;
   public 担当者担当者id = real;
   public 担当者id = real;
-  public 当該学生インターンシップ評定情報 = real;
   public 学籍番号 = real;
   public 周囲コミュニケーション = real;
   public 参加決定者 = real;

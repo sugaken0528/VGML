@@ -1,0 +1,13 @@
+class タイム
+
+types
+  public 走行 = real;
+  public ボーナス = real;
+  public リザルト = real;
+
+instance variables
+  public 走行タイム : 走行;
+  public ボーナスタイム : ボーナス;
+  public リザルトタイム : リザルト;
+
+end タイム
