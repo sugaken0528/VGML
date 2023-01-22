@@ -23,13 +23,14 @@ class instanceGenerate:
             classWord = classList[i]
             classConnectSet.append([classWord])
             for j in range(len(necessaryList)):
-                # classWordが前または後ろに接続する単語を抽出
-                if necessaryList[j][0] != classWord and (necessaryList[j][0].startswith(classWord) or necessaryList[j][0].endswith(classWord)):
+                # classWordを含む単語を抽出
+                if necessaryList[j][0] != classWord and classWord in necessaryList[j][0]:
                     connectWordList.append(necessaryList[j][0])
             classConnectSet.append([connectWordList])
             classConnectSet = self.removeDuplicateInstance(
                 classList, classConnectSet)
             classConnectList.append(classConnectSet)
+        print(classConnectList)
 
         # クラスの概念レベルより小さい概念レベルを持つインスタンス変数を抽出
         classInstanceList = []
@@ -43,9 +44,14 @@ class instanceGenerate:
             instanceList = []
             for instanceId in range(len(classConnectList[classId][1])):
                 instanceWord = classConnectList[classId][1][instanceId]
-                if (self.largerConceptLevel(classConceptLevel, instanceWord) == True) and not (any(map(str.isdigit, instanceWord))) and self.directCheck(instanceWord):
-                    instanceList.append(
-                        classConnectList[classId][1][instanceId])
+                if self.largerConceptLevel(classWord, classConceptLevel, instanceWord) == True:
+                    if any(map(str.isdigit, instanceWord)) and self.numCheck(instanceWord)==False:
+                        pass
+                    elif self.directCheck(instanceWord) or (self.numCheck(instanceWord)==False and not any(map(str.isdigit, instanceWord))):
+                        instanceList.append(
+                            classConnectList[classId][1][instanceId])
+                    elif self.numCheck(instanceWord)==False and any(map(str.isdigit, instanceWord)):
+                        print(instanceWord)
             classInstanceSet.append(instanceList)
             classInstanceList.append(classInstanceSet)
 
@@ -67,11 +73,13 @@ class instanceGenerate:
                     otherList.append(necessaryList[wordId])
         return classInstanceList, otherList
 
-    def largerConceptLevel(self, classConceptLevel, instanceWord):
+    def largerConceptLevel(self, classWord, classConceptLevel, instanceWord):
         m = MeCab.Tagger("-Ochasen")
-        instanceNouns = m.parse(instanceWord).splitlines()
+        instanceNouns = m.parse(instanceWord.replace(classWord, '')).splitlines()
         instanceConceptLevel = self.calcAverageConceptLevel(
             instanceNouns, False)
+        print("クラス「{}」:{}".format(classWord,classConceptLevel))
+        print("インスタンス「{}」:{}".format(instanceNouns,instanceConceptLevel))
 
         if classConceptLevel < 10:
             classConceptLevel = 10
@@ -83,8 +91,6 @@ class instanceGenerate:
 
     def calcAverageConceptLevel(self, nouns, classFlag):
         # インスタンス変数の場合クラスに接続する名詞のみを考える
-        if classFlag == False and len(nouns) >= 3:
-            nouns = nouns[1:]
         conceptLevel = 0
         for i in range(len(nouns)-1):
             # 上位概念の辞書と同義語のリストを取得
@@ -134,13 +140,22 @@ class instanceGenerate:
 
     def directCheck(self,word):
         count = 0
-        directDict = ['右','左','下','上','東','西','南','北','内','外','先','前','後','例','図','中心']
-        for i in range(len(word)):
-            if word[i] in directDict:
+        directDict = ['右','左','下','上','東','西','南','北','内','外','前','後','例','図','中心','方向']
+        for i in range(len(directDict)):
+            if directDict[i] in word:
                 count += 1
         if count >= 1:
             return False
         else:
             return True
-
-                
+        
+    def numCheck(self,word):
+        count = 0
+        directDict = ['図','表','番号','式','個']
+        for i in range(len(directDict)):
+            if directDict[i] in word:
+                count += 1
+        if count >= 1:
+            return False
+        else:
+            return True

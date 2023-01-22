@@ -1,4 +1,4 @@
-class advance2
+class advance
 
 types
   public フルビンゴ = real;
@@ -18,4 +18,4 @@ values
   黒ブロック = 2;
   ブロック = 10;
 
-end advance2
+end advance

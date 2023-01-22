@@ -1,26 +1,32 @@
 class advance2
 
 types
+  public 走行体ソフトウェア = real;
   public 走行タイム計測方法 = real;
   public 走行タイムーボーナスタイム = real;
   public 走行タイム = real;
+  public 緑色ブロックサークル = real;
   public 競技アドバンストクラス固有 = real;
   public 照明環境 = real;
   public 構成要素名称 = real;
   public 時点走行タイム = real;
+  public 数字カード置き場白部分 = real;
+  public 数字カードボーナスサークル = real;
   public 大会開催地名産品 = real;
+  public 参加チームクラス = real;
   public 参加チーム = real;
-  public 交点サークル円中心 = real;
   public 中間ゲートゲートライン = real;
   public リザルトタイム = real;
   public マイナスタイム = real;
   public ボーナスタイム獲得対象成立事項 = real;
   public ボーナスタイム = real;
   public プライマリークラス難所 = real;
-  public ブロック円柱中心軸 = real;
+  public ブロック移動先 = real;
   public ブロックビンゴ2020エリア形状 = real;
   public ブロックビンゴ2020エリア = real;
-  public ブロックビンゴ2020 = real;
+  public ブロックサークル色 = real;
+  public ブロックサークル番号 = real;
+  public ブロックサークル = real;
   public フルビンゴ = real;
   public ナンバー黒ブロック添付数字 = real;
   public ナンバー黒ブロック数字 = real;
@@ -31,9 +37,7 @@ types
   public スタートライン = real;
   public スタートエリア = real;
   public シングルビンゴ = real;
-  public ガレージ方向 = real;
   public ガレージ = real;
-  public カラーブロック色 = real;
   public アドバンストクラス難所 = real;
   public アドバンストクラス = real;
   public etロボコンキャラクターロゴ = real;
@@ -41,8 +45,8 @@ types
   public etロボコン2020シミュレータ = real;
 
 values
-  ブロック = 10;
-  数字カード黒ブロック = 8;
-  ナンバー黒ブロック = 8;
+  ブロック = 10
+  数字カード黒ブロック = 8
+  ナンバー黒ブロック = 8
 
 end advance2

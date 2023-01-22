@@ -9,9 +9,7 @@ instance variables
     public 学生氏名 : 氏名;
 
 operations
-    public インターンシップエントリ登録 : () ==> real
-    インターンシップエントリ登録()==
-    return 0;
+    public インターンシップエントリ登録 : () ==> real インターンシップエントリ登録() == return 0;
 
 functions
     パスワード変更 : () -> real

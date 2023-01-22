@@ -3,24 +3,34 @@ class コース
 types
   public 該当ゲートゲートライン = real;
   public リザルトタイム = real;
-  public r = real;
-  public l = real;
   public rスタートエリア = real;
+  public r = real;
   public l中間ゲート1 = real;
+  public lスタートエリア = real;
   public lゴールゲート = real;
+  public l = real;
 
 instance variables
   public コース該当ゲートゲートライン : 該当ゲートゲートライン;
   public コースリザルトタイム : リザルトタイム;
-  public rコース : r;
-  public lコース : l;
   public rコーススタートエリア : rスタートエリア;
+  public rコース : r;
   public lコース中間ゲート1 : l中間ゲート1;
+  public lコーススタートエリア : lスタートエリア;
   public lコースゴールゲート : lゴールゲート;
+  public lコース : l;
 
 operations
   public 数字カード黒ブロックボーナスサークル設置 : () ==> real
   数字カード黒ブロックボーナスサークル設置()==
+  return 0;
+
+  public 成立 : () ==> real
+  成立()==
+  return 0;
+
+  public 参照 : () ==> real
+  参照()==
   return 0;
 
   public リザルトタイム確定 : () ==> real

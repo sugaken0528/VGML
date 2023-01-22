@@ -2,10 +2,12 @@ class インターンシップ
 
 types
   public 名 = real;
+  public 参加エントリ = real;
   public id = real;
 
 instance variables
   public インターンシップ名 : 名;
+  public インターンシップ参加エントリ : 参加エントリ;
   public インターンシップid : id;
 
 operations

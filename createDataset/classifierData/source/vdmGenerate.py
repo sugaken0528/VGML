@@ -9,7 +9,6 @@ class vdmGenerate:
     def doins(self,classInstanceList,operateList,otherList):
 
         outPath = "\\Users\\ksk\\sync\\lab\\research\\2021\\GVA3\\Source\\createDataset\\classifierData\\vdmData\\classifier_" + self.specName
-        print(classInstanceList)
         # フォルダにアクセス権限を与え一旦削除
         if os.path.exists(outPath) == True:
             os.chmod(outPath, 755)
@@ -20,6 +19,11 @@ class vdmGenerate:
         self.classVdm(classInstanceList,operateList,outPath)
 
     def otherVdm(self,otherList,outPath):
+        newOtherList = []
+        for i in range(len(otherList)):
+            wordSet = self.unitCheck(otherList[i])
+            newOtherList.append(wordSet)
+
         rows = []
         rows.append([])
         rows.append(['types'])
@@ -27,14 +31,13 @@ class vdmGenerate:
         rows.append(['values'])
         rows.append([])
 
-        for x in otherList:
+        for x in newOtherList:
             if len(x) == 1:
                 index = self.searchId(rows,"types")
                 rows.insert(index,["  public " + str(x[0]) + " = real;"])
             elif len(x) == 2:
                 index = self.searchId(rows,"values")
                 rows.insert(index,["  " + str(x[0]) + " = " + str(x[1])])
-        
         # その他を書き込み
         with open(outPath + "\\" + self.specName + ".vdmpp", 'w', encoding='utf8') as f:
             writer = csv.writer(f, lineterminator='\n')
@@ -103,6 +106,30 @@ class vdmGenerate:
                 count += 1
         if count > 0:
             return True
+        
+    def unitCheck(self, otherSet):
+        unit_dic = ['位', '宇', '折', '果', '箇', '荷', '菓', '掛', '顆', '回', '階', '画', '頭', '方', '株', '巻', '管', '缶', '基', '機', '騎', '切', '客', '脚', '行', '局', '句', '軀', '口', '具', '組', '景', '桁', '件', '軒', '個', '戸', '号', '合', '梱', '献', '喉', '座', '棹', '冊', '皿', '氏', '締', '字', '軸', '室', '首', '重', '床', '条', '畳', '錠', '帖', '筋', '食', '隻', '膳', '双',
+                    '艘', '足', '揃', '体', '袋', '台', '題', '立', '卓', '束', '玉', '着', '丁', '挺', '帳', '張', 'つ', '対', '通', '番', '粒', '艇', '滴', '点', '度', '等', '堂', '人', '把', '羽', '張', '刎', '杯', '柱', '鉢', '発', '尾', '匹', '瓶', '振', '部', '幅', '服', '房', '篇', '遍', '本', '間', '枚', '前', '幕', '棟', '名', '面', '門', '問', '山', '葉', '流', '旒', '両', '領', '輪', '連', '椀', '碗','文']
+        for dic in range(len(unit_dic)):
+                if unit_dic[dic] in otherSet[0] and any(map(str.isdigit, otherSet[0])):
+                    for j in range(len(otherSet[0])):
+                        if otherSet[0][j] == unit_dic[dic]:
+                            word = otherSet[0][j+1:]
+                            if len(otherSet) >= 2:
+                                suti = otherSet[1]
+                                wordSet = [word, suti]
+                                return wordSet
+                            else:
+                                wordSet = [word]
+                                return wordSet
+        word = otherSet[0]
+        if len(otherSet) >= 2:
+            suti = otherSet[1]
+            wordSet = [word, suti]
+        else:
+            wordSet = [word]
+        return wordSet
+
         
 
 

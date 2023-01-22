@@ -1,11 +1,15 @@
 class 学生
 
 types
+  public 順一覧項目 = real;
   public 氏名 = real;
+  public 毎固有識別番号 = real;
   public id = real;
 
 instance variables
+  public 学生順一覧項目 : 順一覧項目;
   public 学生氏名 : 氏名;
+  public 学生毎固有識別番号 : 毎固有識別番号;
   public 学生id : id;
 
 operations

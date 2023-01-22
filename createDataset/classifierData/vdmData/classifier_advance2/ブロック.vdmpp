@@ -2,10 +2,14 @@ class ブロック
 
 types
   public ボーナス = real;
+  public ビンゴ2020 = real;
+  public カラー色 = real;
   public カラー = real;
 
 instance variables
   public ボーナスブロック : ボーナス;
+  public ブロックビンゴ2020 : ビンゴ2020;
+  public カラーブロック色 : カラー色;
   public カラーブロック : カラー;
 
 operations

@@ -9,6 +9,10 @@ operations
   計測終了()==
   return 0;
 
+  public 成立 : () ==> real
+  成立()==
+  return 0;
+
   public 中間ゲート2通過 : () ==> real
   中間ゲート2通過()==
   return 0;
