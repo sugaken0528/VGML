@@ -1,4 +1,4 @@
-class advance2
+class advance
 
 types
   public 走行体ソフトウェア = real;
@@ -50,4 +50,4 @@ values
   数字カード黒ブロック = 8;
   ナンバー黒ブロック = 8;
 
-end advance2
+end advance

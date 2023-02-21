@@ -1,0 +1,80 @@
+class 学生
+
+types
+  public 氏名 = real;
+  public id = real;
+
+instance variables
+  public 学生氏名 : 氏名;
+  public 学生id : id;
+
+operations
+  public 評定閲覧 : () ==> real
+  評定閲覧()==
+  is not yet specified;
+
+  public 自身参加決定 : () ==> real
+  自身参加決定()==
+  is not yet specified;
+
+  public 学生一覧確認 : () ==> real
+  学生一覧確認()==
+  is not yet specified;
+
+  public 学生アドバイス : () ==> real
+  学生アドバイス()==
+  is not yet specified;
+
+  public 反省点確認 : () ==> real
+  反省点確認()==
+  is not yet specified;
+
+  public 参加インターンシップ情報閲覧 : () ==> real
+  参加インターンシップ情報閲覧()==
+  is not yet specified;
+
+  public 企業担当者入力 : () ==> real
+  企業担当者入力()==
+  is not yet specified;
+
+  public ユーザ認証 : () ==> real
+  ユーザ認証()==
+  is not yet specified;
+
+  public パスワード変更 : () ==> real
+  パスワード変更()==
+  is not yet specified;
+
+  public パスワードユーザ認証 : () ==> real
+  パスワードユーザ認証()==
+  is not yet specified;
+
+  public セキュリティ確保 : () ==> real
+  セキュリティ確保()==
+  is not yet specified;
+
+  public エントリ登録 : () ==> real
+  エントリ登録()==
+  is not yet specified;
+
+  public インターンシップ終了 : () ==> real
+  インターンシップ終了()==
+  is not yet specified;
+
+  public インターンシップ情報一覧確認 : () ==> real
+  インターンシップ情報一覧確認()==
+  is not yet specified;
+
+  public インターンシップ実施 : () ==> real
+  インターンシップ実施()==
+  is not yet specified;
+
+  public インターンシップエントリ登録 : () ==> real
+  インターンシップエントリ登録()==
+  is not yet specified;
+
+  public アドバイス参照 : () ==> real
+  アドバイス参照()==
+  is not yet specified;
+
+end 学生

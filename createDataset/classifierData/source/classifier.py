@@ -24,13 +24,21 @@ class classifier:
     def createClassifierList(self):
         necessaryList = []  # VDM++仕様書に必要な候補の単語を格納
         classList = []  # クラスの候補となる単語を格納
+        m = MeCab.Tagger("-Ochasen")
+        #print(nouns[i].split()[0])
         for x in self.result.values:
             if x[10] == 1.0:
                 necessaryList.append([x[0]])
-            #if x[10] == 2.0:
-                #classList.append(x[0])
-            if x[9] >= 0.22 and not self.exisVerb(x[0]):
-                classList.append(x[0])
+            if self.specName == 'intern':
+                if x[10] == 2.0:
+                    nouns = m.parse(x[0]).splitlines()
+                    if nouns[-2].split()[-1] != "名詞-サ変接続":
+                        classList.append(x[0])
+            else:
+                if x[9] >= 0.22 and not self.exisVerb(x[0]):
+                    nouns = m.parse(x[0]).splitlines()
+                    if nouns[-2].split()[-1] != "名詞-サ変接続":
+                        classList.append(x[0])
 
         # 重複の削除およびソート
         necessaryList.sort()

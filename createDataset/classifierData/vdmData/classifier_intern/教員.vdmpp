@@ -1,0 +1,70 @@
+class 教員
+
+types
+  public ユーザid = real;
+
+instance variables
+  public 教員ユーザid : ユーザid;
+
+operations
+  public 開催予定インターンシップ情報一覧確認 : () ==> real
+  開催予定インターンシップ情報一覧確認()==
+  is not yet specified;
+
+  public 次項目5段階評価 : () ==> real
+  次項目5段階評価()==
+  is not yet specified;
+
+  public 学生登録 : () ==> real
+  学生登録()==
+  is not yet specified;
+
+  public 学生情報登録 : () ==> real
+  学生情報登録()==
+  is not yet specified;
+
+  public 学生情報一覧確認 : () ==> real
+  学生情報一覧確認()==
+  is not yet specified;
+
+  public 学生エントリ登録 : () ==> real
+  学生エントリ登録()==
+  is not yet specified;
+
+  public 勤務内容理解 : () ==> real
+  勤務内容理解()==
+  is not yet specified;
+
+  public 企業担当者情報登録 : () ==> real
+  企業担当者情報登録()==
+  is not yet specified;
+
+  public 企業一覧確認 : () ==> real
+  企業一覧確認()==
+  is not yet specified;
+
+  public ユーザ認証 : () ==> real
+  ユーザ認証()==
+  is not yet specified;
+
+  public パスワード発行 : () ==> real
+  パスワード発行()==
+  is not yet specified;
+
+  public パスワードユーザ認証 : () ==> real
+  パスワードユーザ認証()==
+  is not yet specified;
+
+  public エントリ登録 : () ==> real
+  エントリ登録()==
+  is not yet specified;
+
+  public インターンシップ提供 : () ==> real
+  インターンシップ提供()==
+  is not yet specified;
+
+  public インターンシップ参加決定学生閲覧 : () ==> real
+  インターンシップ参加決定学生閲覧()==
+  is not yet specified;
+
+end 教員

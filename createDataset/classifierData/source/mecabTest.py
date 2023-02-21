@@ -1,6 +1,6 @@
 import MeCab
 m = MeCab.Tagger("-Ochasen")
-nouns = m.parse("パスワード変更").splitlines()
+nouns = m.parse("一覧").splitlines()
 for i in range(len(nouns)-1):
     print(nouns[i].split()[0])
     print(nouns[i].split()[1])

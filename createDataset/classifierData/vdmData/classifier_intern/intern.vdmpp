@@ -1,0 +1,29 @@
+class intern
+
+types
+  public 連絡先電話番号 = real;
+  public 連絡先メールアドレス = real;
+  public 自分識別番号 = real;
+  public 総合評価教員 = real;
+  public 担当者担当者id = real;
+  public 担当者id = real;
+  public 当該学生インターンシップ評定情報 = real;
+  public 固有識別番号 = real;
+  public 周囲コミュニケーション = real;
+  public 参加決定者 = real;
+  public 参加エントリ = real;
+  public 勤務態度 = real;
+  public 予定実施日数 = real;
+  public 予定実施日 = real;
+  public ログインid = real;
+  public ログイン = real;
+  public メールアドレス = real;
+  public システム要求仕様 = real;
+  public コミュニケーション = real;
+  public インターシップ = real;
+  public password = real;
+
+values
+  パスワード = 8;
+
+end intern

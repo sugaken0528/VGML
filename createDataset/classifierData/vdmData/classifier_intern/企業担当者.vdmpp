@@ -1,0 +1,66 @@
+class 企業担当者
+
+types
+  public 連絡先電話番号 = real;
+  public 名 = real;
+  public id = real;
+
+instance variables
+  public 企業担当者連絡先電話番号 : 連絡先電話番号;
+  public 企業担当者名 : 名;
+  public 企業担当者id : id;
+
+operations
+  public 自社企業開催 : () ==> real
+  自社企業開催()==
+  is not yet specified;
+
+  public 担当年度インターンシップ情報登録 : () ==> real
+  担当年度インターンシップ情報登録()==
+  is not yet specified;
+
+  public 学生機能 : () ==> real
+  学生機能()==
+  is not yet specified;
+
+  public 学生情報一覧確認 : () ==> real
+  学生情報一覧確認()==
+  is not yet specified;
+
+  public ユーザ認証 : () ==> real
+  ユーザ認証()==
+  is not yet specified;
+
+  public パスワード変更 : () ==> real
+  パスワード変更()==
+  is not yet specified;
+
+  public パスワードユーザ認証 : () ==> real
+  パスワードユーザ認証()==
+  is not yet specified;
+
+  public セキュリティ確保 : () ==> real
+  セキュリティ確保()==
+  is not yet specified;
+
+  public インターンシップ登録 : () ==> real
+  インターンシップ登録()==
+  is not yet specified;
+
+  public インターンシップ情報一覧確認 : () ==> real
+  インターンシップ情報一覧確認()==
+  is not yet specified;
+
+  public インターンシップ参加 : () ==> real
+  インターンシップ参加()==
+  is not yet specified;
+
+  public インターンシップエントリ学生閲覧 : () ==> real
+  インターンシップエントリ学生閲覧()==
+  is not yet specified;
+
+  public アドバイス : () ==> real
+  アドバイス()==
+  is not yet specified;
+
+end 企業担当者
