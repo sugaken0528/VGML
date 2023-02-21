@@ -1,8 +1,0 @@
-class 教員
-  
-operations
-  public 企業・企業担当者年度別一覧確認 : () ==> real
-  企業・企業担当者年度別一覧確認()==
-  return 0;
-
-end 教員
