@@ -2,35 +2,33 @@ class ブロック
 
 types
   public ボーナス = real;
-  public ビンゴ2020 = real;
   public カラー色 = real;
   public カラー = real;
 
 instance variables
   public ボーナスブロック : ボーナス;
-  public ブロックビンゴ2020 : ビンゴ2020;
   public カラーブロック色 : カラー色;
   public カラーブロック : カラー;
 
 operations
   public 数字カード初期設置 : () ==> real
   数字カード初期設置()==
-  return 0;
+  is not yet specified;
 
   public リザルトタイム確定 : () ==> real
   リザルトタイム確定()==
-  return 0;
+  is not yet specified;
 
   public ボーナスタイム獲得判定 : () ==> real
   ボーナスタイム獲得判定()==
-  return 0;
+  is not yet specified;
 
   public ブロック初期位置 : () ==> real
   ブロック初期位置()==
-  return 0;
+  is not yet specified;
 
   public スタート準備 : () ==> real
   スタート準備()==
-  return 0;
+  is not yet specified;
 
 end ブロック

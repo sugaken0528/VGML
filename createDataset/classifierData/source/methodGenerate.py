@@ -20,12 +20,13 @@ class methodGenerate:
 
         sahen = "名詞-サ変接続"
         for wordId in range(len(necessaryList)):
-            nouns = m.parse(necessaryList[wordId][0]).splitlines()
-            partOfSpeech = nouns[-2].split()[-1]
-            if partOfSpeech == sahen:
-                verbList.append(necessaryList[wordId])
-            else:
-                otherList.append(necessaryList[wordId])
+            if len(necessaryList[wordId][0]) >=3:
+                nouns = m.parse(necessaryList[wordId][0]).splitlines()
+                partOfSpeech = nouns[-2].split()[-1]
+                if partOfSpeech == sahen:
+                    verbList.append(necessaryList[wordId])
+                else:
+                    otherList.append(necessaryList[wordId])
 
         classVerbList = []
         for i in range(len(verbList)):

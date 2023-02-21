@@ -30,7 +30,6 @@ class instanceGenerate:
             classConnectSet = self.removeDuplicateInstance(
                 classList, classConnectSet)
             classConnectList.append(classConnectSet)
-        print(classConnectList)
 
         # クラスの概念レベルより小さい概念レベルを持つインスタンス変数を抽出
         classInstanceList = []
@@ -45,13 +44,11 @@ class instanceGenerate:
             for instanceId in range(len(classConnectList[classId][1])):
                 instanceWord = classConnectList[classId][1][instanceId]
                 if self.largerConceptLevel(classWord, classConceptLevel, instanceWord) == True:
-                    if any(map(str.isdigit, instanceWord)) and self.numCheck(instanceWord)==False:
-                        pass
+                    if (any(map(str.isdigit, instanceWord)) and self.numCheck(instanceWord)==False) or self.checkConnectNumber(instanceWord):
+                        print(instanceWord)
                     elif self.directCheck(instanceWord) or (self.numCheck(instanceWord)==False and not any(map(str.isdigit, instanceWord))):
                         instanceList.append(
                             classConnectList[classId][1][instanceId])
-                    elif self.numCheck(instanceWord)==False and any(map(str.isdigit, instanceWord)):
-                        print(instanceWord)
             classInstanceSet.append(instanceList)
             classInstanceList.append(classInstanceSet)
 
@@ -78,8 +75,8 @@ class instanceGenerate:
         instanceNouns = m.parse(instanceWord.replace(classWord, '')).splitlines()
         instanceConceptLevel = self.calcAverageConceptLevel(
             instanceNouns, False)
-        print("クラス「{}」:{}".format(classWord,classConceptLevel))
-        print("インスタンス「{}」:{}".format(instanceNouns,instanceConceptLevel))
+        #print("クラス「{}」:{}".format(classWord,classConceptLevel))
+        #print("インスタンス「{}」:{}".format(instanceNouns,instanceConceptLevel))
 
         if classConceptLevel < 10:
             classConceptLevel = 10
@@ -158,4 +155,15 @@ class instanceGenerate:
         if count >= 1:
             return False
         else:
+            return True
+        
+    def checkConnectNumber(self,word):
+        count = 0
+        if word[-1].isdigit():
+            for i in range(len(word)):
+                if word[i].isdigit():
+                    count += 1
+                else:
+                    count = 0
+        if count >= 3:
             return True

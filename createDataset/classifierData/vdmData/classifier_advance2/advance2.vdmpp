@@ -24,6 +24,7 @@ types
   public ブロック移動先 = real;
   public ブロックビンゴ2020エリア形状 = real;
   public ブロックビンゴ2020エリア = real;
+  public ブロックビンゴ2020 = real;
   public ブロックサークル色 = real;
   public ブロックサークル番号 = real;
   public ブロックサークル = real;
@@ -45,8 +46,8 @@ types
   public etロボコン2020シミュレータ = real;
 
 values
-  ブロック = 10
-  数字カード黒ブロック = 8
-  ナンバー黒ブロック = 8
+  ブロック = 10;
+  数字カード黒ブロック = 8;
+  ナンバー黒ブロック = 8;
 
 end advance2

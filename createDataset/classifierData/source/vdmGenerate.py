@@ -30,14 +30,14 @@ class vdmGenerate:
         rows.append([])
         rows.append(['values'])
         rows.append([])
-
+        print(newOtherList)
         for x in newOtherList:
             if len(x) == 1:
                 index = self.searchId(rows,"types")
                 rows.insert(index,["  public " + str(x[0]) + " = real;"])
             elif len(x) == 2:
                 index = self.searchId(rows,"values")
-                rows.insert(index,["  " + str(x[0]) + " = " + str(x[1])])
+                rows.insert(index,["  " + str(x[0]) + " = " + str(x[1])+";"])
         # その他を書き込み
         with open(outPath + "\\" + self.specName + ".vdmpp", 'w', encoding='utf8') as f:
             writer = csv.writer(f, lineterminator='\n')
@@ -48,6 +48,7 @@ class vdmGenerate:
     
     def classVdm(self,classInstanceList,operateList,outPath):
         for classId in range(len(classInstanceList)):
+            typeList = []
             classWord = classInstanceList[classId][0][0]
             rows = []
             rows.append(['class ' + classWord])
@@ -65,15 +66,19 @@ class vdmGenerate:
                 typeWord = instanceWord.replace(classWord,'')
                 index = self.searchId(rows, "instance variables")
                 rows.insert(index,["  public " + instanceWord + " : " + typeWord + ";"])
-                index = self.searchId(rows, "types")
-                rows.insert(index,["  public " + typeWord + " = real;"])
+                if typeWord in typeList:
+                    print("{}は{}に含まれます".format(typeWord,typeList))
+                else:
+                    index = self.searchId(rows, "types")
+                    rows.insert(index,["  public " + typeWord + " = real;"])
+                    typeList.append(typeWord)
             for operateId in range(len(operateList)):
                 if classWord == operateList[operateId][0]:
                     operateWord = operateList[operateId][1]
                     index = self.searchId(rows, "operations")
                     rows.insert(index,["  public " + operateWord + " : () ==> real"])
                     rows.insert(index+1,["  " + operateWord + "()=="])
-                    rows.insert(index+2,["  return 0;"])
+                    rows.insert(index+2,["  is not yet specified;"])
                     rows.insert(index+3,[])
 
             # その他を書き込み

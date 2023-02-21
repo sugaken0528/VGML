@@ -3,30 +3,26 @@ class 走行体
 operations
   public 計測終了操作 : () ==> real
   計測終了操作()==
-  return 0;
+  is not yet specified;
 
   public 計測終了 : () ==> real
   計測終了()==
-  return 0;
-
-  public 成立 : () ==> real
-  成立()==
-  return 0;
+  is not yet specified;
 
   public 中間ゲート2通過 : () ==> real
   中間ゲート2通過()==
-  return 0;
+  is not yet specified;
 
   public タッチセンサ押下操作 : () ==> real
   タッチセンサ押下操作()==
-  return 0;
+  is not yet specified;
 
   public スタートライン通過 : () ==> real
   スタートライン通過()==
-  return 0;
+  is not yet specified;
 
   public ゴールゲート通過 : () ==> real
   ゴールゲート通過()==
-  return 0;
+  is not yet specified;
 
 end 走行体

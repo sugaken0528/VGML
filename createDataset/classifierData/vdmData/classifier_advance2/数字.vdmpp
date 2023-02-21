@@ -2,7 +2,6 @@ class 数字
 
 types
   public カード置き場 = real;
-  public カード = real;
   public カードボーナス = real;
   public カード = real;
 
@@ -15,6 +14,6 @@ instance variables
 operations
   public 数字カード黒ブロックボーナスサークル設置 : () ==> real
   数字カード黒ブロックボーナスサークル設置()==
-  return 0;
+  is not yet specified;
 
 end 数字

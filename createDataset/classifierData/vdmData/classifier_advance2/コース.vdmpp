@@ -23,30 +23,22 @@ instance variables
 operations
   public 数字カード黒ブロックボーナスサークル設置 : () ==> real
   数字カード黒ブロックボーナスサークル設置()==
-  return 0;
-
-  public 成立 : () ==> real
-  成立()==
-  return 0;
-
-  public 参照 : () ==> real
-  参照()==
-  return 0;
+  is not yet specified;
 
   public リザルトタイム確定 : () ==> real
   リザルトタイム確定()==
-  return 0;
+  is not yet specified;
 
   public ボーナスサークル設置 : () ==> real
   ボーナスサークル設置()==
-  return 0;
+  is not yet specified;
 
   public カラーブロック有効移動 : () ==> real
   カラーブロック有効移動()==
-  return 0;
+  is not yet specified;
 
   public アドバンストクラス競技 : () ==> real
   アドバンストクラス競技()==
-  return 0;
+  is not yet specified;
 
 end コース
